@@ -1,0 +1,22 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "ComLy API docs"
+    },
+    "paths": {
+        "/v1/health": {
+            "get": {
+                "description": "Check API health!",
+                "responses": {
+                    "200": {
+                        "description": "Alive as never before!"
+                    },
+                    "400": {
+                        "description": "Oh no, Im dead :("
+                    }
+                }
+            }
+        }
+    }
+}
