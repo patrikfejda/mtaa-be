@@ -40,8 +40,8 @@ classDiagram
         create()
     }
 
-    User "1" -- "0..*" Status
-    Conversation "0..*" -- "0..*" User
-    User "1" -- "0..*" Message
-    Conversation "1" -- "0..*" Message
+    User "1" -- "0*" Status
+    Conversation "0*" -- "0*" User
+    User "1" -- "0*" Message
+    Conversation "1" -- "0*" Message
 ```
