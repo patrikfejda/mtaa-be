@@ -11,70 +11,55 @@ The app will allow the users to communicate in one-2-one chats and group chats a
 
 ## Features
 
+### One-2-One Chats
+
+The app will allow users to communicate with each other in one-2-one chats.
+They will be able to send message to every user in the app.
+User will be able to see the list of all the users in the app and start a chat with any of them.
+In additional, they can send photos taken by the in-app camera.
+
+### Group Chats
+
+Same as one-2-one chats, but with multiple users.
+The users will be able to create a group chat with other users and add/remove users from the group.
+Every group chat will have a name, which will be set by the user who created the group and can be changed by any user in the group.
+
 ### Video calls
 
 The app will allow users to make video calls to each other. 
+Video calls will be possible both in one-2-one chats and in group chats.
+The videocalls will have a slack's huddle-like style - the user will not get any bothering notifications about the call, but will be able to join the call at any time clicking the "Join call" button.
 
 ### User status
 
 The app will allow users to set their status. The status will be visible to all the users in the app.
 
 Status is meant to be a simple quote or a short message about their current mood or activity and their current location.
+Sharing status without sharing the location will not be possible.
 
 ### User profile
 
 User can set their display name and profile picture. The profile picture will be visible to all the users in the app.
 The display name will be default to the username, but can be changed by the user.
 
-## Data model
 
-```mermaid
-classDiagram
-    class User {
-        Int id
-        String email
-        String username
-        String password
-        Strind display_name
-        String profile_photo_url
-        Timestamp created_at
-        login()
-        register()
-        set()
-    }
-    class Status {
-        Int id
-        User user_id
-        String status
-        Float longitude
-        Float latitude
-        Timestamp created_at
-        create()
-        delete()
-    }
-    class Conversation {
-        Int id
-        Boolean is_group
-        String name
-        List<User> users
-        Timestamp created_at
-        create()
-        delete()
-    }
-    class Message {
-        Int id
-        User user_id
-        Conversation conversation_id
-        String message
-        Timestamp created_at
-        create()
-    }
+## Technical specification
 
-    User "1" -- "0*" Status
-    Conversation "0*" -- "0*" User
-    User "1" -- "0*" Message
-    Conversation "1" -- "0*" Message
-```
+### Backend
+
+The backend will contain the following services:
+- postgresql database
+- python API app
+  
+Services will be deployed on a single server using Docker.
+
+Python API app will be built using FastAPI framework.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
+For connecting to the database, we will use SQLAlchemy ORM.
+
+### Frontend 
+
+TODO MATEJ
 
 ## UAT Tests
 
@@ -350,3 +335,52 @@ classDiagram
 2. System displays a status screen with a text input field and a "Set" button.
 3. User types a status and clicks on the "Set" button.
 4. System displays an error message.
+## Data model
+
+```mermaid
+classDiagram
+    class User {
+        Int id
+        String email
+        String username
+        String password
+        Strind display_name
+        String profile_photo_url
+        Timestamp created_at
+        login()
+        register()
+        set()
+    }
+    class Status {
+        Int id
+        User user_id
+        String status
+        Float longitude
+        Float latitude
+        Timestamp created_at
+        create()
+        delete()
+    }
+    class Conversation {
+        Int id
+        Boolean is_group
+        String name
+        List<User> users
+        Timestamp created_at
+        create()
+        delete()
+    }
+    class Message {
+        Int id
+        User user_id
+        Conversation conversation_id
+        String message
+        Timestamp created_at
+        create()
+    }
+
+    User "1" -- "0*" Status
+    Conversation "0*" -- "0*" User
+    User "1" -- "0*" Message
+    Conversation "1" -- "0*" Message
+```
