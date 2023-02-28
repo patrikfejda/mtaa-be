@@ -77,10 +77,15 @@ classDiagram
 
 ### Test 1: Send message to new user
 
+
 **Description:** User sends a message to a user, with whom he has not had any previous communication.
+
 **Preconditions:** User is logged in, user has a stable internet connection.
+
 **Postconditions:** Message is sent to the user, user receives the message.
+
 **Steps:**
+
 1. User clicks on the "New message" button in the conversation list menu.
 2. System displays a list of all users.
 3. User selects a user, with whom he wants to communicate.
@@ -90,19 +95,29 @@ classDiagram
 
 #### Test 1.1: Send message to old user (Alternative flow)
 
+
 **Description:** User sends a message to a user, with whom he has had previous communication.
+
 **Preconditions:** User is logged in, user has a stable internet connection.
+
 **Postconditions:** Message is sent to the user, user receives the message.
+
 **Steps:**
+
 1. User selects a conversation with user, with whom he wants to communicate.
 2. Continue with step 4 from Test 1.
 
 ### Test 2: Create group
 
+
 **Description:** User creates a chat group with other users.
+
 **Preconditions:** User is logged in, user has a stable internet connection.
+
 **Postconditions:** Group is created, selected users are added to the group.
+
 **Steps:**
+
 1. User clicks on the "New message" button in the conversation list menu.
 2. System displays a list of all users.
 3. User clicks on the "Create group" button.
@@ -112,10 +127,15 @@ classDiagram
 
 ### Test 3: Send message to group
 
+
 **Description:** User sends a message to a group.
+
 **Preconditions:** User is logged in, user has a stable internet connection, user is in a group (see Test 2).
+
 **Postconditions:** Message is sent to the group, all users in the group receive the message.
+
 **Steps:**
+
 1. User selects a group conversation.
 2. System shows a chat screen with selected group.
 3. User types a message and clicks on the "Send" button.
@@ -123,10 +143,15 @@ classDiagram
 
 ### Test 4: Add user to group
 
+
 **Description:** User adds a user to an existing group.
+
 **Preconditions:** User is logged in, user has a stable internet connection, user is in a group (see Test 2).
+
 **Postconditions:** User is added to the group.
+
 **Steps:**
+
 1. User selects a group conversation.
 2. System shows a chat screen with selected group.
 3. User clicks on the header of the group.
@@ -138,10 +163,15 @@ classDiagram
 
 #### Test 4.1: Delete user from group (Alternative flow)
 
+
 **Description:** User deletes a user from an existing group.
+
 **Preconditions:** User is logged in, user has a stable internet connection, users (the deletor and the deletee) are in a group (see Test 2).
+
 **Postconditions:** User is deleted from the group.
+
 **Steps:**
+
 1. Follow steps 1-4 from Test 4.
 2. User clicks on the "Delete user" button.
 3. System displays a list of users (that are in the group) with checkboxes and a "Delete" button.
@@ -150,10 +180,15 @@ classDiagram
 
 ### Test 5: Set status
 
+
 **Description:** User sets their status.
+
 **Preconditions:** User is logged in, user has a stable internet connection and GPS is enabled.
+
 **Postconditions:** User's status is set with GPS information.
+
 **Steps:**
+
 1. User clicks on the "Status" button in the conversation list menu.
 2. System displays a status screen with a text input field and a "Set" button.
 3. User types a status and clicks on the "Set" button.
@@ -161,10 +196,15 @@ classDiagram
 
 ### Test 6: Send photo
 
+
 **Description:** User sends a photo to another user.
+
 **Preconditions:** User is logged in, user has a stable internet connection, app has working access to camera.
+
 **Postconditions:** Photo is sent to the user.
+
 **Steps:**
+
 1. User selects a conversation with user, with whom he wants to communicate.
 2. System shows a chat screen with selected user.
 3. User clicks on the "Photo" button.
@@ -174,10 +214,15 @@ classDiagram
 
 ### Test 7: Set profile photo
 
+
 **Description:** User sets their profile photo.
+
 **Preconditions:** User is logged in, user has a stable internet connection and app has working access to gallery.
+
 **Postconditions:** User's profile photo and display name are set.
+
 **Steps:**
+
 1. User clicks on the "Settings" button in the conversation list menu.
 2. System displays a settings screen with a "Change photo" button, a "Change display name" box.
 3. User clicks on the "Change photo" button.
@@ -187,20 +232,30 @@ classDiagram
 
 #### Test 7.1: Change display name (Alternative flow)
 
+
 **Description:** User changes their display name.
+
 **Preconditions:** User is logged in, user has a stable internet connection.
+
 **Postconditions:** User's display name is changed.
+
 **Steps:**
+
 1. Follow steps 1-2 from Test 7.
 2. User types a new display name and clicks on the "Set" button.
 3. System changes the display name.
 
 ### Test 8: Send message with no internet connection
 
+
 **Description:** User sends a message to another user with no internet connection.
+
 **Preconditions:** User is logged in, user has no internet connection.
+
 **Postconditions:** Message is saved as an unsent message (will sent when the internet connection is restored).
+
 **Steps:**
+
 1. User selects a conversation with user, with whom he wants to communicate.
 2. System shows a chat screen with selected user.
 3. User types a message and clicks on the "Send" button.
@@ -212,10 +267,15 @@ classDiagram
 
 ### Test 9: Save draft message
 
+
 **Description:** User saves a draft message.
+
 **Preconditions:** User is logged in, user has a stable internet connection.
+
 **Postconditions:** Message is saved as a draft message.
+
 **Steps:**
+
 1. User selects a conversation with user, with whom he wants to communicate.
 2. System shows a chat screen with selected user.
 3. User types a message and clicks on the "Back" button.
@@ -227,10 +287,15 @@ classDiagram
 
 ### Test 10: Weak password
 
+
 **Description:** User tries to register with a weak password.
+
 **Preconditions:** User is not logged in, user has a stable internet connection.
+
 **Postconditions:** User is not registered.
+
 **Steps:**
+
 1. User clicks on the "Register" button in the login screen.
 2. System displays a registration screen with a form and a "Register" button.
 3. User types valid email, display name and a weak password, clicks on the "Register" button.
@@ -238,20 +303,30 @@ classDiagram
 
 #### Test 10.1: Email alredy exists (Alternative flow)
 
+
 **Description:** User tries to register with an email that already exists.
+
 **Preconditions:** User is not logged in, user has a stable internet connection.
+
 **Postconditions:** User is not registered.
+
 **Steps:**
+
 1. Follow steps 1-2 from Test 10.
 2. User types valid email of user that already exists, display name and a strong password, clicks on the "Register" button.
 3. System displays an error message.
 
 ### Test 11: Not appropriate language in status
 
+
 **Description:** User tries to set a status with not appropriate language.
+
 **Preconditions:** User is logged in, user has a stable internet connection and GPS is enabled.
+
 **Postconditions:** User's status is not set.
+
 **Steps:**
+
 1. User clicks on the "Status" button in the conversation list menu.
 2. System displays a status screen with a text input field and a "Set" button.
 3. User types a status with not appropriate language and clicks on the "Set" button.
@@ -259,10 +334,15 @@ classDiagram
 
 ### Test 12: GPS not available
 
+
 **Description:** User tries to set a status with GPS not available.
+
 **Preconditions:** User is logged in, user has a stable internet connection and GPS is not available.
+
 **Postconditions:** User's status is not set.
+
 **Steps:**
+
 1. User clicks on the "Status" button in the conversation list menu.
 2. System displays a status screen with a text input field and a "Set" button.
 3. User types a status and clicks on the "Set" button.
