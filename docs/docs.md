@@ -5,7 +5,9 @@ Figma project can be found [here](https://www.figma.com/file/ROXp0vs8txJrxb912lW
 
 ## Introduction
 
-We are building a native mobile app for Android - a messaging app that will allow users to communicate with each other.The app will allow the users to communicate in one-2-one chats and group chats.
+We are building a native mobile app for Android - a messaging app that will allow users to communicate with each other.
+
+The app will allow the users to communicate in one-2-one chats and group chats and to share their current status with other users.
 
 ## Features
 
@@ -17,11 +19,12 @@ The app will allow users to make video calls to each other.
 
 The app will allow users to set their status. The status will be visible to all the users in the app.
 
-Status is meant to be a simple quote or a short message about their current mood or activity.
+Status is meant to be a simple quote or a short message about their current mood or activity and their current location.
 
 ### User profile
 
 User can set their display name and profile picture. The profile picture will be visible to all the users in the app.
+The display name will be default to the username, but can be changed by the user.
 
 ## Data model
 
