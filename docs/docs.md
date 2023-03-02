@@ -59,7 +59,12 @@ For connecting to the database, we will use SQLAlchemy ORM.
 
 ### Frontend 
 
-TODO MATEJ
+The frontend will be using the following tech stack:
+- React Native
+- NativeBase for UI components
+- Redux for state management
+- Immer for handling immutable data (via Redux Toolkit)
+- React Navigation for navigating between screens
 
 ## UAT Tests
 
