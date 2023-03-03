@@ -9,6 +9,15 @@ We are building a native mobile app for Android - a messaging app that will allo
 
 The app will allow the users to communicate in one-2-one chats and group chats and to share their current status with other users.
 
+### Project objectives
+
+The main objective of the project is to build a modern messaging app, that will fulfill the social needs of the nowadays users.
+
+The app is reflecting the social need for being more "real" by sharing the current status and location with other users.
+Status will allow users to share their current mood, activity or something new in a gentle way - with no feel of flaunting or bragging. 
+
+One of other advantages of the app will be that no "friending" will be required - the users will be able to communicate with each other without any prior communication.
+
 ## Features
 
 ### One-2-One Chats
@@ -57,7 +66,19 @@ Python API app will be built using FastAPI framework.
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
 For connecting to the database, we will use SQLAlchemy ORM.
 
+#### Deployment
+
+The app (consisting of postgresql database and python API app) will be deployed on a single server using Docker.
+
+Docker will be use both for development and production environments,
+which will provide consistency between environments and will allow for easy deployment.
+
+Local development environment will be deployed using docker-compose.
+The production environment will be deployed on a cloud server.
+
 ### Frontend 
+
+The app will be build for Android using React Native.
 
 The frontend will be using the following tech stack:
 - React Native
@@ -65,6 +86,22 @@ The frontend will be using the following tech stack:
 - Redux for state management
 - Immer for handling immutable data (via Redux Toolkit)
 - React Navigation for navigating between screens
+
+#### System APIs
+
+The app will allow users to use the camera for taking photos and videos and for making video calls.
+Also, the app will use the location services for sharing their location in status.
+
+For that purpose, the app will use the following system APIs:
+- Camera and microphone
+- GPS location
+
+## Users
+
+App will have only type of users - regular users.
+A regular user will be able to self-register in the app and use the app to communicate with other users.
+
+In the app, no need for administrators will be required.
 
 ## UAT Tests
 
