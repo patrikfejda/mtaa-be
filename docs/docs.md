@@ -82,6 +82,7 @@ The app will be build for Android using React Native.
 
 The frontend will be using the following tech stack:
 - React Native
+- TypeScript
 - NativeBase for UI components
 - Redux for state management
 - Immer for handling immutable data (via Redux Toolkit)
