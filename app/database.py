@@ -16,9 +16,11 @@ cur = psycopg2.connect(
     database=database,
 ).cursor()
 
-conn = create_engine(
+engine = create_engine(
     f"postgresql://{user}:{password}@{host}:{port}/{database}", future=True
-).connect()
+)
+
+conn = engine.connect()
 
 
 # def connect(db_uri):
