@@ -2,7 +2,6 @@
 
 Figma project can be found [here](https://www.figma.com/file/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1&t=vOF8JKwrQrwcdOob-0)
 
-
 ## Introduction
 
 We are building a native mobile app for Android - a messaging app that will allow users to communicate with each other.
@@ -378,6 +377,7 @@ In the app, no need for administrators will be required.
 2. System displays a status screen with a text input field and a "Set" button.
 3. User types a status and clicks on the "Set" button.
 4. System displays an error message.
+
 ## Data model
 
 ```mermaid
