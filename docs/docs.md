@@ -467,3 +467,11 @@ classDiagram
 | POST   | /v1/message                  | Create message                   |
 | GET    | /v1/message                  | Get message                      |
 | GET    | /v1/message/conversation/all | Get all messages in conversation |
+
+### File
+
+| Method | Endpoint | Description   |
+| ------ | -------- | ------------- |
+| POST   | /v1/file | Upload file   |
+| GET    | /v1/file | Download file |
+
