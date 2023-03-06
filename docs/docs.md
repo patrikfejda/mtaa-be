@@ -450,16 +450,15 @@ classDiagram
 
 ### Conversation
 
-| Method | Endpoint                  | Description                        |
-| ------ | ------------------------- | ---------------------------------- |
-| POST   | /v1/conversation          | Create conversation                |
-| POST   | /v1/conversation/user     | Add user to conversation           |
-| GET    | /v1/conversation          | Get conversation                   |
-| GET    | /v1/conversation/all      | Get all conversations              |
-| GET    | /v1/conversation/user/all | Get all users in all conversations |
-| PUT    | /v1/conversation/name     | Update conversation name           |
-| DELETE | /v1/conversation/user     | Remove user from conversation      |
-| DELETE | /v1/conversation          | Delete conversation                |
+| Method | Endpoint                  | Description                           |
+| ------ | ------------------------- | ------------------------------------- |
+| POST   | /v1/conversation          | Create conversation                   |
+| POST   | /v1/conversation/user     | Add user to conversation              |
+| GET    | /v1/conversation          | Get conversation                      |
+| GET    | /v1/conversation/all      | Get all conversations related to user |
+| GET    | /v1/conversation/user/all | Get all users in all conversations    |
+| PUT    | /v1/conversation/name     | Update conversation name              |
+| DELETE | /v1/conversation/user     | Remove user from conversation         |
 
 ### Message
 
