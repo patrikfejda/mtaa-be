@@ -427,3 +427,44 @@ classDiagram
     User "1" -- "0*" Message
     Conversation "1" -- "0*" Message
 ```
+
+## API endpoints
+
+### User
+
+| Method | Endpoint          | Description   |
+| ------ | ----------------- | ------------- |
+| POST   | /v1/user/login    | Login user    |
+| POST   | /v1/user/register | Register user |
+| GET    | /v1/user          | Get user      |
+| GET    | /v1/user/all      | Get all users |
+| PUT    | /v1/user          | Update user   |
+
+### Status
+
+| Method | Endpoint       | Description      |
+| ------ | -------------- | ---------------- |
+| POST   | /v1/status     | Create status    |
+| GET    | /v1/status     | Get status       |
+| GET    | /v1/status/all | Get all statuses |
+
+### Conversation
+
+| Method | Endpoint                  | Description                        |
+| ------ | ------------------------- | ---------------------------------- |
+| POST   | /v1/conversation          | Create conversation                |
+| GET    | /v1/conversation          | Get conversation                   |
+| GET    | /v1/conversation/all      | Get all conversations              |
+| DELETE | /v1/conversation          | Delete conversation                |
+| POST   | /v1/conversation/user     | Add user to conversation           |
+| DELETE | /v1/conversation/user     | Remove user from conversation      |
+| GET    | /v1/conversation/user/all | Get all users in all conversations |
+| PUT    | /v1/conversation/name     | Update conversation name           |
+
+### Message
+
+| Method | Endpoint                     | Description                      |
+| ------ | ---------------------------- | -------------------------------- |
+| POST   | /v1/message                  | Create message                   |
+| GET    | /v1/message                  | Get message                      |
+| GET    | /v1/message/conversation/all | Get all messages in conversation |
