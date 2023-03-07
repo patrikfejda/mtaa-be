@@ -1,3 +1,33 @@
+---
+title: "Messenger aplikácia COMLY"
+subtitle: "Zadanie č. 1 z Predmetu Mobilné technológie a aplikácie"
+author: [Patrik Fejda, Matej Pavlík]
+date: "7.3.2023"
+keywords: [Markdown, Example]
+titlepage: true
+titlepage-color: "423f3b"
+titlepage-text-color: "FFFAFA"
+titlepage-rule-color: "FFFAFA"
+titlepage-rule-height: 2
+---
+\pagebreak
+# **Informácie o práci**
+
+|                  |                                                            |
+| ---------------- | ---------------------------------------------------------- |
+| **Názov**        | Messenger aplikácia COMLY                                  |
+| **Úloha**        | Dokumentácia                                               |
+| **Tím**          | Patrik Fejda, Matej Pavlík                                 |
+| **Univerzita**   | Slovenská technická univerzita v Bratislave                |
+| **Fakulta**      | Fakulta informatiky a informačných technológií             |
+| **Predmet**      | MTAA_B - Mobilné technológie a aplikácie                   |
+| **Rok**          | 2022/2023 Letný semester                                   |
+| **Cvičiaci**     | Ing. Marek Galinski, PhD.                                  |
+| **Prednášajúci** | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
+| **Skupina**      | Utorok 11:00                                               |
+
+
+
 # MTAA APP DOCS
 
 Figma project can be found [here](https://www.figma.com/file/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1&t=vOF8JKwrQrwcdOob-0)
@@ -433,8 +463,8 @@ classDiagram
 
 ### Photo
 
-| Method | Endpoint | Description   |
-| ------ | -------- | ------------- |
-| POST   | /v1/photo | Upload photo  |
+| Method | Endpoint  | Description    |
+| ------ | --------- | -------------- |
+| POST   | /v1/photo | Upload photo   |
 | GET    | /v1/photo | Download photo |
 
