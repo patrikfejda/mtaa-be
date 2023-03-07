@@ -26,17 +26,18 @@ titlepage-rule-height: 2
 | **Prednášajúci** | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
 | **Skupina**      | Utorok 11:00                                               |
 
+\pagebreak
 
-
-# MTAA APP DOCS
-
-Figma project can be found [here](https://www.figma.com/proto/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1)
 
 ## Introduction
 
 We are building a native mobile app for Android - a messaging app that will allow users to communicate with each other.
 
 The app will allow the users to communicate in one-2-one chats and group chats and to share their current status with other users.
+
+## Wireframes
+
+Figma project can be found [here](https://www.figma.com/proto/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1)
 
 ### Project objectives
 
