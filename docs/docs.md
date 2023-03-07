@@ -1,5 +1,5 @@
 ---
-title: "Messenger aplikácia COMLY"
+title: "Messenger app COMLY"
 subtitle: "Zadanie č. 1 z Predmetu Mobilné technológie a aplikácie"
 author: [Patrik Fejda, Matej Pavlík]
 date: "7.3.2023"
@@ -15,8 +15,8 @@ titlepage-rule-height: 2
 
 |                  |                                                            |
 | ---------------- | ---------------------------------------------------------- |
-| **Názov**        | Messenger aplikácia COMLY                                  |
-| **Úloha**        | Dokumentácia                                               |
+| **Názov**        | Messenger app COMLY                                  |
+| **Úloha**        | Docs                                               |
 | **Tím**          | Patrik Fejda, Matej Pavlík                                 |
 | **Univerzita**   | Slovenská technická univerzita v Bratislave                |
 | **Fakulta**      | Fakulta informatiky a informačných technológií             |
