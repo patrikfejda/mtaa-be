@@ -59,7 +59,7 @@ In additional, they can send photos taken by the in-app camera.
 ### Group Chats
 
 Same as one-2-one chats, but with multiple users.
-The users will be able to create a group chat with other users and add/remove users from the group.
+The users will be able to create a group chat with other users.
 Every group chat will have a name, which will be set by the user who created the group and can be changed by any user in the group.
 
 ### Video calls
