@@ -171,44 +171,7 @@ In the app, no need for administrators will be required.
 3. User types a message and clicks on the "Send" button.
 4. Message is sent to the group.
 
-### Test 4: Add user to group
-
-
-**Description:** User adds a user to an existing group.
-
-**Preconditions:** User is logged in, user has a stable internet connection, user is in a group (see Test 2).
-
-**Postconditions:** User is added to the group.
-
-**Steps:**
-
-1. User selects a group conversation.
-2. System shows a chat screen with selected group.
-3. User clicks on the header of the group.
-4. System displays a conversation settings screen.
-5. User clicks on the "Add user" button.
-6. System displays a list of users (that are not in the group already) with checkboxes and a "Add" button.
-7. User selects users, whom he wants to add to the group and clicks on the "Add" button.
-8. System adds selected users to the group and shows the group chat screen.
-
-#### Test 4.1: Delete user from group (Alternative flow)
-
-
-**Description:** User deletes a user from an existing group.
-
-**Preconditions:** User is logged in, user has a stable internet connection, users (the deletor and the deletee) are in a group (see Test 2).
-
-**Postconditions:** User is deleted from the group.
-
-**Steps:**
-
-1. Follow steps 1-4 from Test 4.
-2. User clicks on the "Delete user" button.
-3. System displays a list of users (that are in the group) with checkboxes and a "Delete" button.
-4. User selects users, whom he wants to delete from the group and clicks on the "Delete" button.
-5. System deletes selected users from the group and shows the group chat screen.
-
-### Test 5: Set status
+### Test 4: Set status
 
 
 **Description:** User sets their status.
@@ -224,7 +187,7 @@ In the app, no need for administrators will be required.
 3. User types a status and clicks on the "Set" button.
 4. System fetched the GPS info from the device and sets the status with GPS info.
 
-### Test 6: Send photo
+### Test 5: Send photo
 
 
 **Description:** User sends a photo to another user.
@@ -242,7 +205,7 @@ In the app, no need for administrators will be required.
 5. User takes a photo and clicks on the "Send" button.
 6. System sends the photo to the user.
 
-### Test 7: Set profile photo
+### Test 6: Set profile photo
 
 
 **Description:** User sets their profile photo.
@@ -260,7 +223,7 @@ In the app, no need for administrators will be required.
 5. User selects a photo and clicks on the "Set" button.
 6. Profile photo is set.
 
-#### Test 7.1: Change display name (Alternative flow)
+#### Test 6.1: Change display name (Alternative flow)
 
 
 **Description:** User changes their display name.
@@ -275,7 +238,7 @@ In the app, no need for administrators will be required.
 2. User types a new display name and clicks on the "Set" button.
 3. System changes the display name.
 
-### Test 8: Send message with no internet connection
+### Test 7: Send message with no internet connection
 
 
 **Description:** User sends a message to another user with no internet connection.
@@ -295,7 +258,7 @@ In the app, no need for administrators will be required.
 7. User clicks on the unsent message.
 8. Message is sent to the user.
 
-### Test 9: Save draft message
+### Test 8: Save draft message
 
 
 **Description:** User saves a draft message.
@@ -315,7 +278,7 @@ In the app, no need for administrators will be required.
 7. User click on the "Send" button.
 8. Message is sent to the user.
 
-### Test 10: Weak password
+### Test 9: Weak password
 
 
 **Description:** User tries to register with a weak password.
@@ -331,7 +294,7 @@ In the app, no need for administrators will be required.
 3. User types valid email, display name and a weak password, clicks on the "Register" button.
 4. System displays an error message.  
 
-#### Test 10.1: Email alredy exists (Alternative flow)
+#### Test 9.1: Email alredy exists (Alternative flow)
 
 
 **Description:** User tries to register with an email that already exists.
@@ -346,7 +309,7 @@ In the app, no need for administrators will be required.
 2. User types valid email of user that already exists, display name and a strong password, clicks on the "Register" button.
 3. System displays an error message.
 
-### Test 11: Not appropriate language in status
+### Test 10: Not appropriate language in status
 
 
 **Description:** User tries to set a status with not appropriate language.
@@ -362,7 +325,7 @@ In the app, no need for administrators will be required.
 3. User types a status with not appropriate language and clicks on the "Set" button.
 4. System displays an error message.
 
-### Test 12: GPS not available
+### Test 11: GPS not available
 
 
 **Description:** User tries to set a status with GPS not available.
