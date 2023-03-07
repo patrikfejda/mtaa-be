@@ -431,10 +431,10 @@ classDiagram
 | GET    | /v1/message                  | Get message                      |
 | GET    | /v1/message/conversation/all | Get all messages in conversation |
 
-### File
+### Photo
 
 | Method | Endpoint | Description   |
 | ------ | -------- | ------------- |
-| POST   | /v1/file | Upload file   |
-| GET    | /v1/file | Download file |
+| POST   | /v1/photo | Upload photo  |
+| GET    | /v1/photo | Download photo |
 
