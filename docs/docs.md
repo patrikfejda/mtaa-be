@@ -96,7 +96,9 @@ Python API app will be built using FastAPI framework.
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
 For connecting to the database, we will use SQLAlchemy ORM.
 
-#### Deployment
+
+### Deployment
+
 
 The app (consisting of postgresql database and python API app) will be deployed on a single server using Docker.
 
@@ -111,6 +113,7 @@ The production environment will be deployed on a cloud server.
 The app will be build for Android using React Native.
 
 The frontend will be using the following tech stack:
+
 - React Native
 - TypeScript
 - NativeBase for UI components
@@ -118,7 +121,7 @@ The frontend will be using the following tech stack:
 - Immer for handling immutable data (via Redux Toolkit)
 - React Navigation for navigating between screens
 
-#### System APIs
+### System APIs
 
 The app will allow users to use the camera for taking photos and videos and for making video calls.
 Also, the app will use the location services for sharing their location in status.
@@ -154,7 +157,7 @@ In the app, no need for administrators will be required.
 5. User types a message and clicks on the "Send" button.
 6. System sends the message to the user.
 
-#### Test 1.1: Send message to old user (Alternative flow)
+### Test 1.1: Send message to old user (Alternative flow)
 
 
 **Description:** User sends a message to a user, with whom he has had previous communication.
@@ -254,7 +257,7 @@ In the app, no need for administrators will be required.
 5. User selects a photo and clicks on the "Set" button.
 6. Profile photo is set.
 
-#### Test 6.1: Change display name (Alternative flow)
+### Test 6.1: Change display name (Alternative flow)
 
 
 **Description:** User changes their display name.
@@ -325,7 +328,7 @@ In the app, no need for administrators will be required.
 3. User types valid email, display name and a weak password, clicks on the "Register" button.
 4. System displays an error message.  
 
-#### Test 9.1: Email alredy exists (Alternative flow)
+### Test 9.1: Email alredy exists (Alternative flow)
 
 
 **Description:** User tries to register with an email that already exists.
@@ -373,6 +376,8 @@ In the app, no need for administrators will be required.
 4. System displays an error message.
 
 ## Data model
+
+[![](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RUzT23JBnk3Ti1TCr1QWGie0r4UgxHWrFdUlowkt01D_r3ypViJg6FlVy-eOXM_HuYIpeYIGZSSWftRsMqwOleRfz0SfbVoouOAdO9euUjwSd87I1QVYc2EnKGtD1asxpmh8al_anOZh0dc2EayQ3E9yugHIbFoHrXTRWuCgl9EjdaxuolKg8whL5ibrFJXQr14OQEGK2EdmhCz6EK1mqnvpPyLnEKK9o651i6R1JPYkVFcoc724RP8SWrmfMuqEq7lODMwd4Evzz5g_zfZB61-oLG-olZL873XWiJTkbBFZXTbzGY8_52fPfdvOk7e9qTYZxplRLpC9l6Fs8xjdmgtq3DBL1iPM47GyH___WfkloFybUnqocqTMOXbH4S-rxziHKKbGy-QV17aB-t41uJonzy78IVEu7Dli0xXPWEFNRp_SLi_Rz2dObhH9JsDmRc5M99zyNXJ-7HW6f1BlZA50-IK2ob7ecfzBdkDk9ajDVOQHeEXZDGla0LIaxonWxrfbu9WcIBsE6_TeEPobZJSkm6S5LSC31r7BGSdJmS7vaMJpSkhcdwn-9bbhorIhdNmNx7P7nP6AyKHja8?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RUzT23JBnk3Ti1TCr1QWGie0r4UgxHWrFdUlowkt01D_r3ypViJg6FlVy-eOXM_HuYIpeYIGZSSWftRsMqwOleRfz0SfbVoouOAdO9euUjwSd87I1QVYc2EnKGtD1asxpmh8al_anOZh0dc2EayQ3E9yugHIbFoHrXTRWuCgl9EjdaxuolKg8whL5ibrFJXQr14OQEGK2EdmhCz6EK1mqnvpPyLnEKK9o651i6R1JPYkVFcoc724RP8SWrmfMuqEq7lODMwd4Evzz5g_zfZB61-oLG-olZL873XWiJTkbBFZXTbzGY8_52fPfdvOk7e9qTYZxplRLpC9l6Fs8xjdmgtq3DBL1iPM47GyH___WfkloFybUnqocqTMOXbH4S-rxziHKKbGy-QV17aB-t41uJonzy78IVEu7Dli0xXPWEFNRp_SLi_Rz2dObhH9JsDmRc5M99zyNXJ-7HW6f1BlZA50-IK2ob7ecfzBdkDk9ajDVOQHeEXZDGla0LIaxonWxrfbu9WcIBsE6_TeEPobZJSkm6S5LSC31r7BGSdJmS7vaMJpSkhcdwn-9bbhorIhdNmNx7P7nP6AyKHja8)
 
 ```mermaid
 classDiagram
