@@ -30,7 +30,7 @@ titlepage-rule-height: 2
 
 # MTAA APP DOCS
 
-Figma project can be found [here](https://www.figma.com/file/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1&t=vOF8JKwrQrwcdOob-0)
+Figma project can be found [here](https://www.figma.com/proto/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1)
 
 ## Introduction
 
