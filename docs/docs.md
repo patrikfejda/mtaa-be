@@ -405,6 +405,7 @@ classDiagram
         create()
         get()
         getAll()
+        delete()
     }
     class Conversation {
         Int id
