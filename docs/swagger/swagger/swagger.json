@@ -671,9 +671,12 @@
                 }
             }
         },
-        "/v1/message": {
+        "/message": {
             "post": {
                 "summary": "Create a new message",
+                "tags": [
+                    "Message"
+                ],
                 "description": "Use this endpoint to create a new message in a conversation",
                 "parameters": [{
                     "in": "body",
@@ -719,6 +722,9 @@
             },
             "get": {
                 "summary": "Get message",
+                "tags": [
+                    "Message"
+                ],
                 "description": "Use this endpoint to retrieve a specific message",
                 "parameters": [{
                     "in": "query",
@@ -743,9 +749,12 @@
                 }
             }
         },
-        "/v1/message/conversation/all": {
+        "/message/conversation/all": {
             "get": {
                 "summary": "Get all messages in a conversation",
+                "tags": [
+                    "Message"
+                ],
                 "description": "Use this endpoint to retrieve all messages in a conversation",
                 "parameters": [{
                     "in": "query",
@@ -773,9 +782,12 @@
                 }
             }
         },
-        "/v1/photo": {
+        "/photo": {
             "post": {
                 "summary": "Upload a photo",
+                "tags": [
+                    "Message"
+                ],
                 "description": "Use this endpoint to upload a photo",
                 "parameters": [{
                     "in": "body",
@@ -821,6 +833,9 @@
             },
             "get": {
                 "summary": "Download a photo",
+                "tags": [
+                    "Message"
+                ],
                 "description": "Use this endpoint to download a photo",
                 "parameters": [{
                     "in": "query",
