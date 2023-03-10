@@ -17,10 +17,10 @@ services:
       SWAGGER_JSON: /swagger.json
       # API_URL: ""
 
-  swagger-api:
-    image: matsudachikara/swagger-mock-api
-    container_name: "swagger-api"
-    ports:
-      - "8083:8000"
-    volumes:
-      - ./swagger:/data
+  # swagger-api:
+  #   image: matsudachikara/swagger-mock-api
+  #   container_name: "swagger-api"
+  #   ports:
+  #     - "8083:8000"
+  #   volumes:
+  #     - ./swagger:/data
