@@ -416,7 +416,6 @@ classDiagram
         create()
         get()
         getAll()
-        getUsersInConversation()
         getAllMessagesInConversation()
         set()
     }
