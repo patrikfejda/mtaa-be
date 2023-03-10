@@ -424,6 +424,7 @@ classDiagram
         User user_id
         Conversation conversation_id
         String message
+        Boolean is_photo
         Timestamp created_at
         create()
         get()
