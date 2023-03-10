@@ -615,6 +615,32 @@
             "post": {
                 "summary": "Upload a photo",
                 "description": "Use this endpoint to upload a photo",
+                "parameters": [{
+                    "in": "body",
+                    "name": "photo",
+                    "description": "Photo object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "user": {
+                                "type": "string",
+                                "description": "ID of the user uploading the photo",
+                                "example": "123"
+                            },
+                            "conversation": {
+                                "type": "string",
+                                "description": "ID of the conversation the photo is being uploaded to",
+                                "example": "456"
+                            },
+                            "photo_url": {
+                                "type": "string",
+                                "description": "URL of the photo being uploaded",
+                                "example": "https://example.com/photo.jpg"
+                            }
+                        },
+                        "required": ["user", "conversation", "photo_url"]
+                    }
+                }],
                 "responses": {
                     "200": {
                         "description": "Photo uploaded successfully"
