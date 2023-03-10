@@ -438,48 +438,4 @@ classDiagram
 
 ## API endpoints
 
-### User
-
-| Method | Endpoint          | Description   |
-| ------ | ----------------- | ------------- |
-| POST   | /v1/user/login    | Login user    |
-| POST   | /v1/user/register | Register user |
-| GET    | /v1/user          | Get user      |
-| GET    | /v1/user/all      | Get all users |
-| PUT    | /v1/user          | Update user   |
-
-### Status
-
-| Method | Endpoint       | Description      |
-| ------ | -------------- | ---------------- |
-| POST   | /v1/status     | Create status    |
-| GET    | /v1/status     | Get status       |
-| GET    | /v1/status/all | Get all statuses |
-
-### Conversation
-
-| Method | Endpoint                  | Description                           |
-| ------ | ------------------------- | ------------------------------------- |
-| POST   | /v1/conversation          | Create conversation                   |
-| GET    | /v1/conversation          | Get conversation                      |
-| GET    | /v1/conversation/all      | Get all conversations related to user |
-| GET    | /v1/conversation/user/all | Get all users in all conversations    |
-| PUT    | /v1/conversation/name     | Update conversation name              |
-
-### Message
-
-| Method | Endpoint                     | Description                      |
-| ------ | ---------------------------- | -------------------------------- |
-| POST   | /v1/message                  | Create message                   |
-| GET    | /v1/message                  | Get message                      |
-| GET    | /v1/message/conversation/all | Get all messages in conversation |
-
-### Photo
-
-| Method | Endpoint  | Description    |
-| ------ | --------- | -------------- |
-| POST   | /v1/photo | Upload photo   |
-| GET    | /v1/photo | Download photo |
-
-
-[![](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RUzT23JBnk3Ti1TCr1QWGie0r4UgxHWrFdUlowkt01D_r3ypViJg6FlVy-eOXM_HuYIpeYIGZSSWftRsMqwOleRfz0SfbVoouOAdO9euUjwSd87I1QVYc2EnKGtD1asxpmh8al_anOZh0dc2EayQ3E9yugHIbFoHrXTRWuCgl9EjdaxuolKg8whL5ibrFJXQr14OQEGK2EdmhCz6EK1mqnvpPyLnEKK9o651i6R1JPYkVFcoc724RP8SWrmfMuqEq7lODMwd4Evzz5g_zfZB61-oLG-olZL873XWiJTkbBFZXTbzGY8_52fPfdvOk7e9qTYZxplRLpC9l6Fs8xjdmgtq3DBL1iPM47GyH___WfkloFybUnqocqTMOXbH4S-rxziHKKbGy-QV17aB-t41uJonzy78IVEu7Dli0xXPWEFNRp_SLi_Rz2dObhH9JsDmRc5M99zyNXJ-7HW6f1BlZA50-IK2ob7ecfzBdkDk9ajDVOQHeEXZDGla0LIaxonWxrfbu9WcIBsE6_TeEPobZJSkm6S5LSC31r7BGSdJmS7vaMJpSkhcdwn-9bbhorIhdNmNx7P7nP6AyKHja8?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RUzT23JBnk3Ti1TCr1QWGie0r4UgxHWrFdUlowkt01D_r3ypViJg6FlVy-eOXM_HuYIpeYIGZSSWftRsMqwOleRfz0SfbVoouOAdO9euUjwSd87I1QVYc2EnKGtD1asxpmh8al_anOZh0dc2EayQ3E9yugHIbFoHrXTRWuCgl9EjdaxuolKg8whL5ibrFJXQr14OQEGK2EdmhCz6EK1mqnvpPyLnEKK9o651i6R1JPYkVFcoc724RP8SWrmfMuqEq7lODMwd4Evzz5g_zfZB61-oLG-olZL873XWiJTkbBFZXTbzGY8_52fPfdvOk7e9qTYZxplRLpC9l6Fs8xjdmgtq3DBL1iPM47GyH___WfkloFybUnqocqTMOXbH4S-rxziHKKbGy-QV17aB-t41uJonzy78IVEu7Dli0xXPWEFNRp_SLi_Rz2dObhH9JsDmRc5M99zyNXJ-7HW6f1BlZA50-IK2ob7ecfzBdkDk9ajDVOQHeEXZDGla0LIaxonWxrfbu9WcIBsE6_TeEPobZJSkm6S5LSC31r7BGSdJmS7vaMJpSkhcdwn-9bbhorIhdNmNx7P7nP6AyKHja8)
+See swagger.
