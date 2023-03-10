@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.0.0",
+        "version": "1.0.1",
         "title": "COM.LY API"
     },
     "basePath": "/v1",
@@ -153,19 +153,13 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "username": {
+                                "display_name": {
                                     "type": "string"
                                 },
-                                "password": {
-                                    "type": "string"
-                                },
-                                "email": {
+                                "profile_photo_url": {
                                     "type": "string"
                                 }
-                            },
-                            "required": [
-                                "username"
-                            ]
+                            }
                         }
                     }
                 ],
@@ -234,12 +228,24 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "text": {
+                                "status": {
                                     "type": "string"
+                                },
+                                "user_id": {
+                                    "type": "integer"
+                                },
+                                "latitude": {
+                                    "type": "number"
+                                },
+                                "longitude": {
+                                    "type": "number"
                                 }
                             },
                             "required": [
-                                "text"
+                                "status",
+                                "user_id",
+                                "latitude",
+                                "longitude"
                             ]
                         }
                     }
@@ -374,16 +380,20 @@
                                 "name": {
                                     "type": "string"
                                 },
-                                "members": {
+                                "users": {
                                     "type": "array",
                                     "items": {
                                         "type": "integer"
                                     }
+                                },
+                                "is_group": {
+                                    "type": "boolean"
                                 }
                             },
                             "required": [
                                 "name",
-                                "members"
+                                "users",
+                                "is_group"
                             ]
                         }
                     }
@@ -435,32 +445,6 @@
         "/conversation/all": {
             "get": {
                 "summary": "Get all conversations related to user",
-                "tags": [
-                    "Conversation"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "Access token",
-                    "type": "string",
-                    "required": true
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            }
-        },
-        "/conversation/user/all": {
-            "get": {
-                "summary": "Get all users in all conversations",
                 "tags": [
                     "Conversation"
                 ],
