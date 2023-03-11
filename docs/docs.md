@@ -11,21 +11,20 @@ titlepage-rule-color: "FFFAFA"
 titlepage-rule-height: 2
 ---
 \pagebreak
-# **Informácie o práci**
+# **Job Information**
 
-|                  |                                                            |
-| ---------------- | ---------------------------------------------------------- |
-| **Názov**        | Messenger app COMLY                                  |
-| **Úloha**        | Docs                                               |
-| **Tím**          | Patrik Fejda, Matej Pavlík                                 |
-| **Univerzita**   | Slovenská technická univerzita v Bratislave                |
-| **Fakulta**      | Fakulta informatiky a informačných technológií             |
-| **Predmet**      | MTAA_B - Mobilné technológie a aplikácie                   |
-| **Rok**          | 2022/2023 Letný semester                                   |
-| **Cvičiaci**     | Ing. Marek Galinski, PhD.                                  |
-| **Prednášajúci** | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
-| **Skupina**      | Utorok 11:00                                               |
-
+|                |                                                            |
+| -------------- | ---------------------------------------------------------- |  |
+| **Name**       | Messenger app COMLY                                        |
+| **Task**       | Docs                                                       |
+| **Team**       | Patrik Fejda, Matej Pavlík                                 |
+| **University** | Slovak Technical University in Bratislava                  |
+| **Faculty**    | Faculty of Informatics and Information Technologies        |
+| **Subject**    | MTAA_B - Mobile technologies and applications              |
+| **Year**       | 2022/2023 Summer semester                                  |
+| **Exercising** | Ing. Marek Galinski, PhD.                                  |
+| **Lecturer**   | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
+| **Group**      | Tuesday 11:00                                              |
 \pagebreak
 
 
@@ -438,4 +437,4 @@ classDiagram
 
 ## API endpoints
 
-See [swagger](index.html).
+See [swagger](https://patrikfejda.github.io/mtaa-be/).
