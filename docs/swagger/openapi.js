@@ -698,6 +698,12 @@ var spec = {
                 ],
                 "description": "Use this endpoint to create a new message in a conversation",
                 "parameters": [{
+                    "in": "header",
+                    "name": "Authorization",
+                    "description": "JWT Access token",
+                    "type": "string",
+                    "required": true
+                }, {
                     "in": "body",
                     "name": "message",
                     "description": "Message object",
@@ -746,6 +752,12 @@ var spec = {
                 ],
                 "description": "Use this endpoint to retrieve a specific message",
                 "parameters": [{
+                    "in": "header",
+                    "name": "Authorization",
+                    "description": "JWT Access token",
+                    "type": "string",
+                    "required": true
+                }, {
                     "in": "query",
                     "name": "message_id",
                     "type": "string",
@@ -776,6 +788,12 @@ var spec = {
                 ],
                 "description": "Use this endpoint to retrieve all messages in a conversation",
                 "parameters": [{
+                    "in": "header",
+                    "name": "Authorization",
+                    "description": "JWT Access token",
+                    "type": "string",
+                    "required": true
+                }, {
                     "in": "query",
                     "name": "conversation_id",
                     "type": "string",
@@ -809,6 +827,12 @@ var spec = {
                 ],
                 "description": "Use this endpoint to upload a photo",
                 "parameters": [{
+                    "in": "header",
+                    "name": "Authorization",
+                    "description": "JWT Access token",
+                    "type": "string",
+                    "required": true
+                }, {
                     "in": "body",
                     "name": "photo",
                     "description": "Photo object",
@@ -857,6 +881,12 @@ var spec = {
                 ],
                 "description": "Use this endpoint to download a photo",
                 "parameters": [{
+                    "in": "header",
+                    "name": "Authorization",
+                    "description": "JWT Access token",
+                    "type": "string",
+                    "required": true
+                }, {
                     "in": "query",
                     "name": "photo_id",
                     "type": "string",
