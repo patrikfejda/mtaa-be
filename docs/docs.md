@@ -438,4 +438,4 @@ classDiagram
 
 ## API endpoints
 
-See swagger.
+See [swagger](index.html).
