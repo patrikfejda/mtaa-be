@@ -1,6 +1,6 @@
 ---
 title: "Messenger app COMLY"
-subtitle: "Zadanie č. 1 z Predmetu Mobilné technológie a aplikácie"
+subtitle: "Assignment no. 1 -  Mobile technologies and applications"
 author: [Patrik Fejda, Matej Pavlík]
 date: "7.3.2023"
 keywords: [Markdown, Example]
