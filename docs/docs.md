@@ -13,6 +13,7 @@ titlepage-rule-height: 2
 \pagebreak
 # **Job Information**
 
+
 |                |                                                            |
 | -------------- | ---------------------------------------------------------- |
 | **Name**       | Messenger app COMLY                                        |
@@ -25,8 +26,9 @@ titlepage-rule-height: 2
 | **Exercising** | Ing. Marek Galinski, PhD.                                  |
 | **Lecturer**   | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
 | **Group**      | Tuesday 11:00                                              |
-\pagebreak
 
+
+\pagebreak
 
 ## Introduction
 
