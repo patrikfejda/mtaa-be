@@ -327,7 +327,7 @@ In the app, no need for administrators will be required.
 3. User types valid email, display name and a weak password, clicks on the "Register" button.
 4. System displays an error message.  
 
-### Test 9.1: Email alredy exists (Alternative flow)
+### Test 9.1: Email already exists (Alternative flow)
 
 
 **Description:** User tries to register with an email that already exists.
@@ -374,9 +374,11 @@ In the app, no need for administrators will be required.
 3. User types a status and clicks on the "Set" button.
 4. System displays an error message.
 
-## Data model
+## API endpoints
 
-If mermaid preview doesnt work, scroll down to the bottom of the doc for png version.
+See [swagger](https://patrikfejda.github.io/mtaa-be/).
+
+## Data model
 
 ```mermaid
 classDiagram
@@ -435,6 +437,5 @@ classDiagram
     Conversation "1" -- "0*" Message
 ```
 
-## API endpoints
+[![](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RWhp7Zkg-JcfKEUeqGw0DylfSkGM1izXlFZMpLcNg3598p2iu3YDV3Y6kWaM5rRnKNhTjTXHGlCcwnWfhBQGChTRfxqEfLFoiGnDmnWvXJE8N4-OCNUQbAEISdo7YMVlDhxVD71D22u83DCha0kHLP5KKMfhMSsetROZ7UZPPhZlGgdlBXJDYJDnoHrvVIXQr142QMGC2EdmiFm0Q3NYmK-lfIPch5KdHDgantLpFbERoxsRjrbhvfwR6nB-ZJVIVzNceIAd4Xf5t5h_8ysWRwl9iEjru-1-o7G-hq0usX4ndYSQRFhs8LoupqwHn_wJ_8brxuV3rQy2f9IrkP2aC0UaO_VkNFf2mGkwCXy6d89ki4fGHNNUXavzAratv-zKOSJdYe24pSuUkru7vyBvfKnw6AxR8Vf_P3NJvxGov2QzFWm2Zt0QUs0fqRwP5laoVPqHtF3DE38kYP5ltJUnf09qJ0-HFVOE2dqXNC64p7vZZDR5AGk9WgFiiYn-pMmq3C9ZJs4iMJtvFuHbBcs6NHDbLMM16t1wKIoiFkchecF_aW1T8GWIQs3EdtGMWM7Fmy3bb6vrbN7FLlw2uwvk7TZzr8BOmyPww?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RWhp7Zkg-JcfKEUeqGw0DylfSkGM1izXlFZMpLcNg3598p2iu3YDV3Y6kWaM5rRnKNhTjTXHGlCcwnWfhBQGChTRfxqEfLFoiGnDmnWvXJE8N4-OCNUQbAEISdo7YMVlDhxVD71D22u83DCha0kHLP5KKMfhMSsetROZ7UZPPhZlGgdlBXJDYJDnoHrvVIXQr142QMGC2EdmiFm0Q3NYmK-lfIPch5KdHDgantLpFbERoxsRjrbhvfwR6nB-ZJVIVzNceIAd4Xf5t5h_8ysWRwl9iEjru-1-o7G-hq0usX4ndYSQRFhs8LoupqwHn_wJ_8brxuV3rQy2f9IrkP2aC0UaO_VkNFf2mGkwCXy6d89ki4fGHNNUXavzAratv-zKOSJdYe24pSuUkru7vyBvfKnw6AxR8Vf_P3NJvxGov2QzFWm2Zt0QUs0fqRwP5laoVPqHtF3DE38kYP5ltJUnf09qJ0-HFVOE2dqXNC64p7vZZDR5AGk9WgFiiYn-pMmq3C9ZJs4iMJtvFuHbBcs6NHDbLMM16t1wKIoiFkchecF_aW1T8GWIQs3EdtGMWM7Fmy3bb6vrbN7FLlw2uwvk7TZzr8BOmyPww)
 
-See [swagger](https://patrikfejda.github.io/mtaa-be/).
