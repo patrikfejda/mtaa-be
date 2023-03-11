@@ -25,10 +25,6 @@ var spec = {
                     "type": "string",
                     "example": "johndoe"
                 },
-                "password": {
-                    "type": "string",
-                    "example": "$2a$10$x1FV4FLjKu/VixFwv8zFeuKjAmgb3zq3Q6E1Z9UfR6jPUE6UPD0iS"
-                },
                 "display_name": {
                     "type": "string",
                     "example": "John Doe"
@@ -173,7 +169,18 @@ var spec = {
                 }],
                 "responses": {
                     "200": {
-                        "description": "Successful login"
+                        "description": "Successful login",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "user": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Invalid credentials"
@@ -219,7 +226,18 @@ var spec = {
                 }],
                 "responses": {
                     "200": {
-                        "description": "Successful registration"
+                        "description": "Successful registration",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "user": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "description": "Invalid registration data"
@@ -239,7 +257,7 @@ var spec = {
                 "parameters": [{
                     "in": "header",
                     "name": "Authorization",
-                    "description": "Access token",
+                    "description": "JWT Access token",
                     "type": "string",
                     "required": true
                 }],
@@ -269,7 +287,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
@@ -315,7 +333,7 @@ var spec = {
                 "parameters": [{
                     "in": "header",
                     "name": "Authorization",
-                    "description": "Access token",
+                    "description": "JWT Access token",
                     "type": "string",
                     "required": true
                 }],
@@ -350,7 +368,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
@@ -406,7 +424,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
@@ -440,7 +458,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
@@ -473,7 +491,7 @@ var spec = {
                 "parameters": [{
                     "in": "header",
                     "name": "Authorization",
-                    "description": "Access token",
+                    "description": "JWT Access token",
                     "type": "string",
                     "required": true
                 }],
@@ -508,7 +526,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
@@ -563,7 +581,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
@@ -599,7 +617,7 @@ var spec = {
                 "parameters": [{
                     "in": "header",
                     "name": "Authorization",
-                    "description": "Access token",
+                    "description": "JWT Access token",
                     "type": "string",
                     "required": true
                 }],
@@ -634,7 +652,7 @@ var spec = {
                 "parameters": [{
                         "in": "header",
                         "name": "Authorization",
-                        "description": "Access token",
+                        "description": "JWT Access token",
                         "type": "string",
                         "required": true
                     },
