@@ -430,6 +430,7 @@ classDiagram
         User user_id
         Conversation conversation_id
         String message
+        String photo_url
         Boolean is_photo
         Timestamp created_at
         create()
@@ -442,4 +443,3 @@ classDiagram
     Conversation "1" -- "0*" Message
 ```
 
-[![](https://mermaid.ink/img/pako:eNq1VG1r2zAQ_itCn9aRBjnJ_MYY7IVBYfmU9cswGGFdXW2yZCR5XRby3yfLGbZjN7TQ6ovvntOd7nkk3wEXigFOcSGoMV84LTWtMonc8gi6NaDRoUPadSMt4qz3d1ZzWSKoKBcTtHHJklYwCdSu9IPS53UYYtzUgu7z-Syt7riAvL5XVuWNnh7488H22HdegbG0qlGhgVpgOR1EhSq5fHPVAxpKbizoIWbADt1y4n4U4j9yHMq2s9Q25pJwXthWoHxGTuPTe_irUNS6lmXJbcNgEqD2DL_MvcOezKxdDAT0KSOun5X8Ddq4HpS8xPiTUgKoRNzkpVZNPWE9vvRv7jbetyp98DKZVyTXIVswhpZgbuSQ0SPPYaTAKfP51z2Srhg4c4-i6k6ZFdT_Ei-ikCPWGb7jDAcZRtfXziBvnbUbPMxR86d4v7NNv1BoOyRzVml2J17gCrQbM8xNKy90hu09uBeDU2cyqn9lOJNHt482Vu32ssCp1Q0scFMzx_c03HB6R4VxaE0lTg_4D06DaL0km2QVR--ScB2RcLXAeweTzTJaB-sVieNVQpI4Oi7wX6VcCbKMSLSJSUiSTRAmYRD5ej98sDsUGLdKb0_Ttf0c_wFt15WC?type=png)](https://mermaid.live/edit#pako:eNq1VG1r2zAQ_itCn9aRBjnJ_MYY7IVBYfmU9cswGGFdXW2yZCR5XRby3yfLGbZjN7TQ6ovvntOd7nkk3wEXigFOcSGoMV84LTWtMonc8gi6NaDRoUPadSMt4qz3d1ZzWSKoKBcTtHHJklYwCdSu9IPS53UYYtzUgu7z-Syt7riAvL5XVuWNnh7488H22HdegbG0qlGhgVpgOR1EhSq5fHPVAxpKbizoIWbADt1y4n4U4j9yHMq2s9Q25pJwXthWoHxGTuPTe_irUNS6lmXJbcNgEqD2DL_MvcOezKxdDAT0KSOun5X8Ddq4HpS8xPiTUgKoRNzkpVZNPWE9vvRv7jbetyp98DKZVyTXIVswhpZgbuSQ0SPPYaTAKfP51z2Srhg4c4-i6k6ZFdT_Ei-ikCPWGb7jDAcZRtfXziBvnbUbPMxR86d4v7NNv1BoOyRzVml2J17gCrQbM8xNKy90hu09uBeDU2cyqn9lOJNHt482Vu32ssCp1Q0scFMzx_c03HB6R4VxaE0lTg_4D06DaL0km2QVR--ScB2RcLXAeweTzTJaB-sVieNVQpI4Oi7wX6VcCbKMSLSJSUiSTRAmYRD5ej98sDsUGLdKb0_Ttf0c_wFt15WC)

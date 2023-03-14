@@ -116,6 +116,10 @@ var spec = {
                     "type": "string",
                     "example": "Hello, World!"
                 },
+                "photo_url": {
+                    "type": "string",
+                    "example": "https://example.com/photo.jpg"
+                },
                 "is_photo": {
                     "type": "boolean",
                     "example": false
