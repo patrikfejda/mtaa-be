@@ -431,7 +431,6 @@ classDiagram
         Conversation conversation_id
         String message
         String photo_url
-        Boolean is_photo
         Timestamp created_at
         create()
         get()

@@ -120,10 +120,6 @@ var spec = {
                     "type": "string",
                     "example": "https://example.com/photo.jpg"
                 },
-                "is_photo": {
-                    "type": "boolean",
-                    "example": false
-                },
                 "created_at": {
                     "type": "string",
                     "format": "date-time",
