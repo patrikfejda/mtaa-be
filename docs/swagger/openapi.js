@@ -110,7 +110,8 @@ var spec = {
                     "$ref": "#/definitions/User"
                 },
                 "conversation_id": {
-                    "$ref": "#/definitions/Conversation"
+                    "type": "integer",
+                    "example": 123
                 },
                 "message": {
                     "type": "string",
