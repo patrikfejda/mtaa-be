@@ -637,59 +637,6 @@ var spec = {
                 }
             }
         },
-        "/conversation/name": {
-            "put": {
-                "summary": "Update conversation name",
-                "tags": [
-                    "Conversation"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "body",
-                        "name": "conversation",
-                        "description": "Conversation's updated name",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "integer"
-                                },
-                                "name": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "id",
-                                "name"
-                            ]
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "400": {
-                        "description": "Invalid conversation data"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            }
-        },
         "/message": {
             "post": {
                 "summary": "Create a new message",
@@ -710,12 +657,12 @@ var spec = {
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "user": {
+                            "user_id": {
                                 "type": "string",
                                 "description": "ID of the user sending the message",
                                 "example": "123"
                             },
-                            "conversation": {
+                            "conversation_id": {
                                 "type": "string",
                                 "description": "ID of the conversation the message is being sent to",
                                 "example": "456"
@@ -724,6 +671,11 @@ var spec = {
                                 "type": "string",
                                 "description": "Text content of the message",
                                 "example": "Hello world"
+                            },
+                            "photo_url": {
+                                "type": "string",
+                                "description": "Text content of the message",
+                                "example": "https://example.com/photo.jpg"
                             }
                         },
                         "required": [
@@ -808,96 +760,6 @@ var spec = {
                             "items": {
                                 "$ref": "#/definitions/Message"
                             }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "401": {
-                        "description": "Unauthorized request"
-                    }
-                }
-            }
-        },
-        "/photo": {
-            "post": {
-                "summary": "Upload a photo",
-                "tags": [
-                    "Message"
-                ],
-                "description": "Use this endpoint to upload a photo",
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }, {
-                    "in": "body",
-                    "name": "photo",
-                    "description": "Photo object",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "user": {
-                                "type": "string",
-                                "description": "ID of the user uploading the photo",
-                                "example": "123"
-                            },
-                            "conversation": {
-                                "type": "string",
-                                "description": "ID of the conversation the photo is being uploaded to",
-                                "example": "456"
-                            },
-                            "photo_url": {
-                                "type": "string",
-                                "description": "URL of the photo being uploaded",
-                                "example": "https://example.com/photo.jpg"
-                            }
-                        },
-                        "required": [
-                            "user",
-                            "conversation",
-                            "photo_url"
-                        ]
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Photo uploaded successfully"
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "401": {
-                        "description": "Unauthorized request"
-                    }
-                }
-            },
-            "get": {
-                "summary": "Download a photo",
-                "tags": [
-                    "Message"
-                ],
-                "description": "Use this endpoint to download a photo",
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }, {
-                    "in": "query",
-                    "name": "photo_id",
-                    "type": "string",
-                    "required": true,
-                    "description": "ID of the photo to download"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Photo downloaded successfully",
-                        "schema": {
-                            "$ref": "#/definitions/Message"
                         }
                     },
                     "400": {
