@@ -423,7 +423,6 @@ classDiagram
         get()
         getAll()
         getAllMessagesInConversation()
-        set()
     }
     class Message {
         Int id
