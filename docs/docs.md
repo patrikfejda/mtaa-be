@@ -96,12 +96,14 @@ Services will be deployed on a single server using Docker.
 Python API app will be built using FastAPI framework.
 FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
 For connecting to the database, we will use SQLAlchemy ORM.
+Sending messages will be done using websockets.
 
 
 ### Deployment
 
-
 The app (consisting of postgresql database and python API app) will be deployed on a single server using Docker.
+
+Docker image is provided in the repo.
 
 Docker will be use both for development and production environments,
 which will provide consistency between environments and will allow for easy deployment.
