@@ -89,3 +89,10 @@ def userLogin(username, password):
     user.jwt = generate_jwt()
     session.commit()
     return user.jwt, user.to_json()
+
+
+def userGet(id):
+    user = session.query(User).filter_by(id=id).first()
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user.to_json()

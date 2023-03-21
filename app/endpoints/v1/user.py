@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from typing import Union
 from pydantic import BaseModel
-from app.model.user import createUser, userLogin
+from app.model.user import createUser, userLogin, userGet
 router = APIRouter()
 
 
@@ -13,6 +13,9 @@ class UserObjectRegister(BaseModel):
 class UserObjectLogin(BaseModel):
     username: str
     password: str
+
+class UserObjectId(BaseModel):
+    id: int
 
 
 @router.post("/v1/user/register")
@@ -38,3 +41,11 @@ async def loginUser(payload: UserObjectLogin):
     )
 
     return {"access_token": jwt, "user": user}
+
+@router.get("/v1/user")
+async def getUser(payload: UserObjectId):
+    payload = payload.dict()
+    user = userGet(
+        id=payload["id"],
+    )
+    return {"user": user}
