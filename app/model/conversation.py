@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean, Timestamp
 from sqlalchemy import create_engine
 
 
@@ -9,13 +9,12 @@ engine = create_engine(
 
 
 Base = declarative_base()
-class User(Base):
-    __tablename__ = "users"
+class Conversation(Base):
+    __tablename__ = "conversation"
     id = Column(Integer, primary_key=True)
-    email = Column(String)
-    username = Column(String)
-    display_name = Column(String)
-    profile_photo_url = Column(String)
+    is_group = Column(Boolean)
+    name = Column(String)
+    users = Column(String)
     created_at = Column(String)
 
     def __repr__(self):

@@ -9,22 +9,22 @@ engine = create_engine(
 
 
 Base = declarative_base()
-class User(Base):
-    __tablename__ = "users"
+class Status(Base):
+    __tablename__ = "statuses"
     id = Column(Integer, primary_key=True)
-    email = Column(String)
-    username = Column(String)
-    display_name = Column(String)
-    profile_photo_url = Column(String)
+    user_id = Column(Integer)
+    status = Column(String)
+    latitude = Column(String)
+    longitude = Column(String)
     created_at = Column(String)
 
     def __repr__(self):
         return {
             "id": self.id,
-            "email": self.email,
-            "username": self.username,
-            "display_name": self.display_name,
-            "profile_photo_url": self.profile_photo_url,
+            "user_id": self.user_id,
+            "status": self.status,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
             "created_at": self.created_at
         }
 
