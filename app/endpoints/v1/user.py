@@ -62,4 +62,4 @@ async def updateUser(payload: UserObjectPut):
     payload = payload.dict()
     # TODO AUTH JWT
     userUpdate(payload["id"], payload["display_name"], payload["profile_photo_url"])
-    return {"status": "ok"}
+    return {"detail": "ok"}
