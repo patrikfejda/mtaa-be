@@ -108,3 +108,8 @@ def userUpdate(id, display_name=None, profile_photo_url=None):
         user.profile_photo_url = profile_photo_url
     session.commit()
     return user.to_json()
+
+def userGetAll():
+    users = session.query(User).all()
+    users = [user.to_json() for user in users]
+    return users

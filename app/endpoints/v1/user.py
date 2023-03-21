@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from typing import Union
 from pydantic import BaseModel
-from app.model.user import userCreate, userLogin, userGet, userUpdate
+from app.model.user import userCreate, userLogin, userGet, userUpdate, userGetAll
 router = APIRouter()
 
 
@@ -63,3 +63,8 @@ async def updateUser(payload: UserObjectPut):
     # TODO AUTH JWT
     userUpdate(payload["id"], payload["display_name"], payload["profile_photo_url"])
     return {"detail": "ok"}
+
+@router.get("/v1/user/all")
+def getAllUsers():
+    users = userGetAll()
+    return {"users": users}
