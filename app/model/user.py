@@ -1,40 +1,72 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String
-from sqlalchemy import create_engine
+from sqlalchemy import Column, Integer, String, Sequence, DateTime, func
+from app.db.orm import session, engine
+from fastapi import HTTPException
+from app.support.jwt import generate_jwt
 
-
-engine = create_engine(
-    f"postgresql://postgres:postgres@mtaa-db:5432/mtaa_db", future=True
-)
+Column(Integer, Sequence("user_id_seq"), primary_key=True)
 
 
 Base = declarative_base()
+
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     email = Column(String)
     username = Column(String)
+    password = Column(String)
+    jwt = Column(String)
     display_name = Column(String)
     profile_photo_url = Column(String)
-    created_at = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    def __repr__(self):
+    def to_json(self):
         return {
             "id": self.id,
             "email": self.email,
             "username": self.username,
             "display_name": self.display_name,
             "profile_photo_url": self.profile_photo_url,
-            "created_at": self.created_at
+            "created_at": self.created_at,
         }
 
-def create_table():  
+    def __repr__(self):
+        return (
+            "<User(id='%s', email='%s', username='%s', display_name='%s', profile_photo_url='%s', created_at='%s')>"
+            % (
+                self.id,
+                self.email,
+                self.username,
+                self.display_name,
+                self.profile_photo_url,
+                self.created_at,
+            )
+        )
+
+
+def create_table():
+    print("Creating table users")
     Base.metadata.create_all(engine)
 
-# User(name='ed', fullname='Ed Jones', nickname='edsnickname')
 
-# from sqlalchemy.orm import sessionmaker
-# Session = sessionmaker(bind=engine)
-# session = Session()
-# ed_user = User(email="patrikfejda@gmail.com", username="patrikfejda", display_name="Patrik Fejda")
-# session.add(ed_user)
+def createUser(
+    email, password, username=None, display_name=None, profile_photo_url=None
+):
+    # DEV WORKAROUND
+    # alreadyExists = session.query(User.id).filter_by(email=email).first() is not None
+    # if alreadyExists:
+    #     raise HTTPException(status_code=409, detail="This email alredy registered")
+    new_user = User(
+        email=email,
+        username=username,
+        password=password,
+        display_name=display_name,
+        profile_photo_url=profile_photo_url,
+        jwt=generate_jwt(),
+    )
+    session.add(new_user)
+    print(new_user)
+    session.commit()
+    jwt = new_user.jwt
+    return jwt, new_user.to_json()

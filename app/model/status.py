@@ -28,7 +28,8 @@ class Status(Base):
             "created_at": self.created_at
         }
 
-def create_table():  
+def create_table():
+    print("Creating table statuses")
     Base.metadata.create_all(engine)
 
 # User(name='ed', fullname='Ed Jones', nickname='edsnickname')

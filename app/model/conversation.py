@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean, Timestamp
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy import create_engine
 
 
@@ -27,7 +27,8 @@ class Conversation(Base):
             "created_at": self.created_at
         }
 
-def create_table():  
+def create_table():
+    print("Creating table conversation")
     Base.metadata.create_all(engine)
 
 # User(name='ed', fullname='Ed Jones', nickname='edsnickname')
