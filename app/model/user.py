@@ -49,14 +49,20 @@ def create_table():
     print("Creating table users")
     Base.metadata.create_all(engine)
 
+def emailAlreadyExists(email):
+    return session.query(User.id).filter_by(email=email).first() is not None
+
+def usernameAlreadyExists(username):
+    return session.query(User.id).filter_by(username=username).first() is not None
 
 def createUser(
     email, password, username=None, display_name=None, profile_photo_url=None
 ):
     # DEV WORKAROUND
-    # alreadyExists = session.query(User.id).filter_by(email=email).first() is not None
-    # if alreadyExists:
-    #     raise HTTPException(status_code=409, detail="This email alredy registered")
+    if emailAlreadyExists(email):
+        raise HTTPException(status_code=409, detail="This email alredy registered")
+    if usernameAlreadyExists(username):
+        raise HTTPException(status_code=409, detail="This username alredy registered")
     new_user = User(
         email=email,
         username=username,
@@ -70,3 +76,16 @@ def createUser(
     session.commit()
     jwt = new_user.jwt
     return jwt, new_user.to_json()
+
+    
+
+def userLogin(username, password):
+
+    user = session.query(User).filter_by(username=username).first()
+    if user is None:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    if user.password != password:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    user.jwt = generate_jwt()
+    session.commit()
+    return user.jwt, user.to_json()
