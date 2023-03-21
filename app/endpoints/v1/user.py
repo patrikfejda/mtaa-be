@@ -19,8 +19,8 @@ class UserObjectId(BaseModel):
 
 class UserObjectPut(BaseModel):
     id: int
-    display_name: str or None
-    profile_photo_url: str or None
+    display_name: str = None
+    profile_photo_url: str = None
 
 
 
