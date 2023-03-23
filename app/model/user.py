@@ -4,52 +4,12 @@ from app.db.orm import session, engine
 from fastapi import HTTPException
 from app.support.jwt import generate_jwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
-
+from app.model.classes import User
 
 # Column(Integer, Sequence("user_id_seq"), primary_key=True)
 
 
 Base = declarative_base()
-
-
-class User(Base):
-    __tablename__ = "usersxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    id = Column(Integer, primary_key=True)
-    # email = Column(String)
-    # username = Column(String)
-    # password = Column(String)
-    # jwt = Column(String)
-    # display_name = Column(String)
-    # profile_photo_url = Column(String)
-    # created_at = Column(DateTime(timezone=True), server_default=func.now())
-
-    def to_safe_data(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "username": self.username,
-            "display_name": self.display_name,
-            "profile_photo_url": self.profile_photo_url,
-            "created_at": self.created_at,
-        }
-
-    def __repr__(self):
-        return (
-            "<User(id='%s', email='%s', username='%s', display_name='%s', profile_photo_url='%s', created_at='%s')>"
-            % (
-                self.id,
-                self.email,
-                self.username,
-                self.display_name,
-                self.profile_photo_url,
-                self.created_at,
-            )
-        )
-
-
-def create_table():
-    print("Creating table users")
-    # Base.metadata.create_all(engine)
 
 def emailAlreadyExists(email):
     return session.query(User.id).filter_by(email=email).first() is not None
