@@ -3,6 +3,8 @@ from sqlalchemy import Column, Integer, String, Sequence, DateTime, func
 from app.db.orm import session, engine
 from fastapi import HTTPException
 from app.support.jwt import generate_jwt
+from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
+
 
 Column(Integer, Sequence("user_id_seq"), primary_key=True)
 
@@ -58,11 +60,10 @@ def usernameAlreadyExists(username):
 def userCreate(
     email, password, username=None, display_name=None, profile_photo_url=None
 ):
-    # FIXME DEV WORKAROUND
-    # if emailAlreadyExists(email):
-    #     raise HTTPException(status_code=409, detail="This email alredy registered")
-    # if usernameAlreadyExists(username):
-    #     raise HTTPException(status_code=409, detail="This username alredy registered")
+    if emailAlreadyExists(email) and DONT_ALLOW_NOT_UNIQUE_EMAIL:
+        raise HTTPException(status_code=409, detail="This email alredy registered")
+    if usernameAlreadyExists(username) and DONT_ALLOW_NOT_UNIQUE_USERNAME:
+        raise HTTPException(status_code=409, detail="This username alredy registered")
     new_user = User(
         email=email,
         username=username,
