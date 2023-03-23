@@ -23,4 +23,18 @@ def conversationCreate(name, user_ids, is_group):
     session.commit()
     return conversation.private_data()
 
+def verifyUserInConversation(user_id, conversation_id):
+    conversation = session.query(Conversation).filter(Conversation.id == conversation_id).first()
+    if conversation is None:
+        raise HTTPException(404, f"Conversation with id {conversation_id} not found")
+    print("dsadsadsdsadsadsadsadsadsadsadsadsadddddddddddddddddddddddddddddddddddddddddddddddd")
+    for user in conversation.users:
+        if str(user.id) == user_id:
+            return True
+    raise HTTPException(403, f"User with id {user_id} does not have access to conversation with id {conversation_id}")
 
+def conversationGet(conversation_id):
+    conversation = session.query(Conversation).filter(Conversation.id == conversation_id).first()
+    if conversation is None:
+        raise HTTPException(404, f"Conversation with id {conversation_id} not found")
+    return conversation.private_data()
