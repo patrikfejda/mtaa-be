@@ -1,20 +1,38 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy import create_engine
+from sqlalchemy import Column, Integer, String, Sequence, DateTime, func, Boolean
+from app.db.orm import session, engine
+from fastapi import HTTPException
+from app.support.jwt import generate_jwt
+from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
+from sqlalchemy import Column
+from sqlalchemy import Table
+from sqlalchemy import ForeignKey
+from sqlalchemy import Integer
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import relationship
+from typing import List
 
 
-engine = create_engine(
-    f"postgresql://postgres:postgres@mtaa-db:5432/mtaa_db", future=True
-)
-
+from app.model.user import User
+Column(Integer, Sequence("conversation_id_seq"), primary_key=True)
 
 Base = declarative_base()
+
+association_table = Table(
+    "association_table",
+    Base.metadata,
+    Column("conversation_id", ForeignKey("conversations.id")),
+    Column("user_id", ForeignKey("users.id")),
+)
+
 class Conversation(Base):
-    __tablename__ = "conversation"
+    __tablename__ = "conversations"
     id = Column(Integer, primary_key=True)
     is_group = Column(Boolean)
     name = Column(String)
-    users = Column(String)
+    users: Mapped[List[User]] = relationship(secondary=association_table)
     created_at = Column(String)
 
     def __repr__(self):
