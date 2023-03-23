@@ -25,12 +25,13 @@ def messageCreate(
     session.commit()
     return new_message.public_data()
 
-def messageGet(user_id: int, id: int):
-    message = session.query(Message).filter(Message.id == id).first()
+def messageGet(user_id: int, message_id: int):
+    message = session.query(Message).filter(Message.id == message_id).first()
     if message is None:
         raise HTTPException(status_code=404, detail="Message not found")
     
-    if user_id not in [user.id for user in message.conversation.users]:
+    conversation = session.query(Conversation).filter(Conversation.id == message.conversation_id).first()
+    if user_id not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
     
     return message.public_data()
@@ -40,7 +41,7 @@ def messageConversationAll(user_id: int, conversation_id: int):
     if conversation is None:
         raise HTTPException(status_code=404, detail="Conversation not found")
     
-    if user_id not in [user.id for user in conversation.users]:
+    if user_id not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
     
     messages = session.query(Message).filter(Message.conversation_id == conversation_id).all()
