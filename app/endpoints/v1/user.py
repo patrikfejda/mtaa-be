@@ -40,10 +40,7 @@ async def updateUser(
 ):
     jwt = request.headers["Authorization"]
     verify_token(id, jwt)
-    if profile_photo:
-        uploaded_photo_url = save_upload_file(profile_photo)
-    else: 
-        uploaded_photo_url = None
+    uploaded_photo_url = save_upload_file(profile_photo)
     user = userUpdate(id, display_name, uploaded_photo_url)
     return {
         "detail": user['id'],

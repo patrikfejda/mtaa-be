@@ -7,6 +7,8 @@ from fastapi import UploadFile
 
 
 def save_upload_file(upload_file: UploadFile) -> None:
+    if not upload_file:
+        return None
     suffix = Path(upload_file.filename).suffix
     destination_str = "/public/images/" + "".join(
         random.choice(string.ascii_letters + string.digits) for _ in range(40)
