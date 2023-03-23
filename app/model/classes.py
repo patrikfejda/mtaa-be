@@ -13,6 +13,7 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import relationship
 from typing import List
+
 Column(Integer, Sequence("conversation_id_seq"), primary_key=True)
 
 Base = declarative_base()
@@ -20,9 +21,10 @@ Base = declarative_base()
 association_table = Table(
     "association_table",
     Base.metadata,
-    Column("conversation_id", ForeignKey("conversations.id")),
-    Column("user_id", ForeignKey("users.id")),
+    Column("conversation_id", ForeignKey("conversations.id"), primary_key=True),
+    Column("user_id", ForeignKey("users.id"), primary_key=True),
 )
+
 
 class User(Base):
     __tablename__ = "users"
@@ -33,9 +35,12 @@ class User(Base):
     jwt = Column(String)
     display_name = Column(String)
     profile_photo_url = Column(String)
+    conversations: Mapped[List["Conversation"]] = relationship(
+        secondary=association_table, back_populates="users"
+    )
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    def to_safe_data(self):
+    def public_data(self):
         return {
             "id": self.id,
             "email": self.email,
@@ -43,6 +48,17 @@ class User(Base):
             "display_name": self.display_name,
             "profile_photo_url": self.profile_photo_url,
             "created_at": self.created_at,
+        }
+
+    def private_data(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "username": self.username,
+            "display_name": self.display_name,
+            "profile_photo_url": self.profile_photo_url,
+            "created_at": self.created_at,
+            "conversations": self.conversations,
         }
 
     def __repr__(self):
@@ -58,23 +74,35 @@ class User(Base):
             )
         )
 
+
 class Conversation(Base):
     __tablename__ = "conversations"
     id = Column(Integer, primary_key=True)
     is_group = Column(Boolean)
     name = Column(String)
-    users: Mapped[List[User]] = relationship(secondary=association_table)
-    created_at = Column(String)
+    users: Mapped[List["User"]] = relationship(
+        secondary=association_table, back_populates="conversations"
+    )
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
+        return "<Conversation(id='%s', is_group='%s', name='%s', created_at='%s, users='%s')>" % (
+            self.id,
+            self.is_group,
+            self.name,
+            self.created_at,
+            [x.public_data() for x in self.users]
+        )
+    
+    def private_data(self):
         return {
             "id": self.id,
-            "email": self.email,
-            "username": self.username,
-            "display_name": self.display_name,
-            "profile_photo_url": self.profile_photo_url,
-            "created_at": self.created_at
+            "is_group": self.is_group,
+            "name": self.name,
+            "created_at": self.created_at,
+            "users": [x.public_data() for x in self.users]
         }
+
 
 def create_tables():
     print("Creating DB tables")
@@ -84,16 +112,14 @@ def create_tables():
     # session.add(user)
     # user2 = User(email="b", username="b", display_name="b")
     # session.add(user2)
-    
+
     # conversation = Conversation(is_group=False, name="a")
     # session.add(conversation)
     # conversation2 = Conversation(is_group=False, name="b")
     # session.add(conversation2)
-    
+
     # conversation.users.append(user)
     # conversation.users.append(user2)
     # conversation2.users.append(user)
     # conversation2.users.append(user2)
     # session.commit()
-
-

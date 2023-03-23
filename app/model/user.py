@@ -36,7 +36,7 @@ def userCreate(
     print(new_user)
     session.commit()
     jwt = new_user.jwt
-    return jwt, new_user.to_safe_data()
+    return jwt, new_user.public_data()
 
     
 
@@ -49,14 +49,14 @@ def userLogin(username, password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     user.jwt = generate_jwt()
     session.commit()
-    return user.jwt, user.to_safe_data()
+    return user.jwt, user.public_data()
 
 
 def userGet(id):
     user = session.query(User).filter_by(id=id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    return user.to_safe_data()
+    return user.private_data()
 
 
 def userUpdate(id, display_name=None, profile_photo_url=None):
@@ -68,11 +68,11 @@ def userUpdate(id, display_name=None, profile_photo_url=None):
     if profile_photo_url is not None:
         user.profile_photo_url = profile_photo_url
     session.commit()
-    return user.to_safe_data()
+    return user.public_data()
 
 def userGetAll():
     users = session.query(User).all()
-    users = [user.to_safe_data() for user in users]
+    users = [user.public_data() for user in users]
     return users
 
 def authorize_user(user_id, jwt):
