@@ -4,3 +4,5 @@ docs/docs.pdf
 *.pyc
 
 public/images/
+
+app/endpoints/v1/__pycache__/

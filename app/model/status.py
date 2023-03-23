@@ -19,7 +19,10 @@ def statusCreate(
     return status.private_data()
 
 def statusGet(status_id):
-    return session.query(Status).filter(Status.id == status_id).first().private_data()
+    status = session.query(Status).filter(Status.id == status_id).first()
+    if status is None:
+        raise HTTPException(404, "Status not found")
+    return status.public_data()
 
 def statusGetAll():
     return [status.public_data() for status in session.query(Status).all()]
