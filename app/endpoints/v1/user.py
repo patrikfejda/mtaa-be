@@ -1,7 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Header, Request
+from typing import Annotated, List, Union
 from typing import Union
 from pydantic import BaseModel
 from app.model.user import userCreate, userLogin, userGet, userUpdate, userGetAll
+from app.auth.verify import verify_token
 router = APIRouter()
 
 
@@ -58,9 +60,10 @@ async def getUser(payload: UserObjectId):
     return {"user": user}
 
 @router.put("/v1/user")
-async def updateUser(payload: UserObjectPut):
+async def updateUser(payload: UserObjectPut, request: Request):
+    jwt = request.headers["Authorization"]
     payload = payload.dict()
-    # TODO AUTH JWT
+    verify_token(payload["id"], jwt)
     userUpdate(payload["id"], payload["display_name"], payload["profile_photo_url"])
     return {"detail": "ok"}
 

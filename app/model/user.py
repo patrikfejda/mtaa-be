@@ -21,7 +21,7 @@ class User(Base):
     profile_photo_url = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    def to_json(self):
+    def to_safe_data(self):
         return {
             "id": self.id,
             "email": self.email,
@@ -58,11 +58,11 @@ def usernameAlreadyExists(username):
 def userCreate(
     email, password, username=None, display_name=None, profile_photo_url=None
 ):
-    # DEV WORKAROUND
-    if emailAlreadyExists(email):
-        raise HTTPException(status_code=409, detail="This email alredy registered")
-    if usernameAlreadyExists(username):
-        raise HTTPException(status_code=409, detail="This username alredy registered")
+    # FIXME DEV WORKAROUND
+    # if emailAlreadyExists(email):
+    #     raise HTTPException(status_code=409, detail="This email alredy registered")
+    # if usernameAlreadyExists(username):
+    #     raise HTTPException(status_code=409, detail="This username alredy registered")
     new_user = User(
         email=email,
         username=username,
@@ -75,7 +75,7 @@ def userCreate(
     print(new_user)
     session.commit()
     jwt = new_user.jwt
-    return jwt, new_user.to_json()
+    return jwt, new_user.to_safe_data()
 
     
 
@@ -88,14 +88,14 @@ def userLogin(username, password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     user.jwt = generate_jwt()
     session.commit()
-    return user.jwt, user.to_json()
+    return user.jwt, user.to_safe_data()
 
 
 def userGet(id):
     user = session.query(User).filter_by(id=id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    return user.to_json()
+    return user.to_safe_data()
 
 
 def userUpdate(id, display_name=None, profile_photo_url=None):
@@ -107,9 +107,17 @@ def userUpdate(id, display_name=None, profile_photo_url=None):
     if profile_photo_url is not None:
         user.profile_photo_url = profile_photo_url
     session.commit()
-    return user.to_json()
+    return user.to_safe_data()
 
 def userGetAll():
     users = session.query(User).all()
-    users = [user.to_json() for user in users]
+    users = [user.to_safe_data() for user in users]
     return users
+
+def authorize_user(user_id, jwt):
+    user = session.query(User).filter_by(id=user_id).first()
+    if user is None:
+        return False
+    if user.jwt != jwt:
+        return False
+    return True

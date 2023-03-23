@@ -1,0 +1,1 @@
+GET /user a /getallusers nema auth
