@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Header, Request
+from fastapi import APIRouter, Header, Request, Form
 from typing import Annotated, List, Union
 from typing import Union
 from pydantic import BaseModel
@@ -60,12 +60,11 @@ async def getUser(payload: UserObjectId):
     return {"user": user}
 
 @router.put("/v1/user")
-async def updateUser(payload: UserObjectPut, request: Request):
+async def updateUser(id: str = Form(...), display_name: str = Form(...), profile_photo_url: str = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
-    payload = payload.dict()
-    verify_token(payload["id"], jwt)
-    userUpdate(payload["id"], payload["display_name"], payload["profile_photo_url"])
-    return {"detail": "ok"}
+    verify_token(id, jwt)
+    userUpdate(id, display_name, profile_photo_url)
+    return {"detail": id, "display_name": display_name, "profile_photo_url": profile_photo_url}
 
 @router.get("/v1/user/all")
 def getAllUsers():
