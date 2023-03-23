@@ -104,6 +104,38 @@ class Conversation(Base):
         }
 
 
+class Status(Base):
+    __tablename__ = "status"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    status = Column(String)
+    latitude = Column(String)
+    longitude = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    def __repr__(self):
+        return "<Status(id='%s', user_id='%s', status='%s', latitude='%s', longitude='%s', created_at='%s')>" % (
+            self.id,
+            self.user_id,
+            self.status,
+            self.latitude,
+            self.longitude,
+            self.created_at,
+        )
+
+    def public_data(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "status": self.status,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "created_at": self.created_at,
+        }
+    
+    def private_data(self):
+        return self.public_data()
+
 def create_tables():
     print("Creating DB tables")
     Base.metadata.create_all(engine)
