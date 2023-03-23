@@ -27,7 +27,6 @@ def verifyUserInConversation(user_id, conversation_id):
     conversation = session.query(Conversation).filter(Conversation.id == conversation_id).first()
     if conversation is None:
         raise HTTPException(404, f"Conversation with id {conversation_id} not found")
-    print("dsadsadsdsadsadsadsadsadsadsadsadsadddddddddddddddddddddddddddddddddddddddddddddddd")
     for user in conversation.users:
         if str(user.id) == user_id:
             return True

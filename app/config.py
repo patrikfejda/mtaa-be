@@ -3,6 +3,8 @@ from pydantic import BaseSettings
 DONT_ALLOW_NOT_UNIQUE_EMAIL = False
 DONT_ALLOW_NOT_UNIQUE_USERNAME = False
 
+FILESTORE_PATH = "/home/mtaa/app/filestore"
+FILESTORE_URL = "/filestore"
 class Settings(BaseSettings):
     class Config:
         case_sensitive = True
