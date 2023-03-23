@@ -7,55 +7,28 @@ from app.auth.verify import verify_token
 router = APIRouter()
 
 
-class UserObjectRegister(BaseModel):
-    email: str
-    username: str
-    password: str
-
-class UserObjectLogin(BaseModel):
-    username: str
-    password: str
-
-class UserObjectId(BaseModel):
-    id: int
-
-class UserObjectPut(BaseModel):
-    id: int
-    display_name: str = None
-    profile_photo_url: str = None
-
-
-
 @router.post("/v1/user/register")
-async def registerUser(payload: UserObjectRegister):
-    payload = payload.dict()
-
+async def registerUser(email: str = Form(...), username: str = Form(...), password: str = Form(...)):
     jwt, createdUser = userCreate(
-        email=payload["email"],
-        username=payload["username"],
-        display_name=payload["username"],
-        password=payload["password"],
+        email=email,
+        username=username,
+        password=password
     )
-
     return {"access_token": jwt, "user": createdUser}
 
 
 @router.post("/v1/user/login")
-async def loginUser(payload: UserObjectLogin):
-    payload = payload.dict()
+async def loginUser(username: str = Form(...), password: str = Form(...)):
     jwt, user = userLogin(
-        username=payload["username"],
-        password=payload["password"],
+        username=username,
+        password=password
     )
-
     return {"access_token": jwt, "user": user}
 
 @router.get("/v1/user")
-async def getUser(payload: UserObjectId):
-    # TODO AUTH JWT
-    payload = payload.dict()
+async def getUser(id: str = Form(...)):
     user = userGet(
-        id=payload["id"],
+        id=id,
     )
     return {"user": user}
 
