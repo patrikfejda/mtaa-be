@@ -6,22 +6,22 @@ from app.support.jwt import generate_jwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
 
 
-Column(Integer, Sequence("user_id_seq"), primary_key=True)
+# Column(Integer, Sequence("user_id_seq"), primary_key=True)
 
 
 Base = declarative_base()
 
 
 class User(Base):
-    __tablename__ = "users"
+    __tablename__ = "usersxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     id = Column(Integer, primary_key=True)
-    email = Column(String)
-    username = Column(String)
-    password = Column(String)
-    jwt = Column(String)
-    display_name = Column(String)
-    profile_photo_url = Column(String)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    # email = Column(String)
+    # username = Column(String)
+    # password = Column(String)
+    # jwt = Column(String)
+    # display_name = Column(String)
+    # profile_photo_url = Column(String)
+    # created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     def to_safe_data(self):
         return {
@@ -49,7 +49,7 @@ class User(Base):
 
 def create_table():
     print("Creating table users")
-    Base.metadata.create_all(engine)
+    # Base.metadata.create_all(engine)
 
 def emailAlreadyExists(email):
     return session.query(User.id).filter_by(email=email).first() is not None
