@@ -15,6 +15,9 @@ from sqlalchemy.orm import relationship
 from typing import List
 
 Column(Integer, Sequence("conversation_id_seq"), primary_key=True)
+Column(Integer, Sequence("user_id_seq"), primary_key=True)
+Column(Integer, Sequence("message_id_seq"), primary_key=True)
+Column(Integer, Sequence("status_id_seq"), primary_key=True)
 
 Base = declarative_base()
 
@@ -135,10 +138,48 @@ class Status(Base):
     
     def private_data(self):
         return self.public_data()
+    
+
+class Message(Base):
+    __tablename__ = "messages"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    conversation_id = Column(Integer, ForeignKey("conversations.id"))
+    message = Column(String)
+    photo_url = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    def __repr__(self):
+        return "<Message(id='%s', user_id='%s', conversation_id='%s', message='%s', photo_url='%s', created_at='%s')>" % (
+            self.id,
+            self.user_id,
+            self.conversation_id,
+            self.message,
+            self.photo_url,
+            self.created_at,
+        )
+
+    def public_data(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "conversation_id": self.conversation_id,
+            "message": self.message,
+            "photo_url": self.photo_url,
+            "created_at": self.created_at,
+        }
+
+
+    def private_data(self):
+        return self.public_data()
 
 def create_tables():
     print("Creating DB tables")
     Base.metadata.create_all(engine)
+
+
+
+
 
     # user = User(email="a", username="a", display_name="a")
     # session.add(user)

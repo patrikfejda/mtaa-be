@@ -6,6 +6,7 @@ from app.endpoints.v1 import (
     user,
     conversation,
     status,
+    message
 )
 
 
@@ -15,4 +16,5 @@ router.include_router(health.router)
 router.include_router(user.router)
 router.include_router(conversation.router)
 router.include_router(status.router)
+router.include_router(message.router)
 
