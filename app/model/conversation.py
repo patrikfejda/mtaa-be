@@ -20,11 +20,7 @@ def conversationCreate(name, user_ids, is_group):
         if user is None:
             raise HTTPException(404, f"User with id {user_id} not found")
         conversation.users.append(user)
-    print(conversation)
     session.commit()
-    print("==================================")
-    print(conversation)
-    print(conversation)
     return conversation.private_data()
 
 
