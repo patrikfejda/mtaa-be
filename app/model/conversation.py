@@ -38,3 +38,9 @@ def conversationGet(conversation_id):
     if conversation is None:
         raise HTTPException(404, f"Conversation with id {conversation_id} not found")
     return conversation.private_data()
+
+def conversationsGetAll(user_id):
+    user = session.query(User).filter(User.id == user_id).first()
+    if user is None:
+        raise HTTPException(404, f"User with id {user_id} not found")
+    return [conversation.private_data() for conversation in user.conversations]
