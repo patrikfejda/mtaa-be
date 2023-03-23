@@ -24,3 +24,43 @@ async def createStatus(
         "detail": "ok",
         "status": status,
     }
+
+@router.get("/v1/status")
+async def getStatus(
+    statusId: int = Form(...),
+    request: Request = None
+):
+    jwt = request.headers["Authorization"]
+    id = request.headers["MyId"]
+    verify_token(id, jwt)
+    status = statusGet(statusId)
+    return {
+        "detail": "ok",
+        "status": status,
+    }
+
+@router.get("/v1/status/all")
+async def getAllStatus(
+    request: Request = None
+):
+    jwt = request.headers["Authorization"]
+    id = request.headers["MyId"]
+    verify_token(id, jwt)
+    statuses = statusGetAll()
+    return {
+        "detail": "ok",
+        "statuses": statuses,
+    }
+
+@router.delete("/v1/status")
+async def deleteStatus(
+    statusId: int = Form(...),
+    request: Request = None
+):
+    jwt = request.headers["Authorization"]
+    id = request.headers["MyId"]
+    verify_token(id, jwt)
+    statusDelete(id, statusId)
+    return {
+        "detail": "ok",
+    }

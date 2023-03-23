@@ -27,7 +27,7 @@ def statusGetAll():
 
 
 def statusDelete(user_id, status_id):
-    if session.query(Status).filter(Status.id == status_id).first().user_id != user_id:
+    if session.query(Status).filter(Status.id == status_id).first().user_id != int(user_id):
         raise HTTPException(403, "You can only delete your own statuses")
     session.query(Status).filter(Status.id == status_id).delete()
     session.commit()
