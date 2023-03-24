@@ -1,7 +1,5 @@
 import shutil
 from pathlib import Path
-from tempfile import NamedTemporaryFile
-from typing import Callable
 import random, string
 from fastapi import UploadFile
 from app.config import FILESTORE_PATH, FILESTORE_URL

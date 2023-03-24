@@ -1,6 +1,5 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Sequence, DateTime, func
-from app.db.orm import session, engine
+from app.db.orm import session
 from fastapi import HTTPException
 from app.support.jwt import generateJwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME

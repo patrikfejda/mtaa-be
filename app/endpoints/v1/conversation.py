@@ -1,8 +1,4 @@
-from fastapi import APIRouter, Header, Request, Form, File, UploadFile
-from typing import Annotated, List, Union, Optional
-from typing import Union
-from pydantic import BaseModel
-from app.model.user import userCreate, userLogin, userGet, userUpdate, userGetAll
+from fastapi import APIRouter, Request, Form
 from app.model.conversation import (
     conversationCreate,
     conversationGet,
@@ -10,7 +6,6 @@ from app.model.conversation import (
     conversationsGetAll,
 )
 from app.auth.verify import verifyToken
-from app.handlefilestore.save import saveFilestore
 
 router = APIRouter()
 

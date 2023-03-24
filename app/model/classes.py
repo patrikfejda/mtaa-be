@@ -3,14 +3,11 @@ from sqlalchemy import Column, Integer, String, Sequence, DateTime, func, Boolea
 from app.db.orm import session, engine
 from fastapi import HTTPException
 from app.support.jwt import generateJwt
-from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
 from sqlalchemy import Column
 from sqlalchemy import Table
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import relationship
 from typing import List
 

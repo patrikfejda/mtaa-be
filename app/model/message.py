@@ -1,10 +1,7 @@
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Sequence, DateTime, func
-from app.db.orm import session, engine
+from app.db.orm import session
 from fastapi import HTTPException
-from app.support.jwt import generateJwt
-from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
-from app.model.classes import Message, User, Conversation
+from app.model.classes import Message, Conversation
 
 
 Base = declarative_base()
