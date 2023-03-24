@@ -4,13 +4,13 @@ from typing import Union
 from pydantic import BaseModel
 from app.model.user import userCreate, userLogin, userGet, userUpdate, userGetAll
 from app.auth.verify import verifyToken
-from app.handlefilestore.save import save_upload_file
+from app.handlefilestore.save import saveFilestore
 
 router = APIRouter()
 
 
 @router.post("/v1/user/register")
-async def registerUser(
+async def routerRegisterUser(
     email: str = Form(...), username: str = Form(...), password: str = Form(...)
 ):
     jwt, createdUser = userCreate(email=email, username=username, password=password)
@@ -18,13 +18,13 @@ async def registerUser(
 
 
 @router.post("/v1/user/login")
-async def loginUser(username: str = Form(...), password: str = Form(...)):
+async def routerLoginUser(username: str = Form(...), password: str = Form(...)):
     jwt, user = userLogin(username=username, password=password)
     return {"access_token": jwt, "user": user}
 
 
 @router.get("/v1/user")
-async def getUser(id: str = Form(...), request: Request = None):
+async def routerGetUser(id: str = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)
@@ -35,7 +35,7 @@ async def getUser(id: str = Form(...), request: Request = None):
 
 
 @router.put("/v1/user")
-async def updateUser(
+async def routerUpdateUser(
     displayName: str = Form(None),
     profilePhoto: UploadFile = File(None),
     request: Request = None,
@@ -43,7 +43,7 @@ async def updateUser(
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)
-    uploadedPhotoUrl = save_upload_file(profilePhoto)
+    uploadedPhotoUrl = saveFilestore(profilePhoto)
     user = userUpdate(id, displayName, uploadedPhotoUrl)
     return {
         "detail": user["id"],
@@ -53,6 +53,6 @@ async def updateUser(
 
 
 @router.get("/v1/user/all")
-def getAllUsers():
+async def routerGetAllUsers():
     users = userGetAll()
     return {"users": users}

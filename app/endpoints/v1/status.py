@@ -4,13 +4,13 @@ from typing import Union
 from pydantic import BaseModel
 from app.model.status import statusCreate, statusGet, statusGetAll, statusDelete
 from app.auth.verify import verifyToken
-from app.handlefilestore.save import save_upload_file
+from app.handlefilestore.save import saveFilestore
 
 router = APIRouter()
 
 
 @router.post("/v1/status")
-async def createStatus(
+async def routerCreateStatus(
     status: str = Form(...),
     latitude: str = Form(...),
     longitude: str = Form(...),
@@ -27,7 +27,7 @@ async def createStatus(
 
 
 @router.get("/v1/status")
-async def getStatus(statusId: int = Form(...), request: Request = None):
+async def routerGetStatus(statusId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)
@@ -39,7 +39,7 @@ async def getStatus(statusId: int = Form(...), request: Request = None):
 
 
 @router.get("/v1/status/all")
-async def getAllStatus(request: Request = None):
+async def routerGetAllStatus(request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)
@@ -51,7 +51,7 @@ async def getAllStatus(request: Request = None):
 
 
 @router.delete("/v1/status")
-async def deleteStatus(statusId: int = Form(...), request: Request = None):
+async def routerDeleteStatus(statusId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)

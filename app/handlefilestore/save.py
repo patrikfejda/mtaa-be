@@ -13,7 +13,7 @@ def generateFileName() -> str:
     )
 
 
-def save_upload_file(upload_file: UploadFile) -> None:
+def saveFilestore(upload_file: UploadFile) -> None:
     if not upload_file:
         return None
     suffix = Path(upload_file.filename).suffix

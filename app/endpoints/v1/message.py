@@ -4,13 +4,13 @@ from typing import Union
 from pydantic import BaseModel
 from app.model.message import messageCreate, messageGet, messageConversationAll
 from app.auth.verify import verifyToken
-from app.handlefilestore.save import save_upload_file
+from app.handlefilestore.save import saveFilestore
 
 router = APIRouter()
 
 
 @router.post("/v1/message")
-async def createMessage(
+async def routerCreateMessage(
     conversationId: int = Form(...),
     message: str = Form(...),
     photo: UploadFile = File(None),
@@ -19,7 +19,7 @@ async def createMessage(
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)
-    photoUrl = save_upload_file(photo)
+    photoUrl = saveFilestore(photo)
     message = messageCreate(
         senderId=id,
         conversationId=conversationId,
@@ -30,7 +30,7 @@ async def createMessage(
 
 
 @router.get("/v1/message")
-async def getMessage(messageId: int = Form(...), request: Request = None):
+async def routerGetMessage(messageId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)
@@ -39,7 +39,7 @@ async def getMessage(messageId: int = Form(...), request: Request = None):
 
 
 @router.get("/v1/message/all")
-async def getAllMessages(conversationId: int = Form(...), request: Request = None):
+async def routerGetAllMessages(conversationId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verifyToken(id, jwt)

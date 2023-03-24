@@ -10,13 +10,13 @@ from app.model.conversation import (
     conversationsGetAll,
 )
 from app.auth.verify import verifyToken
-from app.handlefilestore.save import save_upload_file
+from app.handlefilestore.save import saveFilestore
 
 router = APIRouter()
 
 
 @router.post("/v1/conversation")
-async def createConversation(
+async def routerCreateConversation(
     name: str = Form(...),
     userIds: list = Form(...),
     isGroup: bool = Form(...),
@@ -36,7 +36,7 @@ async def createConversation(
 
 
 @router.get("/v1/conversation")
-async def getConversation(
+async def routerGetConversation(
     conversationId: int = Form(...),
     request: Request = None,
 ):
@@ -53,7 +53,7 @@ async def getConversation(
 
 
 @router.get("/v1/conversation/all")
-async def getAllConversations(
+async def routerGetAllConversations(
     request: Request = None,
 ):
     jwt = request.headers["Authorization"]
