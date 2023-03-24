@@ -13,18 +13,18 @@ def generateFileName() -> str:
     )
 
 
-def saveFilestore(upload_file: UploadFile) -> None:
-    if not upload_file:
+def saveFilestore(uploadFile: UploadFile) -> None:
+    if not uploadFile:
         return None
-    suffix = Path(upload_file.filename).suffix
+    suffix = Path(uploadFile.filename).suffix
     filename = generateFileName() + suffix
 
     destination = Path(f"{FILESTORE_PATH}/{filename}")
     url = f"{FILESTORE_URL}/{filename}"
     try:
         with destination.open("wb") as buffer:
-            shutil.copyfileobj(upload_file.file, buffer)
+            shutil.copyfileobj(uploadFile.file, buffer)
     finally:
-        upload_file.file.close()
+        uploadFile.file.close()
 
     return url
