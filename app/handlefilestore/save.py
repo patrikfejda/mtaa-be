@@ -7,8 +7,9 @@ from fastapi import UploadFile
 from app.config import FILESTORE_PATH, FILESTORE_URL
 
 def save_upload_file(upload_file: UploadFile) -> None:
-
+    print("save_upload_file")
     if not upload_file:
+        print("no upload_file")
         return None
     suffix = Path(upload_file.filename).suffix
     filename = "".join(random.choice(string.ascii_letters + string.digits) for _ in range(40)) + suffix

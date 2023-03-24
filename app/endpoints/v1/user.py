@@ -43,8 +43,8 @@ async def updateUser(
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    uploaded_photo_url = save_upload_file(profilePhoto)
-    user = userUpdate(id, displayName, uploaded_photo_url)
+    uploadedPhotoUrl = save_upload_file(profilePhoto)
+    user = userUpdate(id, displayName, uploadedPhotoUrl)
     return {
         "detail": user['id'],
         "displayName": user['displayName'],
