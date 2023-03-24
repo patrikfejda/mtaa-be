@@ -21,8 +21,8 @@ Column(Integer, Sequence("statusId_seq"), primary_key=True)
 
 Base = declarative_base()
 
-association_table = Table(
-    "association_table",
+conversation_user = Table(
+    "conversation_user",
     Base.metadata,
     Column("conversationId", ForeignKey("conversations.id"), primary_key=True),
     Column("userId", ForeignKey("users.id"), primary_key=True),
@@ -39,7 +39,7 @@ class User(Base):
     displayName = Column(String)
     profilePhotoUrl = Column(String)
     conversations: Mapped[List["Conversation"]] = relationship(
-        secondary=association_table, back_populates="users"
+        secondary=conversation_user, back_populates="users"
     )
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
@@ -84,7 +84,7 @@ class Conversation(Base):
     isGroup = Column(Boolean)
     name = Column(String)
     users: Mapped[List["User"]] = relationship(
-        secondary=association_table, back_populates="conversations"
+        secondary=conversation_user, back_populates="conversations"
     )
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
