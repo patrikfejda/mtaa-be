@@ -11,15 +11,16 @@ from app.model.classes import User
 
 Base = declarative_base()
 
+
 def emailAlreadyExists(email):
     return session.query(User.id).filter_by(email=email).first() is not None
+
 
 def usernameAlreadyExists(username):
     return session.query(User.id).filter_by(username=username).first() is not None
 
-def userCreate(
-    email, password, username=None, displayName=None, profilePhotoUrl=None
-):
+
+def userCreate(email, password, username=None, displayName=None, profilePhotoUrl=None):
     if emailAlreadyExists(email) and DONT_ALLOW_NOT_UNIQUE_EMAIL:
         raise HTTPException(status_code=409, detail="This email alredy registered")
     if usernameAlreadyExists(username) and DONT_ALLOW_NOT_UNIQUE_USERNAME:
@@ -38,7 +39,6 @@ def userCreate(
     jwt = new_user.jwt
     return jwt, new_user.public_data()
 
-    
 
 def userLogin(username, password):
 
@@ -70,10 +70,12 @@ def userUpdate(id, displayName=None, profilePhotoUrl=None):
     session.commit()
     return user.public_data()
 
+
 def userGetAll():
     users = session.query(User).all()
     users = [user.public_data() for user in users]
     return users
+
 
 def authorize_user(userId, jwt):
     user = session.query(User).filter_by(id=userId).first()

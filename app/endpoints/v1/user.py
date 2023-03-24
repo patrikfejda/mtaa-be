@@ -46,9 +46,9 @@ async def updateUser(
     uploadedPhotoUrl = save_upload_file(profilePhoto)
     user = userUpdate(id, displayName, uploadedPhotoUrl)
     return {
-        "detail": user['id'],
-        "displayName": user['displayName'],
-        "profilePhotoUrl": user['profilePhotoUrl']
+        "detail": user["id"],
+        "displayName": user["displayName"],
+        "profilePhotoUrl": user["profilePhotoUrl"],
     }
 
 

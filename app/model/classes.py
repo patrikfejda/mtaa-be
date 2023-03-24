@@ -89,21 +89,24 @@ class Conversation(Base):
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Conversation(id='%s', isGroup='%s', name='%s', createdAt='%s, users='%s')>" % (
-            self.id,
-            self.isGroup,
-            self.name,
-            self.createdAt,
-            [x.public_data() for x in self.users]
+        return (
+            "<Conversation(id='%s', isGroup='%s', name='%s', createdAt='%s, users='%s')>"
+            % (
+                self.id,
+                self.isGroup,
+                self.name,
+                self.createdAt,
+                [x.public_data() for x in self.users],
+            )
         )
-    
+
     def private_data(self):
         return {
             "id": self.id,
             "isGroup": self.isGroup,
             "name": self.name,
             "createdAt": self.createdAt,
-            "users": [x.public_data() for x in self.users]
+            "users": [x.public_data() for x in self.users],
         }
 
 
@@ -117,13 +120,16 @@ class Status(Base):
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Status(id='%s', userId='%s', status='%s', latitude='%s', longitude='%s', createdAt='%s')>" % (
-            self.id,
-            self.userId,
-            self.status,
-            self.latitude,
-            self.longitude,
-            self.createdAt,
+        return (
+            "<Status(id='%s', userId='%s', status='%s', latitude='%s', longitude='%s', createdAt='%s')>"
+            % (
+                self.id,
+                self.userId,
+                self.status,
+                self.latitude,
+                self.longitude,
+                self.createdAt,
+            )
         )
 
     def public_data(self):
@@ -135,10 +141,10 @@ class Status(Base):
             "longitude": self.longitude,
             "createdAt": self.createdAt,
         }
-    
+
     def private_data(self):
         return self.public_data()
-    
+
 
 class Message(Base):
     __tablename__ = "messages"
@@ -150,13 +156,16 @@ class Message(Base):
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Message(id='%s', userId='%s', conversationId='%s', message='%s', photoUrl='%s', createdAt='%s')>" % (
-            self.id,
-            self.userId,
-            self.conversationId,
-            self.message,
-            self.photoUrl,
-            self.createdAt,
+        return (
+            "<Message(id='%s', userId='%s', conversationId='%s', message='%s', photoUrl='%s', createdAt='%s')>"
+            % (
+                self.id,
+                self.userId,
+                self.conversationId,
+                self.message,
+                self.photoUrl,
+                self.createdAt,
+            )
         )
 
     def public_data(self):
@@ -169,17 +178,13 @@ class Message(Base):
             "createdAt": self.createdAt,
         }
 
-
     def private_data(self):
         return self.public_data()
+
 
 def create_tables():
     print("Creating DB tables")
     Base.metadata.create_all(engine)
-
-
-
-
 
     # user = User(email="a", username="a", displayName="a")
     # session.add(user)

@@ -37,6 +37,7 @@ async def getMessage(messageId: int = Form(...), request: Request = None):
     message = messageGet(userId=id, messageId=messageId)
     return {"detail": "ok", "message": message}
 
+
 @router.get("/v1/message/all")
 async def getAllMessages(conversationId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]

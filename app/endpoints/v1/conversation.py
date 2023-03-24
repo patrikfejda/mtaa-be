@@ -3,7 +3,12 @@ from typing import Annotated, List, Union, Optional
 from typing import Union
 from pydantic import BaseModel
 from app.model.user import userCreate, userLogin, userGet, userUpdate, userGetAll
-from app.model.conversation import conversationCreate, conversationGet, verifyUserInConversation, conversationsGetAll
+from app.model.conversation import (
+    conversationCreate,
+    conversationGet,
+    verifyUserInConversation,
+    conversationsGetAll,
+)
 from app.auth.verify import verify_token
 from app.handlefilestore.save import save_upload_file
 
@@ -20,13 +25,15 @@ async def createConversation(
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    if not id in userIds: userIds.append(id)
+    if not id in userIds:
+        userIds.append(id)
     conversation = conversationCreate(name, userIds, isGroup)
 
     return {
         "detail": "ok",
         "conversation": conversation,
     }
+
 
 @router.get("/v1/conversation")
 async def getConversation(
@@ -55,7 +62,4 @@ async def getAllConversations(
 
     conversations = conversationsGetAll(id)
 
-    return {
-        "detail": "ok",
-        "conversations": conversations
-    }
+    return {"detail": "ok", "conversations": conversations}

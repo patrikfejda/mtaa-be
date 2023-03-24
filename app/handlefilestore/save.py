@@ -6,8 +6,12 @@ import random, string
 from fastapi import UploadFile
 from app.config import FILESTORE_PATH, FILESTORE_URL
 
+
 def generateFileName() -> str:
-    return "".join(random.choice(string.ascii_letters + string.digits) for _ in range(40))
+    return "".join(
+        random.choice(string.ascii_letters + string.digits) for _ in range(40)
+    )
+
 
 def save_upload_file(upload_file: UploadFile) -> None:
     if not upload_file:
@@ -22,5 +26,5 @@ def save_upload_file(upload_file: UploadFile) -> None:
             shutil.copyfileobj(upload_file.file, buffer)
     finally:
         upload_file.file.close()
-    
+
     return url

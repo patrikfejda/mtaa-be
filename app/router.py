@@ -1,13 +1,6 @@
 from fastapi import APIRouter
 
-from app.endpoints.v1 import (
-    health,
-    dbhealth,
-    user,
-    conversation,
-    status,
-    message
-)
+from app.endpoints.v1 import health, dbhealth, user, conversation, status, message
 
 
 router = APIRouter()

@@ -18,15 +18,16 @@ def statusCreate(
     session.commit()
     return status.private_data()
 
+
 def statusGet(statusId):
     status = session.query(Status).filter(Status.id == statusId).first()
     if status is None:
         raise HTTPException(404, "Status not found")
     return status.public_data()
 
+
 def statusGetAll():
     return [status.public_data() for status in session.query(Status).all()]
-
 
 
 def statusDelete(userId, statusId):
@@ -39,5 +40,3 @@ def statusDelete(userId, statusId):
     session.query(Status).filter(Status.id == statusId).delete()
     session.commit()
     return True
-
-

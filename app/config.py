@@ -5,6 +5,8 @@ DONT_ALLOW_NOT_UNIQUE_USERNAME = False
 
 FILESTORE_PATH = "/home/mtaa/filestore"
 FILESTORE_URL = "/filestore"
+
+
 class Settings(BaseSettings):
     class Config:
         case_sensitive = True
@@ -14,5 +16,6 @@ class Settings(BaseSettings):
     DATABASE_USER: str
     DATABASE_PASSWORD: str
     DATABASE_PORT: int
+
 
 settings = Settings()
