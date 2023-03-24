@@ -48,7 +48,7 @@ async def updateUser(
     return {
         "detail": user['id'],
         "displayName": user['displayName'],
-        "profilePhoto_url": user['profilePhoto_url']
+        "profilePhotoUrl": user['profilePhotoUrl']
     }
 
 

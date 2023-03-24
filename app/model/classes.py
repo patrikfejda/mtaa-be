@@ -37,7 +37,7 @@ class User(Base):
     password = Column(String)
     jwt = Column(String)
     displayName = Column(String)
-    profilePhoto_url = Column(String)
+    profilePhotoUrl = Column(String)
     conversations: Mapped[List["Conversation"]] = relationship(
         secondary=association_table, back_populates="users"
     )
@@ -49,7 +49,7 @@ class User(Base):
             "email": self.email,
             "username": self.username,
             "displayName": self.displayName,
-            "profilePhoto_url": self.profilePhoto_url,
+            "profilePhotoUrl": self.profilePhotoUrl,
             "created_at": self.created_at,
         }
 
@@ -59,20 +59,20 @@ class User(Base):
             "email": self.email,
             "username": self.username,
             "displayName": self.displayName,
-            "profilePhoto_url": self.profilePhoto_url,
+            "profilePhotoUrl": self.profilePhotoUrl,
             "created_at": self.created_at,
             "conversations": self.conversations,
         }
 
     def __repr__(self):
         return (
-            "<User(id='%s', email='%s', username='%s', displayName='%s', profilePhoto_url='%s', created_at='%s')>"
+            "<User(id='%s', email='%s', username='%s', displayName='%s', profilePhotoUrl='%s', created_at='%s')>"
             % (
                 self.id,
                 self.email,
                 self.username,
                 self.displayName,
-                self.profilePhoto_url,
+                self.profilePhotoUrl,
                 self.created_at,
             )
         )
