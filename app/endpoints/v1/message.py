@@ -3,7 +3,7 @@ from typing import Annotated, List, Union, Optional
 from typing import Union
 from pydantic import BaseModel
 from app.model.message import messageCreate, messageGet, messageConversationAll
-from app.auth.verify import verify_token
+from app.auth.verify import verifyToken
 from app.handlefilestore.save import save_upload_file
 
 router = APIRouter()
@@ -18,7 +18,7 @@ async def createMessage(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     photoUrl = save_upload_file(photo)
     message = messageCreate(
         senderId=id,
@@ -33,7 +33,7 @@ async def createMessage(
 async def getMessage(messageId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     message = messageGet(userId=id, messageId=messageId)
     return {"detail": "ok", "message": message}
 
@@ -42,6 +42,6 @@ async def getMessage(messageId: int = Form(...), request: Request = None):
 async def getAllMessages(conversationId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     messages = messageConversationAll(userId=id, conversationId=conversationId)
     return {"detail": "ok", "messages": messages}

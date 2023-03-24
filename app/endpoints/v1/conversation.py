@@ -9,7 +9,7 @@ from app.model.conversation import (
     verifyUserInConversation,
     conversationsGetAll,
 )
-from app.auth.verify import verify_token
+from app.auth.verify import verifyToken
 from app.handlefilestore.save import save_upload_file
 
 router = APIRouter()
@@ -24,7 +24,7 @@ async def createConversation(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     if not id in userIds:
         userIds.append(id)
     conversation = conversationCreate(name, userIds, isGroup)
@@ -42,7 +42,7 @@ async def getConversation(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     verifyUserInConversation(id, conversationId)
     conversation = conversationGet(conversationId)
 
@@ -58,7 +58,7 @@ async def getAllConversations(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
 
     conversations = conversationsGetAll(id)
 

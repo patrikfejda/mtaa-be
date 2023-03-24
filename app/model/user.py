@@ -77,7 +77,7 @@ def userGetAll():
     return users
 
 
-def authorize_user(userId, jwt):
+def authorizeUser(userId, jwt):
     user = session.query(User).filter_by(id=userId).first()
     if user is None:
         return False

@@ -1,9 +1,9 @@
 from fastapi import HTTPException
-from app.model.user import authorize_user
+from app.model.user import authorizeUser
 
 
-def verify_token(userId, jwt):
-    authorized = authorize_user(userId, jwt)
+def verifyToken(userId, jwt):
+    authorized = authorizeUser(userId, jwt)
     if not authorized:
         raise HTTPException(status_code=401, detail="Unauthorized")
     return True

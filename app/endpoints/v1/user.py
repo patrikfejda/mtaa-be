@@ -3,7 +3,7 @@ from typing import Annotated, List, Union, Optional
 from typing import Union
 from pydantic import BaseModel
 from app.model.user import userCreate, userLogin, userGet, userUpdate, userGetAll
-from app.auth.verify import verify_token
+from app.auth.verify import verifyToken
 from app.handlefilestore.save import save_upload_file
 
 router = APIRouter()
@@ -27,7 +27,7 @@ async def loginUser(username: str = Form(...), password: str = Form(...)):
 async def getUser(id: str = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     user = userGet(
         id=id,
     )
@@ -42,7 +42,7 @@ async def updateUser(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verify_token(id, jwt)
+    verifyToken(id, jwt)
     uploadedPhotoUrl = save_upload_file(profilePhoto)
     user = userUpdate(id, displayName, uploadedPhotoUrl)
     return {
