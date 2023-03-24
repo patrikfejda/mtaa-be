@@ -1,6 +1,6 @@
 from app.db.orm import session
 from fastapi import HTTPException
-from app.support.jwt import generate_jwt
+from app.support.jwt import generateJwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
 from app.model.classes import Conversation, User
 

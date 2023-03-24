@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.model.classes import create_tables
+from app.model.classes import createTables
 from fastapi.staticfiles import StaticFiles
 from app.config import FILESTORE_PATH, FILESTORE_URL
 
@@ -9,4 +9,4 @@ app = FastAPI(title="mtaa")
 app.include_router(router)
 app.mount(FILESTORE_URL, StaticFiles(directory=FILESTORE_PATH), name="static")
 
-create_tables()
+createTables()

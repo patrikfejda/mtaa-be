@@ -1,5 +1,5 @@
 from uuid import uuid4
 
 
-def generate_jwt() -> str:
+def generateJwt() -> str:
     return uuid4()

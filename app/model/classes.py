@@ -2,7 +2,7 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String, Sequence, DateTime, func, Boolean
 from app.db.orm import session, engine
 from fastapi import HTTPException
-from app.support.jwt import generate_jwt
+from app.support.jwt import generateJwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
 from sqlalchemy import Column
 from sqlalchemy import Table
@@ -182,7 +182,7 @@ class Message(Base):
         return self.public_data()
 
 
-def create_tables():
+def createTables():
     print("Creating DB tables")
     Base.metadata.create_all(engine)
 

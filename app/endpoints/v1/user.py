@@ -14,13 +14,13 @@ async def routerRegisterUser(
     email: str = Form(...), username: str = Form(...), password: str = Form(...)
 ):
     jwt, createdUser = userCreate(email=email, username=username, password=password)
-    return {"access_token": jwt, "user": createdUser}
+    return {"accessToken": jwt, "user": createdUser}
 
 
 @router.post("/v1/user/login")
 async def routerLoginUser(username: str = Form(...), password: str = Form(...)):
     jwt, user = userLogin(username=username, password=password)
-    return {"access_token": jwt, "user": user}
+    return {"accessToken": jwt, "user": user}
 
 
 @router.get("/v1/user")

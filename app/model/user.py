@@ -2,7 +2,7 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String, Sequence, DateTime, func
 from app.db.orm import session, engine
 from fastapi import HTTPException
-from app.support.jwt import generate_jwt
+from app.support.jwt import generateJwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
 from app.model.classes import User
 
@@ -31,7 +31,7 @@ def userCreate(email, password, username=None, displayName=None, profilePhotoUrl
         password=password,
         displayName=displayName,
         profilePhotoUrl=profilePhotoUrl,
-        jwt=generate_jwt(),
+        jwt=generateJwt(),
     )
     session.add(new_user)
     print(new_user)
@@ -47,7 +47,7 @@ def userLogin(username, password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     if user.password != password:
         raise HTTPException(status_code=401, detail="Invalid credentials")
-    user.jwt = generate_jwt()
+    user.jwt = generateJwt()
     session.commit()
     return user.jwt, user.public_data()
 
