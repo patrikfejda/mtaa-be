@@ -36,7 +36,7 @@ class User(Base):
     username = Column(String)
     password = Column(String)
     jwt = Column(String)
-    display_name = Column(String)
+    displayName = Column(String)
     profile_photo_url = Column(String)
     conversations: Mapped[List["Conversation"]] = relationship(
         secondary=association_table, back_populates="users"
@@ -48,7 +48,7 @@ class User(Base):
             "id": self.id,
             "email": self.email,
             "username": self.username,
-            "display_name": self.display_name,
+            "displayName": self.displayName,
             "profile_photo_url": self.profile_photo_url,
             "created_at": self.created_at,
         }
@@ -58,7 +58,7 @@ class User(Base):
             "id": self.id,
             "email": self.email,
             "username": self.username,
-            "display_name": self.display_name,
+            "displayName": self.displayName,
             "profile_photo_url": self.profile_photo_url,
             "created_at": self.created_at,
             "conversations": self.conversations,
@@ -66,12 +66,12 @@ class User(Base):
 
     def __repr__(self):
         return (
-            "<User(id='%s', email='%s', username='%s', display_name='%s', profile_photo_url='%s', created_at='%s')>"
+            "<User(id='%s', email='%s', username='%s', displayName='%s', profile_photo_url='%s', created_at='%s')>"
             % (
                 self.id,
                 self.email,
                 self.username,
-                self.display_name,
+                self.displayName,
                 self.profile_photo_url,
                 self.created_at,
             )
@@ -181,9 +181,9 @@ def create_tables():
 
 
 
-    # user = User(email="a", username="a", display_name="a")
+    # user = User(email="a", username="a", displayName="a")
     # session.add(user)
-    # user2 = User(email="b", username="b", display_name="b")
+    # user2 = User(email="b", username="b", displayName="b")
     # session.add(user2)
 
     # conversation = Conversation(is_group=False, name="a")

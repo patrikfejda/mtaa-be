@@ -396,7 +396,7 @@ classDiagram
         String email
         String username
         String password
-        Strind display_name
+        Strind displayName
         String profile_photo_url
         String jwt
         Timestamp created_at

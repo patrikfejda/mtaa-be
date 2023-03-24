@@ -25,7 +25,7 @@ var spec = {
                     "type": "string",
                     "example": "johndoe"
                 },
-                "display_name": {
+                "displayName": {
                     "type": "string",
                     "example": "John Doe"
                 },
@@ -299,7 +299,7 @@ var spec = {
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "display_name": {
+                                "displayName": {
                                     "type": "string"
                                 },
                                 "profile_photo_url": {
