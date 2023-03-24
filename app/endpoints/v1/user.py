@@ -31,7 +31,7 @@ async def getUser(id: str = Form(...), request: Request = None):
     user = userGet(
         id=id,
     )
-    return {"user1": user}
+    return {"user": user}
 
 
 @router.put("/v1/user")
