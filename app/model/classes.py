@@ -16,7 +16,7 @@ from typing import List
 
 Column(Integer, Sequence("conversationId_seq"), primary_key=True)
 Column(Integer, Sequence("user_id_seq"), primary_key=True)
-Column(Integer, Sequence("message_id_seq"), primary_key=True)
+Column(Integer, Sequence("messageId_seq"), primary_key=True)
 Column(Integer, Sequence("status_id_seq"), primary_key=True)
 
 Base = declarative_base()

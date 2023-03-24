@@ -25,8 +25,8 @@ def messageCreate(
     session.commit()
     return new_message.public_data()
 
-def messageGet(user_id: int, message_id: int):
-    message = session.query(Message).filter(Message.id == message_id).first()
+def messageGet(user_id: int, messageId: int):
+    message = session.query(Message).filter(Message.id == messageId).first()
     if message is None:
         raise HTTPException(status_code=404, detail="Message not found")
     

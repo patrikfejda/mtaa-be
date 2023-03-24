@@ -30,11 +30,11 @@ async def createMessage(
 
 
 @router.get("/v1/message")
-async def getMessage(message_id: int = Form(...), request: Request = None):
+async def getMessage(messageId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    message = messageGet(user_id=id, message_id=message_id)
+    message = messageGet(user_id=id, messageId=messageId)
     return {"detail": "ok", "message": message}
 
 @router.get("/v1/message/all")

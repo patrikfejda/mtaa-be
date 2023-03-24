@@ -712,7 +712,7 @@ var spec = {
                     "required": true
                 }, {
                     "in": "query",
-                    "name": "message_id",
+                    "name": "messageId",
                     "type": "string",
                     "required": true,
                     "description": "ID of the message to retrieve"
