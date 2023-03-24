@@ -13,15 +13,15 @@ router = APIRouter()
 @router.post("/v1/conversation")
 async def createConversation(
     name: str = Form(...),
-    user_ids: list = Form(...),
-    is_group: bool = Form(...),
+    userIds: list = Form(...),
+    isGroup: bool = Form(...),
     request: Request = None,
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    if not id in user_ids: user_ids.append(id)
-    conversation = conversationCreate(name, user_ids, is_group)
+    if not id in userIds: userIds.append(id)
+    conversation = conversationCreate(name, userIds, isGroup)
 
     return {
         "detail": "ok",

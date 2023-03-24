@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.post("/v1/message")
 async def createMessage(
-    conversation_id: int = Form(...),
+    conversationId: int = Form(...),
     message: str = Form(...),
     photo: UploadFile = File(None),
     request: Request = None,
@@ -22,7 +22,7 @@ async def createMessage(
     photo_url = save_upload_file(photo)
     message = messageCreate(
         sender_id=id,
-        conversation_id=conversation_id,
+        conversationId=conversationId,
         message=message,
         photo_url=photo_url,
     )
@@ -38,9 +38,9 @@ async def getMessage(message_id: int = Form(...), request: Request = None):
     return {"detail": "ok", "message": message}
 
 @router.get("/v1/message/all")
-async def getAllMessages(conversation_id: int = Form(...), request: Request = None):
+async def getAllMessages(conversationId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    messages = messageConversationAll(user_id=id, conversation_id=conversation_id)
+    messages = messageConversationAll(user_id=id, conversationId=conversationId)
     return {"detail": "ok", "messages": messages}

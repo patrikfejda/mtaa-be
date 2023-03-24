@@ -14,7 +14,7 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import relationship
 from typing import List
 
-Column(Integer, Sequence("conversation_id_seq"), primary_key=True)
+Column(Integer, Sequence("conversationId_seq"), primary_key=True)
 Column(Integer, Sequence("user_id_seq"), primary_key=True)
 Column(Integer, Sequence("message_id_seq"), primary_key=True)
 Column(Integer, Sequence("status_id_seq"), primary_key=True)
@@ -24,7 +24,7 @@ Base = declarative_base()
 association_table = Table(
     "association_table",
     Base.metadata,
-    Column("conversation_id", ForeignKey("conversations.id"), primary_key=True),
+    Column("conversationId", ForeignKey("conversations.id"), primary_key=True),
     Column("user_id", ForeignKey("users.id"), primary_key=True),
 )
 
@@ -81,7 +81,7 @@ class User(Base):
 class Conversation(Base):
     __tablename__ = "conversations"
     id = Column(Integer, primary_key=True)
-    is_group = Column(Boolean)
+    isGroup = Column(Boolean)
     name = Column(String)
     users: Mapped[List["User"]] = relationship(
         secondary=association_table, back_populates="conversations"
@@ -89,9 +89,9 @@ class Conversation(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Conversation(id='%s', is_group='%s', name='%s', created_at='%s, users='%s')>" % (
+        return "<Conversation(id='%s', isGroup='%s', name='%s', created_at='%s, users='%s')>" % (
             self.id,
-            self.is_group,
+            self.isGroup,
             self.name,
             self.created_at,
             [x.public_data() for x in self.users]
@@ -100,7 +100,7 @@ class Conversation(Base):
     def private_data(self):
         return {
             "id": self.id,
-            "is_group": self.is_group,
+            "isGroup": self.isGroup,
             "name": self.name,
             "created_at": self.created_at,
             "users": [x.public_data() for x in self.users]
@@ -144,16 +144,16 @@ class Message(Base):
     __tablename__ = "messages"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"))
-    conversation_id = Column(Integer, ForeignKey("conversations.id"))
+    conversationId = Column(Integer, ForeignKey("conversations.id"))
     message = Column(String)
     photo_url = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Message(id='%s', user_id='%s', conversation_id='%s', message='%s', photo_url='%s', created_at='%s')>" % (
+        return "<Message(id='%s', user_id='%s', conversationId='%s', message='%s', photo_url='%s', created_at='%s')>" % (
             self.id,
             self.user_id,
-            self.conversation_id,
+            self.conversationId,
             self.message,
             self.photo_url,
             self.created_at,
@@ -163,7 +163,7 @@ class Message(Base):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "conversation_id": self.conversation_id,
+            "conversationId": self.conversationId,
             "message": self.message,
             "photo_url": self.photo_url,
             "created_at": self.created_at,
@@ -186,9 +186,9 @@ def create_tables():
     # user2 = User(email="b", username="b", displayName="b")
     # session.add(user2)
 
-    # conversation = Conversation(is_group=False, name="a")
+    # conversation = Conversation(isGroup=False, name="a")
     # session.add(conversation)
-    # conversation2 = Conversation(is_group=False, name="b")
+    # conversation2 = Conversation(isGroup=False, name="b")
     # session.add(conversation2)
 
     # conversation.users.append(user)

@@ -420,7 +420,7 @@ classDiagram
     }
     class Conversation {
         Int id
-        Boolean is_group
+        Boolean isGroup
         String name
         List<User> users
         Timestamp created_at
@@ -432,7 +432,7 @@ classDiagram
     class Message {
         Int id
         User user_id
-        Conversation conversation_id
+        Conversation conversationId
         String message
         String photo_url
         Timestamp created_at

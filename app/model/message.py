@@ -11,13 +11,13 @@ Base = declarative_base()
 
 def messageCreate(
     sender_id: int,
-    conversation_id: int,
+    conversationId: int,
     message: str,
     photo_url: str
 ):
     new_message = Message(
         user_id=sender_id,
-        conversation_id=conversation_id,
+        conversationId=conversationId,
         message=message,
         photo_url=photo_url
     )
@@ -30,20 +30,20 @@ def messageGet(user_id: int, message_id: int):
     if message is None:
         raise HTTPException(status_code=404, detail="Message not found")
     
-    conversation = session.query(Conversation).filter(Conversation.id == message.conversation_id).first()
+    conversation = session.query(Conversation).filter(Conversation.id == message.conversationId).first()
     if user_id not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
     
     return message.public_data()
 
-def messageConversationAll(user_id: int, conversation_id: int):
-    conversation = session.query(Conversation).filter(Conversation.id == conversation_id).first()
+def messageConversationAll(user_id: int, conversationId: int):
+    conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
     if conversation is None:
         raise HTTPException(status_code=404, detail="Conversation not found")
     
     if user_id not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
     
-    messages = session.query(Message).filter(Message.conversation_id == conversation_id).all()
+    messages = session.query(Message).filter(Message.conversationId == conversationId).all()
     return [message.public_data() for message in messages]
     

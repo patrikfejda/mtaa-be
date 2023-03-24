@@ -78,7 +78,7 @@ var spec = {
                     "type": "integer",
                     "example": 1
                 },
-                "is_group": {
+                "isGroup": {
                     "type": "boolean",
                     "example": true
                 },
@@ -109,7 +109,7 @@ var spec = {
                 "user": {
                     "$ref": "#/definitions/User"
                 },
-                "conversation_id": {
+                "conversationId": {
                     "type": "integer",
                     "example": 123
                 },
@@ -547,14 +547,14 @@ var spec = {
                                         "type": "integer"
                                     }
                                 },
-                                "is_group": {
+                                "isGroup": {
                                     "type": "boolean"
                                 }
                             },
                             "required": [
                                 "name",
                                 "users",
-                                "is_group"
+                                "isGroup"
                             ]
                         }
                     }
@@ -663,7 +663,7 @@ var spec = {
                                 "description": "ID of the user sending the message",
                                 "example": "123"
                             },
-                            "conversation_id": {
+                            "conversationId": {
                                 "type": "string",
                                 "description": "ID of the conversation the message is being sent to",
                                 "example": "456"
@@ -748,7 +748,7 @@ var spec = {
                     "required": true
                 }, {
                     "in": "query",
-                    "name": "conversation_id",
+                    "name": "conversationId",
                     "type": "string",
                     "required": true,
                     "description": "ID of the conversation to retrieve messages from"
