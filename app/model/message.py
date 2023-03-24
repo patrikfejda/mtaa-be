@@ -13,13 +13,13 @@ def messageCreate(
     senderId: int,
     conversationId: int,
     message: str,
-    photo_url: str
+    photoUrl: str
 ):
     new_message = Message(
         userId=senderId,
         conversationId=conversationId,
         message=message,
-        photo_url=photo_url
+        photoUrl=photoUrl
     )
     session.add(new_message)
     session.commit()

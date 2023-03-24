@@ -146,16 +146,16 @@ class Message(Base):
     userId = Column(Integer, ForeignKey("users.id"))
     conversationId = Column(Integer, ForeignKey("conversations.id"))
     message = Column(String)
-    photo_url = Column(String)
+    photoUrl = Column(String)
     createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Message(id='%s', userId='%s', conversationId='%s', message='%s', photo_url='%s', createdAt='%s')>" % (
+        return "<Message(id='%s', userId='%s', conversationId='%s', message='%s', photoUrl='%s', createdAt='%s')>" % (
             self.id,
             self.userId,
             self.conversationId,
             self.message,
-            self.photo_url,
+            self.photoUrl,
             self.createdAt,
         )
 
@@ -165,7 +165,7 @@ class Message(Base):
             "userId": self.userId,
             "conversationId": self.conversationId,
             "message": self.message,
-            "photo_url": self.photo_url,
+            "photoUrl": self.photoUrl,
             "createdAt": self.createdAt,
         }
 

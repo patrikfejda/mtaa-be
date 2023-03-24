@@ -19,12 +19,12 @@ async def createMessage(
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    photo_url = save_upload_file(photo)
+    photoUrl = save_upload_file(photo)
     message = messageCreate(
         senderId=id,
         conversationId=conversationId,
         message=message,
-        photo_url=photo_url,
+        photoUrl=photoUrl,
     )
     return {"detail": "ok", "message": message}
 

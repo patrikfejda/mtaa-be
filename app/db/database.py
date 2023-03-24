@@ -21,21 +21,3 @@ engine = create_engine(
 )
 
 conn = engine.connect()
-
-
-# def connect(db_uri):
-#     engine = create_engine(db_uri)
-#     return engine.connect()
-
-
-# database = settings.DATABASE_NAME
-
-# try:
-#     db_uri = os.path.expandvars(
-#         f"postgresql://{user}:{password}@{host}:{port}/{database}"
-#     )
-#     db_uri = urllib.parse.unquote(db_uri)
-#     conn = connect(db_uri)
-# except Exception as e:
-#     print("Failed to connect to database.")
-#     print("{0}".format(e))

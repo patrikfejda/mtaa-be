@@ -434,7 +434,7 @@ classDiagram
         User userId
         Conversation conversationId
         String message
-        String photo_url
+        String photoUrl
         Timestamp createdAt
         create()
         get()
