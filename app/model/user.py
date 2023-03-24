@@ -18,7 +18,7 @@ def usernameAlreadyExists(username):
     return session.query(User.id).filter_by(username=username).first() is not None
 
 def userCreate(
-    email, password, username=None, displayName=None, profile_photo_url=None
+    email, password, username=None, displayName=None, profilePhoto_url=None
 ):
     if emailAlreadyExists(email) and DONT_ALLOW_NOT_UNIQUE_EMAIL:
         raise HTTPException(status_code=409, detail="This email alredy registered")
@@ -29,7 +29,7 @@ def userCreate(
         username=username,
         password=password,
         displayName=displayName,
-        profile_photo_url=profile_photo_url,
+        profilePhoto_url=profilePhoto_url,
         jwt=generate_jwt(),
     )
     session.add(new_user)
@@ -59,14 +59,14 @@ def userGet(id):
     return user.private_data()
 
 
-def userUpdate(id, displayName=None, profile_photo_url=None):
+def userUpdate(id, displayName=None, profilePhoto_url=None):
     user = session.query(User).filter_by(id=id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
     if displayName is not None:
         user.displayName = displayName
-    if profile_photo_url is not None:
-        user.profile_photo_url = profile_photo_url
+    if profilePhoto_url is not None:
+        user.profilePhoto_url = profilePhoto_url
     session.commit()
     return user.public_data()
 

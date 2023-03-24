@@ -29,7 +29,7 @@ var spec = {
                     "type": "string",
                     "example": "John Doe"
                 },
-                "profile_photo_url": {
+                "profilePhoto_url": {
                     "type": "string",
                     "example": "https://example.com/profile.jpg"
                 },
@@ -302,7 +302,7 @@ var spec = {
                                 "displayName": {
                                     "type": "string"
                                 },
-                                "profile_photo_url": {
+                                "profilePhoto_url": {
                                     "type": "string"
                                 }
                             }

@@ -397,7 +397,7 @@ classDiagram
         String username
         String password
         Strind displayName
-        String profile_photo_url
+        String profilePhoto_url
         String jwt
         Timestamp created_at
         login()

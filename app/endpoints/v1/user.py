@@ -37,18 +37,18 @@ async def getUser(id: str = Form(...), request: Request = None):
 @router.put("/v1/user")
 async def updateUser(
     displayName: str = Form(None),
-    profile_photo: UploadFile = File(None),
+    profilePhoto: UploadFile = File(None),
     request: Request = None,
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    uploaded_photo_url = save_upload_file(profile_photo)
+    uploaded_photo_url = save_upload_file(profilePhoto)
     user = userUpdate(id, displayName, uploaded_photo_url)
     return {
         "detail": user['id'],
         "displayName": user['displayName'],
-        "profile_photo_url": user['profile_photo_url']
+        "profilePhoto_url": user['profilePhoto_url']
     }
 
 
