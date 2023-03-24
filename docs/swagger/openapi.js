@@ -658,7 +658,7 @@ var spec = {
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "user_id": {
+                            "userId": {
                                 "type": "string",
                                 "description": "ID of the user sending the message",
                                 "example": "123"

@@ -6,7 +6,7 @@ from app.support.jwt import generate_jwt
 from app.config import DONT_ALLOW_NOT_UNIQUE_EMAIL, DONT_ALLOW_NOT_UNIQUE_USERNAME
 from app.model.classes import User
 
-# Column(Integer, Sequence("user_id_seq"), primary_key=True)
+# Column(Integer, Sequence("userId_seq"), primary_key=True)
 
 
 Base = declarative_base()
@@ -75,8 +75,8 @@ def userGetAll():
     users = [user.public_data() for user in users]
     return users
 
-def authorize_user(user_id, jwt):
-    user = session.query(User).filter_by(id=user_id).first()
+def authorize_user(userId, jwt):
+    user = session.query(User).filter_by(id=userId).first()
     if user is None:
         return False
     if user.jwt != jwt:

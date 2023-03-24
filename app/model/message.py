@@ -10,13 +10,13 @@ from app.model.classes import Message, User, Conversation
 Base = declarative_base()
 
 def messageCreate(
-    sender_id: int,
+    senderId: int,
     conversationId: int,
     message: str,
     photo_url: str
 ):
     new_message = Message(
-        user_id=sender_id,
+        userId=senderId,
         conversationId=conversationId,
         message=message,
         photo_url=photo_url
@@ -25,23 +25,23 @@ def messageCreate(
     session.commit()
     return new_message.public_data()
 
-def messageGet(user_id: int, messageId: int):
+def messageGet(userId: int, messageId: int):
     message = session.query(Message).filter(Message.id == messageId).first()
     if message is None:
         raise HTTPException(status_code=404, detail="Message not found")
     
     conversation = session.query(Conversation).filter(Conversation.id == message.conversationId).first()
-    if user_id not in [str(user.id) for user in conversation.users]:
+    if userId not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
     
     return message.public_data()
 
-def messageConversationAll(user_id: int, conversationId: int):
+def messageConversationAll(userId: int, conversationId: int):
     conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
     if conversation is None:
         raise HTTPException(status_code=404, detail="Conversation not found")
     
-    if user_id not in [str(user.id) for user in conversation.users]:
+    if userId not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
     
     messages = session.query(Message).filter(Message.conversationId == conversationId).all()

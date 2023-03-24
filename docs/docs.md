@@ -399,7 +399,7 @@ classDiagram
         Strind displayName
         String profilePhotoUrl
         String jwt
-        Timestamp created_at
+        Timestamp createdAt
         login()
         register()
         set()
@@ -408,11 +408,11 @@ classDiagram
     }
     class Status {
         Int id
-        User user_id
+        User userId
         String status
         Float longitude
         Float latitude
-        Timestamp created_at
+        Timestamp createdAt
         create()
         get()
         getAll()
@@ -423,7 +423,7 @@ classDiagram
         Boolean isGroup
         String name
         List<User> users
-        Timestamp created_at
+        Timestamp createdAt
         create()
         get()
         getAll()
@@ -431,11 +431,11 @@ classDiagram
     }
     class Message {
         Int id
-        User user_id
+        User userId
         Conversation conversationId
         String message
         String photo_url
-        Timestamp created_at
+        Timestamp createdAt
         create()
         get()
     }

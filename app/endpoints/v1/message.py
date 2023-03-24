@@ -21,7 +21,7 @@ async def createMessage(
     verify_token(id, jwt)
     photo_url = save_upload_file(photo)
     message = messageCreate(
-        sender_id=id,
+        senderId=id,
         conversationId=conversationId,
         message=message,
         photo_url=photo_url,
@@ -34,7 +34,7 @@ async def getMessage(messageId: int = Form(...), request: Request = None):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    message = messageGet(user_id=id, messageId=messageId)
+    message = messageGet(userId=id, messageId=messageId)
     return {"detail": "ok", "message": message}
 
 @router.get("/v1/message/all")
@@ -42,5 +42,5 @@ async def getAllMessages(conversationId: int = Form(...), request: Request = Non
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
     verify_token(id, jwt)
-    messages = messageConversationAll(user_id=id, conversationId=conversationId)
+    messages = messageConversationAll(userId=id, conversationId=conversationId)
     return {"detail": "ok", "messages": messages}

@@ -15,9 +15,9 @@ from sqlalchemy.orm import relationship
 from typing import List
 
 Column(Integer, Sequence("conversationId_seq"), primary_key=True)
-Column(Integer, Sequence("user_id_seq"), primary_key=True)
+Column(Integer, Sequence("userId_seq"), primary_key=True)
 Column(Integer, Sequence("messageId_seq"), primary_key=True)
-Column(Integer, Sequence("status_id_seq"), primary_key=True)
+Column(Integer, Sequence("statusId_seq"), primary_key=True)
 
 Base = declarative_base()
 
@@ -25,7 +25,7 @@ association_table = Table(
     "association_table",
     Base.metadata,
     Column("conversationId", ForeignKey("conversations.id"), primary_key=True),
-    Column("user_id", ForeignKey("users.id"), primary_key=True),
+    Column("userId", ForeignKey("users.id"), primary_key=True),
 )
 
 
@@ -41,7 +41,7 @@ class User(Base):
     conversations: Mapped[List["Conversation"]] = relationship(
         secondary=association_table, back_populates="users"
     )
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def public_data(self):
         return {
@@ -50,7 +50,7 @@ class User(Base):
             "username": self.username,
             "displayName": self.displayName,
             "profilePhotoUrl": self.profilePhotoUrl,
-            "created_at": self.created_at,
+            "createdAt": self.createdAt,
         }
 
     def private_data(self):
@@ -60,20 +60,20 @@ class User(Base):
             "username": self.username,
             "displayName": self.displayName,
             "profilePhotoUrl": self.profilePhotoUrl,
-            "created_at": self.created_at,
+            "createdAt": self.createdAt,
             "conversations": self.conversations,
         }
 
     def __repr__(self):
         return (
-            "<User(id='%s', email='%s', username='%s', displayName='%s', profilePhotoUrl='%s', created_at='%s')>"
+            "<User(id='%s', email='%s', username='%s', displayName='%s', profilePhotoUrl='%s', createdAt='%s')>"
             % (
                 self.id,
                 self.email,
                 self.username,
                 self.displayName,
                 self.profilePhotoUrl,
-                self.created_at,
+                self.createdAt,
             )
         )
 
@@ -86,14 +86,14 @@ class Conversation(Base):
     users: Mapped[List["User"]] = relationship(
         secondary=association_table, back_populates="conversations"
     )
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Conversation(id='%s', isGroup='%s', name='%s', created_at='%s, users='%s')>" % (
+        return "<Conversation(id='%s', isGroup='%s', name='%s', createdAt='%s, users='%s')>" % (
             self.id,
             self.isGroup,
             self.name,
-            self.created_at,
+            self.createdAt,
             [x.public_data() for x in self.users]
         )
     
@@ -102,7 +102,7 @@ class Conversation(Base):
             "id": self.id,
             "isGroup": self.isGroup,
             "name": self.name,
-            "created_at": self.created_at,
+            "createdAt": self.createdAt,
             "users": [x.public_data() for x in self.users]
         }
 
@@ -110,30 +110,30 @@ class Conversation(Base):
 class Status(Base):
     __tablename__ = "status"
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    userId = Column(Integer, ForeignKey("users.id"))
     status = Column(String)
     latitude = Column(String)
     longitude = Column(String)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Status(id='%s', user_id='%s', status='%s', latitude='%s', longitude='%s', created_at='%s')>" % (
+        return "<Status(id='%s', userId='%s', status='%s', latitude='%s', longitude='%s', createdAt='%s')>" % (
             self.id,
-            self.user_id,
+            self.userId,
             self.status,
             self.latitude,
             self.longitude,
-            self.created_at,
+            self.createdAt,
         )
 
     def public_data(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
+            "userId": self.userId,
             "status": self.status,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "created_at": self.created_at,
+            "createdAt": self.createdAt,
         }
     
     def private_data(self):
@@ -143,30 +143,30 @@ class Status(Base):
 class Message(Base):
     __tablename__ = "messages"
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    userId = Column(Integer, ForeignKey("users.id"))
     conversationId = Column(Integer, ForeignKey("conversations.id"))
     message = Column(String)
     photo_url = Column(String)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return "<Message(id='%s', user_id='%s', conversationId='%s', message='%s', photo_url='%s', created_at='%s')>" % (
+        return "<Message(id='%s', userId='%s', conversationId='%s', message='%s', photo_url='%s', createdAt='%s')>" % (
             self.id,
-            self.user_id,
+            self.userId,
             self.conversationId,
             self.message,
             self.photo_url,
-            self.created_at,
+            self.createdAt,
         )
 
     def public_data(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
+            "userId": self.userId,
             "conversationId": self.conversationId,
             "message": self.message,
             "photo_url": self.photo_url,
-            "created_at": self.created_at,
+            "createdAt": self.createdAt,
         }
 
 

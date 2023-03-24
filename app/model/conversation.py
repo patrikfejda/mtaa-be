@@ -15,22 +15,22 @@ def conversationCreate(name, userIds, isGroup):
     conversation = Conversation(name=name, isGroup=isGroup)
     session.add(conversation)
     
-    for user_id in userIds:
-        user = session.query(User).filter(User.id == user_id).first()
+    for userId in userIds:
+        user = session.query(User).filter(User.id == userId).first()
         if user is None:
-            raise HTTPException(404, f"User with id {user_id} not found")
+            raise HTTPException(404, f"User with id {userId} not found")
         conversation.users.append(user)
     session.commit()
     return conversation.private_data()
 
-def verifyUserInConversation(user_id, conversationId):
+def verifyUserInConversation(userId, conversationId):
     conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
     if conversation is None:
         raise HTTPException(404, f"Conversation with id {conversationId} not found")
     for user in conversation.users:
-        if str(user.id) == user_id:
+        if str(user.id) == userId:
             return True
-    raise HTTPException(403, f"User with id {user_id} does not have access to conversation with id {conversationId}")
+    raise HTTPException(403, f"User with id {userId} does not have access to conversation with id {conversationId}")
 
 def conversationGet(conversationId):
     conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
@@ -38,8 +38,8 @@ def conversationGet(conversationId):
         raise HTTPException(404, f"Conversation with id {conversationId} not found")
     return conversation.private_data()
 
-def conversationsGetAll(user_id):
-    user = session.query(User).filter(User.id == user_id).first()
+def conversationsGetAll(userId):
+    user = session.query(User).filter(User.id == userId).first()
     if user is None:
-        raise HTTPException(404, f"User with id {user_id} not found")
+        raise HTTPException(404, f"User with id {userId} not found")
     return [conversation.private_data() for conversation in user.conversations]
