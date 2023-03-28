@@ -7,7 +7,7 @@ services:
       DATABASE_HOST: mtaa-db
       DATABASE_NAME: mtaa_db
       DATABASE_USER: postgres
-      DATABASE_PASSWORD: postgres
+      DATABASE_PASSWORD: Fnp2t9NwdNsvqjisRe4bNCXlW7MEDw5PPdQc00qh
       DATABASE_PORT: 5432
     volumes:
       - ./app/:/home/mtaa/app/
@@ -28,7 +28,7 @@ services:
       retries: 10
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=Fnp2t9NwdNsvqjisRe4bNCXlW7MEDw5PPdQc00qh
       - POSTGRES_DB=test
       - PGDATA=/var/lib/postgresql/data
     volumes:
