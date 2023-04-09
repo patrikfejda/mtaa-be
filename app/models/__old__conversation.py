@@ -1,6 +1,7 @@
-from app.db.orm import session
 from fastapi import HTTPException
-from app.model.classes import Conversation, User
+
+from app.db.orm import session
+from app.models.classes import Conversation, User
 
 
 def conversationCreate(name, userIds, isGroup):
@@ -18,13 +19,11 @@ def conversationCreate(name, userIds, isGroup):
             raise HTTPException(404, f"User with id {userId} not found")
         conversation.users.append(user)
     session.commit()
-    return conversation.private_data()
+    return conversation
 
 
 def verifyUserInConversation(userId, conversationId):
-    conversation = (
-        session.query(Conversation).filter(Conversation.id == conversationId).first()
-    )
+    conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
     if conversation is None:
         raise HTTPException(404, f"Conversation with id {conversationId} not found")
     for user in conversation.users:
@@ -37,16 +36,14 @@ def verifyUserInConversation(userId, conversationId):
 
 
 def conversationGet(conversationId):
-    conversation = (
-        session.query(Conversation).filter(Conversation.id == conversationId).first()
-    )
+    conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
     if conversation is None:
         raise HTTPException(404, f"Conversation with id {conversationId} not found")
-    return conversation.private_data()
+    return conversation
 
 
 def conversationsGetAll(userId):
     user = session.query(User).filter(User.id == userId).first()
     if user is None:
         raise HTTPException(404, f"User with id {userId} not found")
-    return [conversation.private_data() for conversation in user.conversations]
+    return [conversation for conversation in user.conversations]

@@ -1,2 +1,5 @@
 DROP DATABASE IF EXISTS mtaa_db;
 CREATE DATABASE mtaa_db;
+
+DROP DATABASE IF EXISTS mtaa_test_db;
+CREATE DATABASE mtaa_test_db;

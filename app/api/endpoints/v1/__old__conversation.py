@@ -1,11 +1,11 @@
-from fastapi import APIRouter, Request, Form
-from app.model.conversation import (
+from fastapi import APIRouter, Form, Request
+
+from app.models.__old__conversation import (
     conversationCreate,
     conversationGet,
-    verifyUserInConversation,
     conversationsGetAll,
+    verifyUserInConversation,
 )
-from app.auth.verify import verifyToken
 
 router = APIRouter()
 
@@ -19,7 +19,7 @@ async def routerCreateConversation(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verifyToken(id, jwt)
+
     if not id in userIds:
         userIds.append(id)
     conversation = conversationCreate(name, userIds, isGroup)
@@ -37,7 +37,7 @@ async def routerGetConversation(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verifyToken(id, jwt)
+
     verifyUserInConversation(id, conversationId)
     conversation = conversationGet(conversationId)
 
@@ -53,7 +53,6 @@ async def routerGetAllConversations(
 ):
     jwt = request.headers["Authorization"]
     id = request.headers["MyId"]
-    verifyToken(id, jwt)
 
     conversations = conversationsGetAll(id)
 

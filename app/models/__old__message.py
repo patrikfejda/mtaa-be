@@ -1,10 +1,7 @@
-from sqlalchemy.orm import declarative_base
-from app.db.orm import session
 from fastapi import HTTPException
-from app.model.classes import Message, Conversation
 
-
-Base = declarative_base()
+from app.db.orm import session
+from app.models.classes import Conversation, Message
 
 
 def messageCreate(senderId: int, conversationId: int, message: str, photoUrl: str):
@@ -16,7 +13,7 @@ def messageCreate(senderId: int, conversationId: int, message: str, photoUrl: st
     )
     session.add(new_message)
     session.commit()
-    return new_message.public_data()
+    return new_message
 
 
 def messageGet(userId: int, messageId: int):
@@ -25,27 +22,21 @@ def messageGet(userId: int, messageId: int):
         raise HTTPException(status_code=404, detail="Message not found")
 
     conversation = (
-        session.query(Conversation)
-        .filter(Conversation.id == message.conversationId)
-        .first()
+        session.query(Conversation).filter(Conversation.id == message.conversationId).first()
     )
     if userId not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
 
-    return message.public_data()
+    return message
 
 
 def messageConversationAll(userId: int, conversationId: int):
-    conversation = (
-        session.query(Conversation).filter(Conversation.id == conversationId).first()
-    )
+    conversation = session.query(Conversation).filter(Conversation.id == conversationId).first()
     if conversation is None:
         raise HTTPException(status_code=404, detail="Conversation not found")
 
     if userId not in [str(user.id) for user in conversation.users]:
         raise HTTPException(status_code=403, detail="Forbidden")
 
-    messages = (
-        session.query(Message).filter(Message.conversationId == conversationId).all()
-    )
-    return [message.public_data() for message in messages]
+    messages = session.query(Message).filter(Message.conversationId == conversationId).all()
+    return [message for message in messages]
