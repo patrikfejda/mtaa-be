@@ -1,5 +1,6 @@
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+
 from app.config import settings
 
 host = settings.DATABASE_HOST
@@ -9,9 +10,6 @@ password = settings.DATABASE_PASSWORD
 database = settings.DATABASE_NAME
 
 
-engine = create_engine(
-    f"postgresql://{user}:{password}@{host}:{port}/{database}", future=True
-)
-
-Session = sessionmaker(bind=engine)
-session = Session()
+engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
+SessionLocal = sessionmaker(bind=engine)
+Base = declarative_base()

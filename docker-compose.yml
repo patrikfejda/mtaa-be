@@ -3,12 +3,20 @@ version: "3.8"
 services:
   app:
     build: .
+    container_name: mtaa-be-app
     environment:
+      # Dev only
+      JWT_SECRET: 3f1446ca173a5175ffebec0a76650324eac0ac244f8c98bc8d5b93fabb7ddeb2
       DATABASE_HOST: mtaa-db
       DATABASE_NAME: mtaa_db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: Fnp2t9NwdNsvqjisRe4bNCXlW7MEDw5PPdQc00qh
       DATABASE_PORT: 5432
+      TEST_DATABASE_HOST: mtaa-db
+      TEST_DATABASE_NAME: mtaa_test_db
+      TEST_DATABASE_USER: postgres
+      TEST_DATABASE_PASSWORD: Fnp2t9NwdNsvqjisRe4bNCXlW7MEDw5PPdQc00qh
+      TEST_DATABASE_PORT: 5432
     volumes:
       - ./app/:/home/mtaa/app/
       - filestore:/home/mtaa/filestore/
