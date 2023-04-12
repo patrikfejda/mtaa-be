@@ -21,7 +21,7 @@ def test_auth_login(client: TestClient):
     assert "user" in response_payload
     assert response_payload["accessToken"]
     assert response_payload["user"]["username"] == payload["username"]
-    assert "password" not in response_payload["user"]
+    assert "hashedPassword" not in response_payload["user"]
 
 
 def test_auth_incorrect_login(client: TestClient):
