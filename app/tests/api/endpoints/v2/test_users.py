@@ -24,7 +24,7 @@ def test_get_all_users(
     assert response.status_code == status.HTTP_200_OK
     assert len(response_payload) >= 1
     assert created_user_dict in response_payload
-    assert "passwordHashed" not in response_payload[0]
+    assert "hashedPassword" not in response_payload[0]
 
 
 def test_update_users_me(client: TestClient, user_auth_headers: dict[str, str], faker: Faker):
