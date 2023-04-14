@@ -73,6 +73,33 @@ def test_auth_register_existing(client: TestClient, test_db: Session, faker: Fak
     assert responseUsername.status_code == status.HTTP_400_BAD_REQUEST
 
 
+def test_auth_register_empty(client: TestClient, faker: Faker):
+    url = f"{MODULE_API_PREFIX}/register"
+    payloadEmptyEmail = {
+        "email": "",
+        "username": faker.user_name(),
+        "password": faker.password(),
+    }
+    payloadEmptyUsername = {
+        "email": faker.email(),
+        "username": "",
+        "password": faker.password(),
+    }
+    payloadEmptyPassword = {
+        "email": faker.email(),
+        "username": faker.user_name(),
+        "password": "",
+    }
+
+    responseEmptyEmail = client.post(url, json=payloadEmptyEmail)
+    responseEmptyUsername = client.post(url, json=payloadEmptyUsername)
+    responseEmptyPassword = client.post(url, json=payloadEmptyPassword)
+
+    assert responseEmptyEmail.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert responseEmptyUsername.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert responseEmptyPassword.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+
+
 def test_auth_check(client: TestClient, user_auth_headers: dict[str, str]):
     url = f"{MODULE_API_PREFIX}/check"
 
