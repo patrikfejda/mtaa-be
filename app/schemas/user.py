@@ -1,4 +1,5 @@
 from fastapi import File, Form, UploadFile
+from pydantic import EmailStr, Field
 from pydantic.dataclasses import dataclass
 
 from .base_model import AppBaseModel, AppBaseModelConfig
@@ -13,9 +14,9 @@ class User(AppBaseModel):
 
 
 class UserCreate(AppBaseModel):
-    email: str
-    username: str
-    password: str
+    email: EmailStr
+    username: str = Field(min_length=3)
+    password: str = Field(min_length=8)
 
 
 @dataclass(config=AppBaseModelConfig)
