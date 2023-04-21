@@ -1,10 +1,12 @@
 from fastapi import APIRouter, HTTPException, status
+import unicodedata
 
 from app import crud, schemas
 from app.api.dependencies import CurrentUserDependency, SessionDependency
 
 router = APIRouter()
 
+NOT_APPROPIATE_WORDS = ['fuck', 'nigga', 'chuj', 'pica', 'pice', 'pici', 'debil', 'kurva', 'skurven', 'kurvu']
 
 @router.get("/", response_model=list[schemas.Status])
 def get_all_statuses(current_user: CurrentUserDependency, db: SessionDependency):
@@ -13,8 +15,13 @@ def get_all_statuses(current_user: CurrentUserDependency, db: SessionDependency)
 
 @router.post("/", response_model=schemas.Status, status_code=status.HTTP_201_CREATED)
 def create_status(
-    status_create: schemas.StatusCreate, current_user: CurrentUserDependency, db: SessionDependency
+    status_create: schemas.StatusCreate, db: SessionDependency
 ):
+    # CHECK FOR NOT APPROPRIATE WORDS
+    normalized_sentence = unicodedata.normalize('NFKD', status_create.text).encode('ASCII', 'ignore').decode('utf-8')
+    lowercase_sentence = normalized_sentence.casefold()
+    if any(word in lowercase_sentence for word in NOT_APPROPIATE_WORDS):
+        raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE)
     return crud.create_status(db=db, status=status_create, author_id=current_user.id)
 
 
