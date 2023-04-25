@@ -13,7 +13,7 @@ def get_all_statuses(current_user: CurrentUserDependency, db: SessionDependency)
     return crud.get_all_statuses(db=db)
 
 
-@router.post("/", response_model=schemas.Status, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=schemas.Status, current_user=CurrentUserDependency, status_code=status.HTTP_201_CREATED)
 def create_status(
     status_create: schemas.StatusCreate, db: SessionDependency
 ):
