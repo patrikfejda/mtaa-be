@@ -2,7 +2,7 @@
 title: "Messenger app COMLY"
 subtitle: "Assignment no. 1 -  Mobile technologies and applications"
 author: [Patrik Fejda, Matej Pavlík]
-date: "27.4.2023"
+date: "7.3.2023"
 keywords: [Markdown, Example]
 titlepage: true
 titlepage-color: "423f3b"
@@ -84,6 +84,7 @@ Sharing status without sharing the location will not be possible.
 User can set their display name and profile picture. The profile picture will be visible to all the users in the app.
 The display name will be default to the username, but can be changed by the user.
 
+
 ## Technical specification
 
 ### Backend
@@ -101,6 +102,7 @@ For connecting to the database, we will use SQLAlchemy ORM.
 Sending messages will be done using websockets.
 Storing binary files (images) will be done using filestorage.
 
+
 ### Deployment
 
 The app (consisting of postgresql database and python API app) will be deployed on a single server using Docker.
@@ -113,7 +115,7 @@ which will provide consistency between environments and will allow for easy depl
 Local development environment will be deployed using docker-compose.
 The production environment will be deployed on a cloud server.
 
-### Frontend
+### Frontend 
 
 The app will be build for Android using React Native.
 
@@ -133,7 +135,7 @@ Also, the app will use the location services for sharing their location in statu
 
 For that purpose, the app will use the following system APIs:
 
-- Camera and gallery
+- Camera and microphone
 - GPS location
 
 ## Users
@@ -447,23 +449,3 @@ classDiagram
 
 
 [![](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk)
-
-## Changes from the design
-
-### Minor
-
-- `login` and `register` dont have `/user/` prefix but `v2/auth` instead
-- using endpoint `v2/auth/check` instead of GET my data (`/user`)
-- PUT `/user` path changed to PUT `users/me`
-- Status - renamed attribute `status` to `text`
-
-### Medium
-
-- change paths from singular to plural (e.g. `/user` -> `/users`)
-- GET `/status` is not implemented, only GET `/statuses` (Getting all statuses)
-- DELETE `/status/{id}` - parameter `id` is in URL instead of body
-
-### Major
-
-- videocall is not implemented
-  

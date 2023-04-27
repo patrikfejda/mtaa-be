@@ -1,773 +1,552 @@
 // read swagger/swagger.json to dictionary
 var spec = {
-    "swagger": "2.0",
+    "openapi": "3.0.2",
     "info": {
-        "version": "1.0.1",
-        "title": "COM.LY API"
+        "title": "mtaa",
+        "version": "0.1.0"
     },
-    "basePath": "/v1",
-    "schemes": [
-        "https"
-    ],
-    "definitions": {
-        "User": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "example": 1
+    "paths": {
+        "/v2/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Auth Login",
+                "operationId": "auth_login_v2_auth_login_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthLogin"
+                            }
+                        }
+                    },
+                    "required": true
                 },
-                "email": {
-                    "type": "string",
-                    "example": "user@example.com"
-                },
-                "username": {
-                    "type": "string",
-                    "example": "johndoe"
-                },
-                "displayName": {
-                    "type": "string",
-                    "example": "John Doe"
-                },
-                "profilePhotoUrl": {
-                    "type": "string",
-                    "example": "https://example.com/profile.jpg"
-                },
-                "created_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2023-03-10T12:34:56.789Z"
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
-        "Status": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "example": 1
+        "/v2/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Auth Register",
+                "operationId": "auth_register_v2_auth_register_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreate"
+                            }
+                        }
+                    },
+                    "required": true
                 },
-                "user": {
-                    "$ref": "#/definitions/User"
-                },
-                "status": {
-                    "type": "string",
-                    "example": "Hello, World!"
-                },
-                "longitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 43.6532
-                },
-                "latitude": {
-                    "type": "number",
-                    "format": "float",
-                    "example": -79.3832
-                },
-                "created_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2023-03-10T12:34:56.789Z"
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
-        "Conversation": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "example": 1
-                },
-                "isGroup": {
-                    "type": "boolean",
-                    "example": true
-                },
-                "name": {
-                    "type": "string",
-                    "example": "My Group Chat"
-                },
-                "users": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/User"
+        "/v2/auth/check": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Auth Check",
+                "operationId": "auth_check_v2_auth_check_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
                     }
                 },
-                "created_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2023-03-10T12:34:56.789Z"
+                "security": [{
+                    "OAuth2PasswordBearer": [
+
+                    ]
+                }]
+            }
+        },
+        "/v2/users/": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get All Users",
+                "operationId": "get_all_users_v2_users__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get All Users V2 Users  Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "OAuth2PasswordBearer": [
+
+                    ]
+                }]
+            }
+        },
+        "/v2/users/me": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update User Me",
+                "operationId": "update_user_me_v2_users_me_put",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_update_user_me_v2_users_me_put"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "OAuth2PasswordBearer": [
+
+                    ]
+                }]
+            }
+        },
+        "/v2/statuses/": {
+            "get": {
+                "tags": [
+                    "statuses"
+                ],
+                "summary": "Get All Statuses",
+                "operationId": "get_all_statuses_v2_statuses__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get All Statuses V2 Statuses  Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Status"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "OAuth2PasswordBearer": [
+
+                    ]
+                }]
+            },
+            "post": {
+                "tags": [
+                    "statuses"
+                ],
+                "summary": "Create Status",
+                "operationId": "create_status_v2_statuses__post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StatusCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
-        "Message": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "example": 1
+        "/v2/statuses/{status_id}": {
+            "delete": {
+                "tags": [
+                    "statuses"
+                ],
+                "summary": "Delete Status",
+                "operationId": "delete_status_v2_statuses__status_id__delete",
+                "parameters": [{
+                    "required": true,
+                    "schema": {
+                        "title": "Status Id",
+                        "type": "integer"
+                    },
+                    "name": "status_id",
+                    "in": "path"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
                 },
-                "user": {
-                    "$ref": "#/definitions/User"
-                },
-                "conversationId": {
-                    "type": "integer",
-                    "example": 123
-                },
-                "message": {
-                    "type": "string",
-                    "example": "Hello, World!"
-                },
-                "photo_url": {
-                    "type": "string",
-                    "example": "https://example.com/photo.jpg"
-                },
-                "created_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2023-03-10T12:34:56.789Z"
+                "security": [{
+                    "OAuth2PasswordBearer": [
+
+                    ]
+                }]
+            }
+        },
+        "/v2/health": {
+            "get": {
+                "summary": "Health",
+                "operationId": "health_v2_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     },
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "paths": {
-        "/user/login": {
-            "post": {
-                "summary": "Login user",
-                "tags": [
-                    "User"
+    "components": {
+        "schemas": {
+            "AuthLogin": {
+                "title": "AuthLogin",
+                "required": [
+                    "username",
+                    "password"
                 ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "body",
-                    "name": "credentials",
-                    "description": "User's login credentials",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "username": {
-                                "type": "string"
-                            },
-                            "password": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "username",
-                            "password"
-                        ]
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful login",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "access_token": {
-                                    "type": "string"
-                                },
-                                "user": {
-                                    "$ref": "#/definitions/User"
-                                }
-                            }
-                        }
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
                     },
-                    "401": {
-                        "description": "Invalid credentials"
-                    }
-                }
-            }
-        },
-        "/user/register": {
-            "post": {
-                "summary": "Register user",
-                "tags": [
-                    "User"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "body",
-                    "name": "user",
-                    "description": "User's registration details",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "username": {
-                                "type": "string"
-                            },
-                            "password": {
-                                "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "username",
-                            "password",
-                            "email"
-                        ]
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful registration",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "access_token": {
-                                    "type": "string"
-                                },
-                                "user": {
-                                    "$ref": "#/definitions/User"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid registration data"
-                    }
-                }
-            }
-        },
-        "/user": {
-            "get": {
-                "summary": "Get user",
-                "tags": [
-                    "User"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
                     }
                 }
             },
-            "put": {
-                "summary": "Update user",
-                "tags": [
-                    "User"
+            "AuthResponse": {
+                "title": "AuthResponse",
+                "required": [
+                    "accessToken",
+                    "user"
                 ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
+                "type": "object",
+                "properties": {
+                    "accessToken": {
+                        "title": "Accesstoken",
+                        "type": "string"
                     },
-                    {
-                        "in": "body",
-                        "name": "user",
-                        "description": "User's updated details",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "displayName": {
-                                    "type": "string"
-                                },
-                                "profilePhotoUrl": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "400": {
-                        "description": "Invalid user data"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
+                    "user": {
+                        "$ref": "#/components/schemas/User"
                     }
                 }
-            }
-        },
-        "/user/all": {
-            "get": {
-                "summary": "Get all users",
-                "tags": [
-                    "User"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/User"
-                            }
-                        }
+            },
+            "Body_update_user_me_v2_users_me_put": {
+                "title": "Body_update_user_me_v2_users_me_put",
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "title": "Displayname",
+                        "type": "string"
                     },
-                    "401": {
-                        "description": "Unauthorized"
+                    "profilePhoto": {
+                        "title": "Profilephoto",
+                        "type": "string",
+                        "format": "binary"
                     }
                 }
-            }
-        },
-        "/status": {
-            "post": {
-                "summary": "Create status",
-                "tags": [
-                    "Status"
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "Status": {
+                "title": "Status",
+                "required": [
+                    "id",
+                    "latitude",
+                    "longitude",
+                    "text",
+                    "createdAt",
+                    "author"
                 ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
                     },
-                    {
-                        "in": "body",
-                        "name": "status",
-                        "description": "Status to be created",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "status": {
+                    "latitude": {
+                        "title": "Latitude",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "title": "Longitude",
+                        "type": "string"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "title": "Createdat",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            },
+            "StatusCreate": {
+                "title": "StatusCreate",
+                "required": [
+                    "latitude",
+                    "longitude",
+                    "text"
+                ],
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "title": "Latitude",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "title": "Longitude",
+                        "type": "string"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "title": "User",
+                "required": [
+                    "id",
+                    "email",
+                    "username"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "title": "Displayname",
+                        "type": "string"
+                    },
+                    "profilePhotoUrl": {
+                        "title": "Profilephotourl",
+                        "type": "string"
+                    }
+                }
+            },
+            "UserCreate": {
+                "title": "UserCreate",
+                "required": [
+                    "email",
+                    "username",
+                    "password"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "username": {
+                        "title": "Username",
+                        "minLength": 3,
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "minLength": 8,
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [{
                                     "type": "string"
                                 },
-                                "user": {
+                                {
                                     "type": "integer"
-                                },
-                                "latitude": {
-                                    "type": "number"
-                                },
-                                "longitude": {
-                                    "type": "number"
                                 }
-                            },
-                            "required": [
-                                "status",
-                                "user",
-                                "latitude",
-                                "longitude"
                             ]
                         }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
                     },
-                    "400": {
-                        "description": "Invalid status data"
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
                     },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            },
-            "get": {
-                "summary": "Get status",
-                "tags": [
-                    "Status"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "id",
-                        "description": "Status ID",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Status"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete status",
-                "tags": [
-                    "Status"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "id",
-                        "description": "Status ID",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
                     }
                 }
             }
         },
-        "/status/all": {
-            "get": {
-                "summary": "Get all statuses",
-                "tags": [
-                    "Status"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Status"
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            }
-        },
-        "/conversation": {
-            "post": {
-                "summary": "Create conversation",
-                "tags": [
-                    "Conversation"
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "body",
-                        "name": "conversation",
-                        "description": "Conversation to be created",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "users": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "isGroup": {
-                                    "type": "boolean"
-                                }
-                            },
-                            "required": [
-                                "name",
-                                "users",
-                                "isGroup"
-                            ]
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "400": {
-                        "description": "Invalid conversation data"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            },
-            "get": {
-                "summary": "Get conversation",
-                "tags": [
-                    "Conversation"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "in": "header",
-                        "name": "Authorization",
-                        "description": "JWT Access token",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "id",
-                        "description": "Conversation ID",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/Conversation"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            }
-        },
-        "/conversation/all": {
-            "get": {
-                "summary": "Get all conversations related to user",
-                "tags": [
-                    "Conversation"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Conversation"
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                }
-            }
-        },
-        "/message": {
-            "post": {
-                "summary": "Create a new message",
-                "tags": [
-                    "Message"
-                ],
-                "description": "Use this endpoint to create a new message in a conversation",
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }, {
-                    "in": "body",
-                    "name": "message",
-                    "description": "Message object",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "userId": {
-                                "type": "string",
-                                "description": "ID of the user sending the message",
-                                "example": "123"
-                            },
-                            "conversationId": {
-                                "type": "string",
-                                "description": "ID of the conversation the message is being sent to",
-                                "example": "456"
-                            },
-                            "text": {
-                                "type": "string",
-                                "description": "Text content of the message",
-                                "example": "Hello world"
-                            },
-                            "photo_url": {
-                                "type": "string",
-                                "description": "Text content of the message",
-                                "example": "https://example.com/photo.jpg"
-                            }
+        "securitySchemes": {
+            "OAuth2PasswordBearer": {
+                "type": "oauth2",
+                "flows": {
+                    "password": {
+                        "scopes": {
+
                         },
-                        "required": [
-                            "user",
-                            "conversation",
-                            "text"
-                        ]
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Message created successfully"
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "401": {
-                        "description": "Unauthorized request"
-                    }
-                }
-            },
-            "get": {
-                "summary": "Get message",
-                "tags": [
-                    "Message"
-                ],
-                "description": "Use this endpoint to retrieve a specific message",
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }, {
-                    "in": "query",
-                    "name": "messageId",
-                    "type": "string",
-                    "required": true,
-                    "description": "ID of the message to retrieve"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Message retrieved successfully",
-                        "schema": {
-                            "$ref": "#/definitions/Message"
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "401": {
-                        "description": "Unauthorized request"
-                    }
-                }
-            }
-        },
-        "/message/conversation/all": {
-            "get": {
-                "summary": "Get all messages in a conversation",
-                "tags": [
-                    "Message"
-                ],
-                "description": "Use this endpoint to retrieve all messages in a conversation",
-                "parameters": [{
-                    "in": "header",
-                    "name": "Authorization",
-                    "description": "JWT Access token",
-                    "type": "string",
-                    "required": true
-                }, {
-                    "in": "query",
-                    "name": "conversationId",
-                    "type": "string",
-                    "required": true,
-                    "description": "ID of the conversation to retrieve messages from"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Messages retrieved successfully",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Message"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "401": {
-                        "description": "Unauthorized request"
+                        "tokenUrl": "v2/auth/login"
                     }
                 }
             }
