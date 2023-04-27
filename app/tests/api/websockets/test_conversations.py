@@ -18,6 +18,7 @@ from app.tests.utils.websocket import create_websocket_message, websocket_receiv
 MODULE_API_PREFIX = f"{settings.API_PREFIX}/conversations/ws"
 
 
+@pytest.mark.slow
 def test_create_direct_conversation(
     client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -55,6 +56,7 @@ def test_create_direct_conversation(
     assert new_user_response["data"]["messages"] == []
 
 
+@pytest.mark.slow
 def test_create_direct_conversation_many_ids(
     client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -76,6 +78,7 @@ def test_create_direct_conversation_many_ids(
     assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
 
 
+@pytest.mark.slow
 def test_create_direct_conversation_no_creator_id(
     client: TestClient, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -99,6 +102,7 @@ def test_create_direct_conversation_no_creator_id(
     assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
 
 
+@pytest.mark.slow
 def test_create_group_conversation(
     client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -140,6 +144,7 @@ def test_create_group_conversation(
         assert other_user_response["data"]["messages"] == []
 
 
+@pytest.mark.slow
 def test_create_group_conversation_missing_name(
     client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -161,6 +166,7 @@ def test_create_group_conversation_missing_name(
     assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
 
 
+@pytest.mark.slow
 def test_create_group_conversation_no_creator_id(
     client: TestClient, user_auth_token: str, test_db: Session, faker: Faker
 ):

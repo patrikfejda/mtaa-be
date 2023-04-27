@@ -17,6 +17,7 @@ from app.tests.utils.websocket import create_websocket_message, websocket_receiv
 MODULE_API_PREFIX = f"{settings.API_PREFIX}/conversations/ws"
 
 
+@pytest.mark.slow
 def test_create_message(
     client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -62,6 +63,7 @@ def test_create_message(
     assert conversation_user_response["data"]["author"]["id"] == user.id
 
 
+@pytest.mark.slow
 def test_create_message_user_not_in_conversation(
     client: TestClient, user_auth_token: str, test_db: Session, faker: Faker
 ):
@@ -82,6 +84,7 @@ def test_create_message_user_not_in_conversation(
     assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
 
 
+@pytest.mark.slow
 def test_create_message_nonexistent_id(client: TestClient, user_auth_token: str, faker: Faker):
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     payload = {"conversationId": 1234, "text": faker.text()}
@@ -97,6 +100,7 @@ def test_create_message_nonexistent_id(client: TestClient, user_auth_token: str,
     assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
 
 
+@pytest.mark.slow
 def test_create_message_empty_text(
     client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
