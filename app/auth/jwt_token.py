@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from typing import TypedDict
 
 from jose import jwt
 

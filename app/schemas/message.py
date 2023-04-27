@@ -6,18 +6,15 @@ from .base_model import AppBaseModel
 from .user import User
 
 
-class Status(AppBaseModel):
+class Message(AppBaseModel):
     id: int
-    latitude: str
-    longitude: str
+    conversation_id: int
     text: str
     created_at: datetime
 
     author: User
 
 
-# TODO shouldn't latitude, longitude be floats?
-class StatusCreate(AppBaseModel):
-    latitude: str
-    longitude: str
+class MessageCreate(AppBaseModel):
+    conversation_id: int
     text: str = Field(min_length=1)

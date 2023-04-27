@@ -1,0 +1,11 @@
+from enum import Enum
+
+
+class ClientEvent(Enum):
+    CREATE_CONVERSATION = "CREATE_CONVERSATION"
+    CREATE_MESSAGE = "CREATE_MESSAGE"
+
+
+class ServerEvent(Enum):
+    NEW_CONVERSATION = "NEW_CONVERSATION"
+    NEW_MESSAGE = "NEW_MESSAGE"

@@ -15,7 +15,7 @@ def get_all_statuses(current_user: CurrentUserDependency, db: SessionDependency)
 
 @router.post("/", response_model=schemas.Status, status_code=status.HTTP_201_CREATED)
 def create_status(
-    status_create: schemas.StatusCreate, db: SessionDependency
+    status_create: schemas.StatusCreate, current_user: CurrentUserDependency, db: SessionDependency
 ):
     # CHECK FOR NOT APPROPRIATE WORDS
     normalized_sentence = unicodedata.normalize('NFKD', status_create.text).encode('ASCII', 'ignore').decode('utf-8')

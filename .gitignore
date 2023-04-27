@@ -5,6 +5,8 @@ docs/docs.pdf
 
 public/images/
 
-app/endpoints/v1/__pycache__/
+**/__pycache__
+
+.pytest_cache/
 
 app/filestore/

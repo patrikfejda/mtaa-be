@@ -8,7 +8,7 @@ from app.__main__ import app
 from app.config import settings
 from app.db.dependencies import get_db
 from app.db.orm import Base
-from app.tests.utils.auth import auth_headers
+from app.tests.utils.auth import auth_token_and_headers
 from app.tests.utils.user import get_test_user
 
 engine = create_engine(
@@ -68,9 +68,18 @@ def client(test_db: Session):
 
 @pytest.fixture()
 def user_auth_headers(client: TestClient):
-    return auth_headers(
+    _, headers = auth_token_and_headers(
         client=client, username=settings.TEST_USER_USERNAME, password=settings.TEST_USER_PASSWORD
     )
+    return headers
+
+
+@pytest.fixture()
+def user_auth_token(client: TestClient):
+    token, _ = auth_token_and_headers(
+        client=client, username=settings.TEST_USER_USERNAME, password=settings.TEST_USER_PASSWORD
+    )
+    return token
 
 
 @pytest.fixture()
