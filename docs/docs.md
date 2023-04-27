@@ -103,25 +103,24 @@ Storing binary files (images) will be done using filestorage.
 
 #### Used libraries
 
-- `fastapi`
-- `os`
-- `sqlalchemy`
-- `pydantic`
-- `typing`
-- `enum`
-- `json`
-- `unicodedata`
-- `filetype`
-- `jose`
-- `humps`
-- `datetime`
-- `pytest`
-- `faker`
-- `random`
-- `shutil`
-- `string`
-- `signal`
-
+- `datetime`: A library for working with dates and times.
+- `enum`: A library for creating enumerated constants in Python.
+- `faker`: A library for generating fake data such as names, addresses, and phone numbers.
+- `fastapi`: A modern, fast web framework for building APIs.
+- `filetype`: A library for detecting file types by their content.
+- `humps`: A library for converting object keys between camelCase and snake_case.
+- `json`: A library for encoding and decoding JSON data.
+- `jose`: A library for encoding, decoding, and verifying JSON Web Tokens (JWTs).
+- `os`: A library for interacting with the operating system.
+- `pydantic`: A library for data validation and settings management based on Python type annotations.
+- `pytest`: A library for writing and running tests in Python.
+- `random`: A library for generating random numbers and values.
+- `shutil`: A library for file operations, including copying and deleting files and directories.
+- `signal`: A library for sending and receiving signals between processes.
+- `sqlalchemy`: A library for working with SQL databases in Python.
+- `string`: A library for working with strings and text.
+- `typing`: A library for defining and using Python type hints.
+- `unicodedata`: A library for working with Unicode characters and text.
 
 ### Deployment
 
