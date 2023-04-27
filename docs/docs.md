@@ -101,6 +101,28 @@ For connecting to the database, we will use SQLAlchemy ORM.
 Sending messages will be done using websockets.
 Storing binary files (images) will be done using filestorage.
 
+#### Used libraries
+
+- `fastapi`
+- `os`
+- `sqlalchemy`
+- `pydantic`
+- `typing`
+- `enum`
+- `json`
+- `unicodedata`
+- `filetype`
+- `jose`
+- `humps`
+- `datetime`
+- `pytest`
+- `faker`
+- `random`
+- `shutil`
+- `string`
+- `signal`
+
+
 ### Deployment
 
 The app (consisting of postgresql database and python API app) will be deployed on a single server using Docker.
