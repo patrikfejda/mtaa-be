@@ -1,12 +1,20 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
-from app.api.dependencies import CurrentWebsocketUserDependency, SessionDependency
+from app import schemas
+from app.api.dependencies import (
+    CurrentUserDependency,
+    CurrentWebsocketUserDependency,
+    SessionDependency,
+)
 from app.api.websocket import websocket_manager
 from app.api.websocket_manager import WebSocketItem
 
 router = APIRouter()
 
-# TODO get all conversations endpoint
+
+@router.get("/", response_model=list[schemas.Conversation])
+def get_all_user_conversation(current_user: CurrentUserDependency, db: SessionDependency):
+    return current_user.conversations
 
 
 @router.websocket("/ws")
