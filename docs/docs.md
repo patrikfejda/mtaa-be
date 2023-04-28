@@ -101,7 +101,7 @@ For connecting to the database, we will use SQLAlchemy ORM.
 Sending messages will be done using websockets.
 Storing binary files (images) will be done using filestorage.
 
-#### Used libraries
+#### BE Used libraries
 
 - `datetime`: A library for working with dates and times.
 - `enum`: A library for creating enumerated constants in Python.
@@ -147,7 +147,7 @@ The frontend will be using the following tech stack:
 - Immer for handling immutable data (via Redux Toolkit)
 - React Navigation for navigating between screens
 
-#### Used libraries
+#### FE Used libraries
 
 - react-navigation/native
   - DarkTheme
