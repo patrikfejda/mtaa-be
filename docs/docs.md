@@ -176,32 +176,33 @@ The frontend will be using the following tech stack:
   - `Box`: A component for creating layout containers with customizable styles and props.
   - `Toast`: A component for displaying toast notifications with customizable styles and props.
   - `IAlertProps`: A set of props for the Alert component.  
-- react
-  - React
-  - useState
-- react-native
-  - AppRegistry
-  - Alert
-  - View
-  - Text
-  - Modal
-  - Pressable
-  - ScrollView
-- react-native-fs
-  - RNFS
-- react-native-geo-location-service
-  - Geolocation
-- react-native-image-picker
-  - launchCamera
-  - launchImageLibrary
-- react-native-permissions
-  - check
-  - PERMISSIONS
-  - request
-  - RESULTS
-  - openSettings
-- react-native-vector-icons/MaterialIcons
-  - MaterialIcons
+- `react`: a JavaScript library for building user interfaces.
+  - `React`: the main package for building UI components using React.
+  - `useState`: a hook that allows functional components to have stateful logic.
+- `react-native`: a framework for building mobile applications using React.
+  - `AppRegistry`: a module that registers the root component of the application.
+  - `Alert`: a module that displays an alert dialog.
+  - `View`: a component used for grouping and positioning other components.
+  - `Text`: a component used for displaying text.
+  - `Modal`: a component used for displaying content over other content.
+  - `Pressable`: a component used for handling user touch events.
+  - `ScrollView`: a component used for scrolling content that is too large to fit on the screen.
+- `react-native-fs`: a module that provides access to the file system on a device.
+  - `RNFS`: the main module for interacting with the file system.
+- `react-native-geo-location-service`: a module that provides access to the device's location.
+  - `Geolocation`: the main module for interacting with the location service.
+- `react-native-image-picker`: a module that allows users to select or capture images from their device's camera or gallery.
+  - `launchCamera`: a function that launches the device's camera to take a new photo.
+  - `launchImageLibrary`: a function that launches the device's gallery to select an existing photo.
+- `react-native-permissions`: a module that provides access to the device's permissions.
+  - `check`: a function that checks if a specific permission is granted.
+  - `PERMISSIONS`: an object that contains the names of various permissions.
+  - `request`: a function that requests a specific permission.
+  - `RESULTS`: an object that contains the possible results of a permission request.
+  - `openSettings`: a function that opens the device's settings app to the permissions page.
+- `react-native-vector-icons/MaterialIcons`: a module that provides access to the Material Icons font.
+  - `MaterialIcons`: a component that renders an icon from the Material Icons font.
+
 - react-navigation/bottom-tabs
   - BottomTabHeaderProps
   - BottomTabBarProps
