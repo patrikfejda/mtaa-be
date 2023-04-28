@@ -147,6 +147,94 @@ The frontend will be using the following tech stack:
 - Immer for handling immutable data (via Redux Toolkit)
 - React Navigation for navigating between screens
 
+#### Used libraries
+
+- react-navigation/native
+  - DarkTheme
+  - NavigationContainer
+  - useFocusEffect
+  - CompositeScreenProps
+- react-navigation/bottom-tabs
+  - BottomTabHeaderProps
+  - BottomTabBarProps
+  - createBottomTabNavigator
+  - bottomTabScreenOptions
+- react-navigation/native-stack
+  - NativeStackHeaderProps
+  - createNativeStackNavigator
+  - NativeStackScreenProps
+- react-native-vector-icons/MaterialIcons
+  - MaterialIcons
+- react-native-image-picker
+  - launchCamera
+  - launchImageLibrary
+- immer
+  - produce
+- native-base
+  - Avatar
+  - Box
+  - Button
+  - FormControl
+  - Input
+  - Text
+  - VStack
+  - HStack
+  - View
+  - NativeBaseProvider
+  - extendTheme
+  - Center
+  - Icon
+  - IconButton
+  - StatusBar
+  - useToken
+  - Box
+  - Toast
+  - IAlertProps
+- react
+  - React
+  - useState
+- react-redux
+  - Provider
+  - TypedUseSelectorHook
+  - useDispatch
+  - useSelector
+- react-native
+  - AppRegistry
+  - Alert
+  - View
+  - Text
+  - Modal
+  - Pressable
+  - ScrollView
+- react-test-renderer
+  - renderer
+- react-native-fs
+  - RNFS
+- redujs/toolkit
+  - createSlice
+  - isAnyOf
+  - configureStore
+  - Middleware
+  - isRejectedWithValue
+  - Action
+  - ThunkAction
+- redujs/toolkit/query/react
+  - createApi
+  - fetchBaseQuery
+- react-native-geo-location-service
+  - Geolocation
+- react-native-permissions
+  - check
+  - PERMISSIONS
+  - request
+  - RESULTS
+  - openSettings
+- date-fns
+  - formatRelative
+  - parseJSON
+- date-fns/locale
+  - enUS
+
 ### System APIs
 
 The app will allow users to use the camera for taking photos and videos and for making video calls.
