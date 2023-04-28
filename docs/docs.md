@@ -202,39 +202,38 @@ The frontend will be using the following tech stack:
   - `openSettings`: a function that opens the device's settings app to the permissions page.
 - `react-native-vector-icons/MaterialIcons`: a module that provides access to the Material Icons font.
   - `MaterialIcons`: a component that renders an icon from the Material Icons font.
-
-- react-navigation/bottom-tabs
-  - BottomTabHeaderProps
-  - BottomTabBarProps
-  - createBottomTabNavigator
-  - bottomTabScreenOptions  
-- react-navigation/native
-  - DarkTheme
-  - NavigationContainer
-  - useFocusEffect
-  - CompositeScreenProps
-- react-navigation/native-stack
-  - NativeStackHeaderProps
-  - createNativeStackNavigator
-  - NativeStackScreenProps
-- react-redux
-  - Provider
-  - TypedUseSelectorHook
-  - useDispatch
-  - useSelector
-- react-test-renderer
-  - renderer
-- redujs/toolkit
-  - createSlice
-  - isAnyOf
-  - configureStore
-  - Middleware
-  - isRejectedWithValue
-  - Action
-  - ThunkAction
-- redujs/toolkit/query/react
-  - createApi
-  - fetchBaseQuery
+- `react-navigation/bottom-tabs`
+  - `BottomTabHeaderProps`: Props for the header component of a bottom tab navigator.
+  - `BottomTabBarProps`: Props for the bottom tab bar component of a bottom tab navigator.
+  - `createBottomTabNavigator`: Function to create a bottom tab navigator.
+  - `bottomTabScreenOptions`: Options for a screen in a bottom tab navigator.
+- `react-navigation/native`
+  - `DarkTheme`: Predefined dark theme for a navigation container.
+  - `NavigationContainer`: Component that manages the navigation tree and handles the navigation state.
+  - `useFocusEffect`: Hook that runs an effect when a screen gains or loses focus.
+  - `CompositeScreenProps`: Type for the props of a screen in a navigation container.
+- `react-navigation/native-stack`
+  - `NativeStackHeaderProps`: Props for the header component of a native stack navigator.
+  - `createNativeStackNavigator`: Function to create a native stack navigator.
+  - `NativeStackScreenProps`: Type for the props of a screen in a native stack navigator.
+- `react-redux`
+  - `Provider`: Component that provides the Redux store to the component tree.
+  - `TypedUseSelectorHook`: Hook that provides typed access to the Redux store's state.
+  - `useDispatch`: Hook that returns the dispatch function from the Redux store.
+  - `useSelector`: Hook that returns a value from the Redux store's state.
+- `react-test-renderer`
+  - `renderer`: Object with methods for rendering React components for testing purposes.
+- `reduxjs/toolkit`
+  - `createSlice`: Function to create a slice of the Redux store's state and associated reducers and actions.
+  - `isAnyOf`: Function to create a matcher that returns true if any of the given action types match the action.
+  - `configureStore`: Function to create a Redux store with preconfigured settings and middleware.
+  - `Middleware`: Interface for a Redux middleware.
+  - `isRejectedWithValue`: Function to create a matcher that returns true if an action is a rejected promise with a specific value.
+  - `Action`: Interface for a Redux action.
+  - `ThunkAction`: Type for a Redux thunk action.
+- `reduxjs/toolkit/query/react`
+  - `createApi`: Function to create an API object with preconfigured endpoints for making network requests.
+  - `fetchBaseQuery`: Function to create a base fetch function for use with an API object.
 
 ### System APIs
 
