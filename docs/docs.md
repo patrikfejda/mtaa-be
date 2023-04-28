@@ -149,33 +149,32 @@ The frontend will be using the following tech stack:
 
 #### FE Used libraries
 
-- `date-fns`
-  - `formatRelative`: A function to format a date in a human-readable, relative format (e.g. "2 hours ago").
-  - `parseJSON`: A function to parse a date string into a JavaScript `Date` object.
-- `date-fns/locale`
-  - `enUS`: A locale object for English (United States).
-- `immer`
-  - `produce`: A function to create a new state by applying a set of modifications to a previous state, while keeping the previous state immutable.
-- `native-base`
-  - `Avatar`: A component for displaying a circular image or initials representing a user or entity.
-  - `Box`: A component for creating layout containers with customizable styles and props.
-  - `Button`: A component for creating buttons with customizable styles and props.
-  - `FormControl`: A component for creating form inputs with customizable styles and props.
-  - `Input`: A component for creating text inputs with customizable styles and props.
-  - `Text`: A component for displaying text with customizable styles and props.
-  - `VStack`: A component for creating vertical stacks of components with customizable styles and props.
-  - `HStack`: A component for creating horizontal stacks of components with customizable styles and props.
-  - `View`: A component for creating a container view with customizable styles and props.
-  - `NativeBaseProvider`: A component that sets up the NativeBase theme and provides a context for using NativeBase components.
-  - `extendTheme`: A function to extend the NativeBase theme with custom styles and components.
-  - `Center`: A component for centering content horizontally and vertically within its parent container.
-  - `Icon`: A component for displaying vector icons from various icon libraries.
-  - `IconButton`: A component for displaying a clickable icon button with customizable styles and props.
-  - `StatusBar`: A component for displaying the status bar with customizable styles and props.
-  - `useToken`: A hook for accessing theme tokens in NativeBase.
-  - `Box`: A component for creating layout containers with customizable styles and props.
-  - `Toast`: A component for displaying toast notifications with customizable styles and props.
-  - `IAlertProps`: A set of props for the Alert component.  
+- `date-fns`: A JavaScript date utility library with a focus on providing functions to format, parse, and manipulate dates.
+  - `formatRelative`: A function that formats a date as a string representing the time difference relative to the current date. For example, "2 days ago" or "in 3 hours".
+  - `parseJSON`: A function that parses a string representation of a date in ISO format and returns a Date object.
+- `date-fns/locale`: A module that provides localized strings for date-fns.
+  - `enUS`: An object containing English (United States) localized strings for use with date-fns.
+- `immer`: A library that allows you to work with immutable data in a more convenient way by using a draft state that you can modify as if it were mutable.
+  - `produce`: A function that takes an initial state and a modifier function, and returns a new state that is the result of applying the modifier function to the initial state.
+- `native-base`: A UI library for React Native that provides pre-built, customizable components.
+  - `Avatar`: A component for displaying user avatars.
+  - `Box`: A component for creating layout boxes with customizable styles.
+  - `Button`: A component for creating buttons with customizable styles.
+  - `FormControl`: A component for creating form controls with customizable styles.
+  - `Input`: A component for creating text input fields with customizable styles.
+  - `Text`: A component for displaying text with customizable styles.
+  - `VStack`: A component for creating vertically stacked layout boxes with customizable styles.
+  - `HStack`: A component for creating horizontally stacked layout boxes with customizable styles.
+  - `View`: A component for creating layout views with customizable styles.
+  - `NativeBaseProvider`: A component that provides a theme to all NativeBase components.
+  - `extendTheme`: A function that allows you to extend the default NativeBase theme with your own customizations.
+  - `Center`: A component for centering child elements within a layout.
+  - `Icon`: A component for displaying icons from various icon sets with customizable styles.
+  - `IconButton`: A component for creating clickable icons with customizable styles.
+  - `StatusBar`: A component for customizing the status bar on Android and iOS devices.
+  - `useToken`: A hook that allows you to access theme tokens from the NativeBase theme.
+  - `Toast`: A component for displaying toast messages with customizable styles.
+  - `IAlertProps`: A type definition for props that can be passed to the Alert component.
 - `react`: a JavaScript library for building user interfaces.
   - `React`: the main package for building UI components using React.
   - `useState`: a hook that allows functional components to have stateful logic.
