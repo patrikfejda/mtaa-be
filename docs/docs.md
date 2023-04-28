@@ -13,8 +13,8 @@ link-citations: true
 linkcolor: "423f3b"
 ---
 \pagebreak
-# **Job Information**
 
+## Assignment Information
 
 |                |                                                            |
 | -------------- | ---------------------------------------------------------- |
@@ -28,7 +28,6 @@ linkcolor: "423f3b"
 | **Exercising** | Ing. Marek Galinski, PhD.                                  |
 | **Lecturer**   | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
 | **Group**      | Tuesday 11:00                                              |
-
 
 \pagebreak
 
@@ -255,7 +254,6 @@ In the app, no need for administrators will be required.
 
 ### Test 1: Send message to new user
 
-
 **Description:** User sends a message to a user, with whom he has not had any previous communication.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -273,7 +271,6 @@ In the app, no need for administrators will be required.
 
 ### Test 1.1: Send message to old user (Alternative flow)
 
-
 **Description:** User sends a message to a user, with whom he has had previous communication.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -286,7 +283,6 @@ In the app, no need for administrators will be required.
 2. Continue with step 4 from Test 1.
 
 ### Test 2: Create group
-
 
 **Description:** User creates a chat group with other users.
 
@@ -305,7 +301,6 @@ In the app, no need for administrators will be required.
 
 ### Test 3: Send message to group
 
-
 **Description:** User sends a message to a group.
 
 **Preconditions:** User is logged in, user has a stable internet connection, user is in a group (see Test 2).
@@ -321,7 +316,6 @@ In the app, no need for administrators will be required.
 
 ### Test 4: Set status
 
-
 **Description:** User sets their status.
 
 **Preconditions:** User is logged in, user has a stable internet connection and GPS is enabled.
@@ -336,7 +330,6 @@ In the app, no need for administrators will be required.
 4. System fetched the GPS info from the device and sets the status with GPS info.
 
 ### Test 5: Send photo
-
 
 **Description:** User sends a photo to another user.
 
@@ -355,7 +348,6 @@ In the app, no need for administrators will be required.
 
 ### Test 6: Set profile photo
 
-
 **Description:** User sets their profile photo.
 
 **Preconditions:** User is logged in, user has a stable internet connection and app has working access to gallery.
@@ -373,7 +365,6 @@ In the app, no need for administrators will be required.
 
 ### Test 6.1: Change display name (Alternative flow)
 
-
 **Description:** User changes their display name.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -387,7 +378,6 @@ In the app, no need for administrators will be required.
 3. System changes the display name.
 
 ### Test 7: Send message with no internet connection
-
 
 **Description:** User sends a message to another user with no internet connection.
 
@@ -408,7 +398,6 @@ In the app, no need for administrators will be required.
 
 ### Test 8: Save draft message
 
-
 **Description:** User saves a draft message.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -428,7 +417,6 @@ In the app, no need for administrators will be required.
 
 ### Test 9: Weak password
 
-
 **Description:** User tries to register with a weak password.
 
 **Preconditions:** User is not logged in, user has a stable internet connection.
@@ -444,7 +432,6 @@ In the app, no need for administrators will be required.
 
 ### Test 9.1: Email already exists (Alternative flow)
 
-
 **Description:** User tries to register with an email that already exists.
 
 **Preconditions:** User is not logged in, user has a stable internet connection.
@@ -458,7 +445,6 @@ In the app, no need for administrators will be required.
 3. System displays an error message.
 
 ### Test 10: Not appropriate language in status
-
 
 **Description:** User tries to set a status with not appropriate language.
 
@@ -474,7 +460,6 @@ In the app, no need for administrators will be required.
 4. System displays an error message.
 
 ### Test 11: GPS not available
-
 
 **Description:** User tries to set a status with GPS not available.
 
@@ -552,9 +537,7 @@ classDiagram
     Conversation "1" -- "0*" Message
 ```
 
-
-
-[![](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk)
+[![class diagram](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk)
 
 ## Changes from the design
 
