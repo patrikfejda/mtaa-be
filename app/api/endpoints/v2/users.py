@@ -15,7 +15,7 @@ async def get_all_users(current_user: CurrentUserDependency, db: SessionDependen
 
 
 @router.put("/me", response_model=schemas.User)
-async def update_user_me(
+async def update_current_user(
     user_update: Annotated[schemas.UserUpdate, Depends()],
     current_user: CurrentUserDependency,
     db: SessionDependency,
