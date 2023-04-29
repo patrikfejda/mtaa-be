@@ -104,7 +104,11 @@ def test_auth_token_expiration(
     websocket_message = create_websocket_message(
         token=expired_auth_token,
         event_name="CREATE_CONVERSATION",
-        data={"isGroup": False, "userIds": [user.id, other_user.id]},
+        data={
+            "synchronizationKey": faker.uuid4(),
+            "isGroup": False,
+            "userIds": [user.id, other_user.id],
+        },
     )
 
     with pytest.raises(WebSocketDisconnect) as exception:

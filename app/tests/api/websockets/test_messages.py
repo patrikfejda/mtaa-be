@@ -31,7 +31,11 @@ def test_create_message(
     conversation = create_random_conversation(
         test_db=test_db, faker=faker, author_id=user.id, user_ids=[user.id, conversation_user.id]
     )
-    payload = {"conversationId": conversation.id, "text": faker.text()}
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "conversationId": conversation.id,
+        "text": faker.text(),
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token, event_name="CREATE_MESSAGE", data=payload
     )
@@ -53,10 +57,12 @@ def test_create_message(
     assert "event" in conversation_user_response
     assert conversation_user_response["event"] == "NEW_MESSAGE"
     assert "data" in conversation_user_response
+    assert "synchronizationKey" in conversation_user_response["data"]
     assert "conversationId" in conversation_user_response["data"]
     assert "text" in conversation_user_response["data"]
     assert "createdAt" in conversation_user_response["data"]
     assert "author" in conversation_user_response["data"]
+    assert conversation_user_response["data"]["synchronizationKey"] == payload["synchronizationKey"]
     assert conversation_user_response["data"]["conversationId"] == payload["conversationId"]
     assert conversation_user_response["data"]["text"] == payload["text"]
     assert "id" in conversation_user_response["data"]["author"]
@@ -73,7 +79,11 @@ def test_create_message_user_not_in_conversation(
     conversation = create_random_conversation(
         test_db=test_db, faker=faker, author_id=user.id, user_ids=users_ids
     )
-    payload = {"conversationId": conversation.id, "text": faker.text()}
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "conversationId": conversation.id,
+        "text": faker.text(),
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token, event_name="CREATE_MESSAGE", data=payload
     )
@@ -89,7 +99,7 @@ def test_create_message_user_not_in_conversation(
 @pytest.mark.slow
 def test_create_message_nonexistent_id(client: TestClient, user_auth_token: str, faker: Faker):
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
-    payload = {"conversationId": 1234, "text": faker.text()}
+    payload = {"synchronizationKey": faker.uuid4(), "conversationId": 1234, "text": faker.text()}
     websocket_message = create_websocket_message(
         token=user_auth_token, event_name="CREATE_MESSAGE", data=payload
     )
@@ -111,7 +121,33 @@ def test_create_message_empty_text(
     conversation = create_random_conversation(
         test_db=test_db, faker=faker, author_id=user.id, user_ids=[user.id, conversation_user.id]
     )
-    payload = {"conversationId": conversation.id, "text": ""}
+    payload = {"synchronizationKey": faker.uuid4(), "conversationId": conversation.id, "text": ""}
+    websocket_message = create_websocket_message(
+        token=user_auth_token, event_name="CREATE_MESSAGE", data=payload
+    )
+
+    with pytest.raises(WebSocketDisconnect) as exception:
+        with client.websocket_connect(url) as websocket:
+            websocket.send_json(websocket_message)
+            websocket_receive_json_timeouted(websocket)
+
+    assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
+
+
+@pytest.mark.slow
+def test_create_message_wrong_synchronization_key(
+    client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
+):
+    url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
+    conversation_user = create_random_user(test_db=test_db, faker=faker)
+    conversation = create_random_conversation(
+        test_db=test_db, faker=faker, author_id=user.id, user_ids=[user.id, conversation_user.id]
+    )
+    payload = {
+        "synchronizationKey": "invalid_key",
+        "conversationId": conversation.id,
+        "text": faker.text(),
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token, event_name="CREATE_MESSAGE", data=payload
     )

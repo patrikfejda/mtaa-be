@@ -33,6 +33,7 @@ class Conversation(Base):
     __tablename__ = "conversations"
 
     id = Column(Integer, primary_key=True)
+    synchronization_key = Column(String, unique=True)
     author_id = Column(Integer, ForeignKey("users.id"))
     name = Column(String)
     is_group = Column(Boolean)
@@ -62,6 +63,7 @@ class Message(Base):
     __tablename__ = "messages"
 
     id = Column(Integer, primary_key=True)
+    synchronization_key = Column(String, unique=True)
     author_id = Column(Integer, ForeignKey("users.id"))
     conversation_id = Column(Integer, ForeignKey("conversations.id"))
     text = Column(String)

@@ -6,7 +6,7 @@ from app import crud, schemas
 
 def create_random_conversation(test_db: Session, faker: Faker, author_id: int, user_ids: set[int]):
     conversation_create = schemas.ConversationCreate(
-        name=faker.name(), is_group=True, user_ids=user_ids
+        synchronization_key=faker.uuid4(), name=faker.name(), is_group=True, user_ids=user_ids
     )
     return crud.create_conversation(
         db=test_db, conversation=conversation_create, author_id=author_id
