@@ -5,6 +5,7 @@ from pydantic import Field
 
 from .base_model import AppBaseModel
 from .message import Message
+from .user import User
 
 
 class Conversation(AppBaseModel):
@@ -13,6 +14,7 @@ class Conversation(AppBaseModel):
     is_group: bool
     created_at: datetime
 
+    users: list[User]
     messages: list[Message]
 
 

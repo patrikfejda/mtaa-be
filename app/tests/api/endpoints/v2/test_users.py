@@ -70,6 +70,7 @@ def test_get_all_current_user_conversations(
     other_user, different_conversation_user = create_random_users(
         test_db=test_db, faker=faker, num_of_users=2
     )
+    other_user_json_dict = json.loads(schemas.User.from_orm(other_user).json(by_alias=True))
     my_conversation = create_random_conversation(
         test_db=test_db, faker=faker, user_ids=[user.id, other_user.id]
     )
@@ -93,7 +94,9 @@ def test_get_all_current_user_conversations(
     assert "id" in response_payload[0]
     assert "name" in response_payload[0]
     assert "createdAt" in response_payload[0]
+    assert "users" in response_payload[0]
     assert "messages" in response_payload[0]
     assert response_payload[0]["id"] == my_conversation.id
     assert response_payload[0]["name"] == my_conversation.name
+    assert other_user_json_dict in response_payload[0]["users"]
     assert created_message_json_dict in response_payload[0]["messages"]
