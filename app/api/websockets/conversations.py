@@ -38,7 +38,9 @@ async def on_create_conversation(
         other_user = crud.get_user(db=db, user_id=other_user_id)
         conversation_create.name = other_user.display_name or other_user.username
 
-    db_conversation = crud.create_conversation(db=db, conversation=conversation_create)
+    db_conversation = crud.create_conversation(
+        db=db, conversation=conversation_create, author_id=current_user.id
+    )
     await manager.emit(
         server_event_name=ServerEvent.NEW_CONVERSATION,
         db_data=db_conversation,

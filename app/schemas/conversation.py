@@ -14,6 +14,7 @@ class Conversation(AppBaseModel):
     is_group: bool
     created_at: datetime
 
+    author: User
     users: list[User]
     messages: list[Message]
 

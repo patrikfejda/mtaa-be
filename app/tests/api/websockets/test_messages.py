@@ -29,7 +29,7 @@ def test_create_message(
     conversation_user_url = f"{MODULE_API_PREFIX}?token={conversation_user_token}"
     different_user_url = f"{MODULE_API_PREFIX}?token={different_user_token}"
     conversation = create_random_conversation(
-        test_db=test_db, faker=faker, user_ids=[user.id, conversation_user.id]
+        test_db=test_db, faker=faker, author_id=user.id, user_ids=[user.id, conversation_user.id]
     )
     payload = {"conversationId": conversation.id, "text": faker.text()}
     websocket_message = create_websocket_message(
@@ -65,12 +65,14 @@ def test_create_message(
 
 @pytest.mark.slow
 def test_create_message_user_not_in_conversation(
-    client: TestClient, user_auth_token: str, test_db: Session, faker: Faker
+    client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
 ):
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     users = create_random_users(test_db=test_db, faker=faker, num_of_users=2)
     users_ids = list(map(lambda user: user.id, users))
-    conversation = create_random_conversation(test_db=test_db, faker=faker, user_ids=users_ids)
+    conversation = create_random_conversation(
+        test_db=test_db, faker=faker, author_id=user.id, user_ids=users_ids
+    )
     payload = {"conversationId": conversation.id, "text": faker.text()}
     websocket_message = create_websocket_message(
         token=user_auth_token, event_name="CREATE_MESSAGE", data=payload
@@ -107,7 +109,7 @@ def test_create_message_empty_text(
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     conversation_user = create_random_user(test_db=test_db, faker=faker)
     conversation = create_random_conversation(
-        test_db=test_db, faker=faker, user_ids=[user.id, conversation_user.id]
+        test_db=test_db, faker=faker, author_id=user.id, user_ids=[user.id, conversation_user.id]
     )
     payload = {"conversationId": conversation.id, "text": ""}
     websocket_message = create_websocket_message(
