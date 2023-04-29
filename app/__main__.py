@@ -6,7 +6,13 @@ from app.config import FILESTORE_PATH, FILESTORE_URL, settings
 from app.db.init_db import init_db
 from app.db.orm import SessionLocal
 
-app = FastAPI(title="mtaa")
+
+app = FastAPI(
+    title="mtaa",
+    docs_url= "/docs",
+    openapi_url= "/openapi.json",
+)
+
 app.include_router(router, prefix=settings.API_PREFIX)
 app.mount(FILESTORE_URL, StaticFiles(directory=FILESTORE_PATH), name="static")
 

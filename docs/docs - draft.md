@@ -2,7 +2,7 @@
 title: "Messenger app COMLY"
 subtitle: "Assignment no. 1 -  Mobile technologies and applications"
 author: [Patrik Fejda, Matej Pavlík]
-date: "27.4.2023"
+date: "7.3.2023"
 keywords: [Markdown, Example]
 titlepage: true
 titlepage-color: "423f3b"
@@ -13,8 +13,8 @@ link-citations: true
 linkcolor: "423f3b"
 ---
 \pagebreak
+# **Job Information**
 
-## Assignment Information
 
 |                |                                                            |
 | -------------- | ---------------------------------------------------------- |
@@ -28,6 +28,7 @@ linkcolor: "423f3b"
 | **Exercising** | Ing. Marek Galinski, PhD.                                  |
 | **Lecturer**   | prof. Ing. Ivan Kotuliak, PhD. , Ing. Marek Galinski, PhD. |
 | **Group**      | Tuesday 11:00                                              |
+
 
 \pagebreak
 
@@ -83,6 +84,7 @@ Sharing status without sharing the location will not be possible.
 User can set their display name and profile picture. The profile picture will be visible to all the users in the app.
 The display name will be default to the username, but can be changed by the user.
 
+
 ## Technical specification
 
 ### Backend
@@ -100,26 +102,6 @@ For connecting to the database, we will use SQLAlchemy ORM.
 Sending messages will be done using websockets.
 Storing binary files (images) will be done using filestorage.
 
-#### BE Used libraries
-
-- `datetime`: A library for working with dates and times.
-- `enum`: A library for creating enumerated constants in Python.
-- `faker`: A library for generating fake data such as names, addresses, and phone numbers.
-- `fastapi`: A modern, fast web framework for building APIs.
-- `filetype`: A library for detecting file types by their content.
-- `humps`: A library for converting object keys between camelCase and snake_case.
-- `json`: A library for encoding and decoding JSON data.
-- `jose`: A library for encoding, decoding, and verifying JSON Web Tokens (JWTs).
-- `os`: A library for interacting with the operating system.
-- `pydantic`: A library for data validation and settings management based on Python type annotations.
-- `pytest`: A library for writing and running tests in Python.
-- `random`: A library for generating random numbers and values.
-- `shutil`: A library for file operations, including copying and deleting files and directories.
-- `signal`: A library for sending and receiving signals between processes.
-- `sqlalchemy`: A library for working with SQL databases in Python.
-- `string`: A library for working with strings and text.
-- `typing`: A library for defining and using Python type hints.
-- `unicodedata`: A library for working with Unicode characters and text.
 
 ### Deployment
 
@@ -133,7 +115,7 @@ which will provide consistency between environments and will allow for easy depl
 Local development environment will be deployed using docker-compose.
 The production environment will be deployed on a cloud server.
 
-### Frontend
+### Frontend 
 
 The app will be build for Android using React Native.
 
@@ -146,93 +128,6 @@ The frontend will be using the following tech stack:
 - Immer for handling immutable data (via Redux Toolkit)
 - React Navigation for navigating between screens
 
-#### FE Used libraries
-
-- `date-fns`: A JavaScript date utility library with a focus on providing functions to format, parse, and manipulate dates.
-  - `formatRelative`: A function that formats a date as a string representing the time difference relative to the current date. For example, "2 days ago" or "in 3 hours".
-  - `parseJSON`: A function that parses a string representation of a date in ISO format and returns a Date object.
-- `date-fns/locale`: A module that provides localized strings for date-fns.
-  - `enUS`: An object containing English (United States) localized strings for use with date-fns.
-- `immer`: A library that allows you to work with immutable data in a more convenient way by using a draft state that you can modify as if it were mutable.
-  - `produce`: A function that takes an initial state and a modifier function, and returns a new state that is the result of applying the modifier function to the initial state.
-- `native-base`: A UI library for React Native that provides pre-built, customizable components.
-  - `Avatar`: A component for displaying user avatars.
-  - `Box`: A component for creating layout boxes with customizable styles.
-  - `Button`: A component for creating buttons with customizable styles.
-  - `FormControl`: A component for creating form controls with customizable styles.
-  - `Input`: A component for creating text input fields with customizable styles.
-  - `Text`: A component for displaying text with customizable styles.
-  - `VStack`: A component for creating vertically stacked layout boxes with customizable styles.
-  - `HStack`: A component for creating horizontally stacked layout boxes with customizable styles.
-  - `View`: A component for creating layout views with customizable styles.
-  - `NativeBaseProvider`: A component that provides a theme to all NativeBase components.
-  - `extendTheme`: A function that allows you to extend the default NativeBase theme with your own customizations.
-  - `Center`: A component for centering child elements within a layout.
-  - `Icon`: A component for displaying icons from various icon sets with customizable styles.
-  - `IconButton`: A component for creating clickable icons with customizable styles.
-  - `StatusBar`: A component for customizing the status bar on Android and iOS devices.
-  - `useToken`: A hook that allows you to access theme tokens from the NativeBase theme.
-  - `Toast`: A component for displaying toast messages with customizable styles.
-  - `IAlertProps`: A type definition for props that can be passed to the Alert component.
-- `react`: a JavaScript library for building user interfaces.
-  - `React`: the main package for building UI components using React.
-  - `useState`: a hook that allows functional components to have stateful logic.
-- `react-native`: a framework for building mobile applications using React.
-  - `AppRegistry`: a module that registers the root component of the application.
-  - `Alert`: a module that displays an alert dialog.
-  - `View`: a component used for grouping and positioning other components.
-  - `Text`: a component used for displaying text.
-  - `Modal`: a component used for displaying content over other content.
-  - `Pressable`: a component used for handling user touch events.
-  - `ScrollView`: a component used for scrolling content that is too large to fit on the screen.
-- `react-native-fs`: a module that provides access to the file system on a device.
-  - `RNFS`: the main module for interacting with the file system.
-- `react-native-geo-location-service`: a module that provides access to the device's location.
-  - `Geolocation`: the main module for interacting with the location service.
-- `react-native-image-picker`: a module that allows users to select or capture images from their device's camera or gallery.
-  - `launchCamera`: a function that launches the device's camera to take a new photo.
-  - `launchImageLibrary`: a function that launches the device's gallery to select an existing photo.
-- `react-native-permissions`: a module that provides access to the device's permissions.
-  - `check`: a function that checks if a specific permission is granted.
-  - `PERMISSIONS`: an object that contains the names of various permissions.
-  - `request`: a function that requests a specific permission.
-  - `RESULTS`: an object that contains the possible results of a permission request.
-  - `openSettings`: a function that opens the device's settings app to the permissions page.
-- `react-native-vector-icons/MaterialIcons`: a module that provides access to the Material Icons font.
-  - `MaterialIcons`: a component that renders an icon from the Material Icons font.
-- `react-navigation/bottom-tabs`
-  - `BottomTabHeaderProps`: Props for the header component of a bottom tab navigator.
-  - `BottomTabBarProps`: Props for the bottom tab bar component of a bottom tab navigator.
-  - `createBottomTabNavigator`: Function to create a bottom tab navigator.
-  - `bottomTabScreenOptions`: Options for a screen in a bottom tab navigator.
-- `react-navigation/native`
-  - `DarkTheme`: Predefined dark theme for a navigation container.
-  - `NavigationContainer`: Component that manages the navigation tree and handles the navigation state.
-  - `useFocusEffect`: Hook that runs an effect when a screen gains or loses focus.
-  - `CompositeScreenProps`: Type for the props of a screen in a navigation container.
-- `react-navigation/native-stack`
-  - `NativeStackHeaderProps`: Props for the header component of a native stack navigator.
-  - `createNativeStackNavigator`: Function to create a native stack navigator.
-  - `NativeStackScreenProps`: Type for the props of a screen in a native stack navigator.
-- `react-redux`
-  - `Provider`: Component that provides the Redux store to the component tree.
-  - `TypedUseSelectorHook`: Hook that provides typed access to the Redux store's state.
-  - `useDispatch`: Hook that returns the dispatch function from the Redux store.
-  - `useSelector`: Hook that returns a value from the Redux store's state.
-- `react-test-renderer`
-  - `renderer`: Object with methods for rendering React components for testing purposes.
-- `reduxjs/toolkit`
-  - `createSlice`: Function to create a slice of the Redux store's state and associated reducers and actions.
-  - `isAnyOf`: Function to create a matcher that returns true if any of the given action types match the action.
-  - `configureStore`: Function to create a Redux store with preconfigured settings and middleware.
-  - `Middleware`: Interface for a Redux middleware.
-  - `isRejectedWithValue`: Function to create a matcher that returns true if an action is a rejected promise with a specific value.
-  - `Action`: Interface for a Redux action.
-  - `ThunkAction`: Type for a Redux thunk action.
-- `reduxjs/toolkit/query/react`
-  - `createApi`: Function to create an API object with preconfigured endpoints for making network requests.
-  - `fetchBaseQuery`: Function to create a base fetch function for use with an API object.
-
 ### System APIs
 
 The app will allow users to use the camera for taking photos and videos and for making video calls.
@@ -240,7 +135,7 @@ Also, the app will use the location services for sharing their location in statu
 
 For that purpose, the app will use the following system APIs:
 
-- Camera and gallery
+- Camera and microphone
 - GPS location
 
 ## Users
@@ -253,6 +148,7 @@ In the app, no need for administrators will be required.
 ## UAT Tests
 
 ### Test 1: Send message to new user
+
 
 **Description:** User sends a message to a user, with whom he has not had any previous communication.
 
@@ -271,6 +167,7 @@ In the app, no need for administrators will be required.
 
 ### Test 1.1: Send message to old user (Alternative flow)
 
+
 **Description:** User sends a message to a user, with whom he has had previous communication.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -283,6 +180,7 @@ In the app, no need for administrators will be required.
 2. Continue with step 4 from Test 1.
 
 ### Test 2: Create group
+
 
 **Description:** User creates a chat group with other users.
 
@@ -301,6 +199,7 @@ In the app, no need for administrators will be required.
 
 ### Test 3: Send message to group
 
+
 **Description:** User sends a message to a group.
 
 **Preconditions:** User is logged in, user has a stable internet connection, user is in a group (see Test 2).
@@ -316,6 +215,7 @@ In the app, no need for administrators will be required.
 
 ### Test 4: Set status
 
+
 **Description:** User sets their status.
 
 **Preconditions:** User is logged in, user has a stable internet connection and GPS is enabled.
@@ -330,6 +230,7 @@ In the app, no need for administrators will be required.
 4. System fetched the GPS info from the device and sets the status with GPS info.
 
 ### Test 5: Send photo
+
 
 **Description:** User sends a photo to another user.
 
@@ -348,6 +249,7 @@ In the app, no need for administrators will be required.
 
 ### Test 6: Set profile photo
 
+
 **Description:** User sets their profile photo.
 
 **Preconditions:** User is logged in, user has a stable internet connection and app has working access to gallery.
@@ -365,6 +267,7 @@ In the app, no need for administrators will be required.
 
 ### Test 6.1: Change display name (Alternative flow)
 
+
 **Description:** User changes their display name.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -378,6 +281,7 @@ In the app, no need for administrators will be required.
 3. System changes the display name.
 
 ### Test 7: Send message with no internet connection
+
 
 **Description:** User sends a message to another user with no internet connection.
 
@@ -398,6 +302,7 @@ In the app, no need for administrators will be required.
 
 ### Test 8: Save draft message
 
+
 **Description:** User saves a draft message.
 
 **Preconditions:** User is logged in, user has a stable internet connection.
@@ -417,6 +322,7 @@ In the app, no need for administrators will be required.
 
 ### Test 9: Weak password
 
+
 **Description:** User tries to register with a weak password.
 
 **Preconditions:** User is not logged in, user has a stable internet connection.
@@ -432,6 +338,7 @@ In the app, no need for administrators will be required.
 
 ### Test 9.1: Email already exists (Alternative flow)
 
+
 **Description:** User tries to register with an email that already exists.
 
 **Preconditions:** User is not logged in, user has a stable internet connection.
@@ -445,6 +352,7 @@ In the app, no need for administrators will be required.
 3. System displays an error message.
 
 ### Test 10: Not appropriate language in status
+
 
 **Description:** User tries to set a status with not appropriate language.
 
@@ -460,6 +368,7 @@ In the app, no need for administrators will be required.
 4. System displays an error message.
 
 ### Test 11: GPS not available
+
 
 **Description:** User tries to set a status with GPS not available.
 
@@ -537,24 +446,6 @@ classDiagram
     Conversation "1" -- "0*" Message
 ```
 
-[![class diagram](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk)
 
-## Changes from the design
 
-### Minor
-
-- `login` and `register` dont have `/user/` prefix but `v2/auth` instead
-- using endpoint `v2/auth/check` instead of GET my data (`/user`)
-- PUT `/user` path changed to PUT `users/me`
-- Status - renamed attribute `status` to `text`
-
-### Medium
-
-- change paths from singular to plural (e.g. `/user` -> `/users`)
-- GET `/status` is not implemented, only GET `/statuses` (Getting all statuses)
-- DELETE `/status/{id}` - parameter `id` is in URL instead of body
-
-### Major
-
-- videocall is not implemented
-  
+[![](https://mermaid.ink/img/pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk?type=png)](https://mermaid.live/edit#pako:eNq1VNuK2zAQ_RWhp7Zkg5ykvlEK210KC81T2pdiMIM161VXlowkd5uG_HtlO8VObEJLqV48OnORztF4DrTQHGlKCwnW3gsoDVSZIn51CPli0ZBDj7TrQTki-LDfOSNUSbACISdo45MVVDhx1L70izaXdTjhwtYS9vl8ltGPQmJeP2mn88ZMD_z24gbss6jQOqhqUhgEhzyHkVfqUqhXrwfAYCmsQzPGLLrxtpxsb6X8jRzHsu0cuMZeE64TthUon5HTdukD_FFqcP7KqhSu4ThxgLvAr3PvsT9m1i6OEoeUM653Wn1HY_0dtLrG-IPWEkERYfPS6KaesD5_9E_-Nd61Kr3vZLL_kVyPbNFaKNE-qDGjWcqn0L9_3zOtitFmrguq_pTpfzDt_3-QxBPrje7GGQ0ySm5uvMHeeGs36sSzy5_8Q2SbfqXQdkzmotJsJF3QCo2fK9yPp07ojLon9C1CU29yMM8ZzdTRx0Hj9G6vCpo60-CCNjX3fE_TjKaPIK1Ha1A0PdAfNA2i9ZJtklUcvU3CdcTC1YLuPcw2y2gdrFcsjlcJS-LouKA_tfYl2DJi0SZmIUs2QZiEQdTV-9o5-0ORC6fN9jRO28_xFz4hkkk)
