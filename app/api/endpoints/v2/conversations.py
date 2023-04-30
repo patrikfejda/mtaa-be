@@ -12,11 +12,6 @@ from app.api.websocket_manager import WebSocketItem
 router = APIRouter()
 
 
-@router.get("/", response_model=list[schemas.Conversation])
-def get_all_user_conversation(current_user: CurrentUserDependency, db: SessionDependency):
-    return current_user.conversations
-
-
 @router.websocket("/ws")
 async def create_conversations_websocket(
     websocket: WebSocket, current_user: CurrentWebsocketUserDependency, db: SessionDependency

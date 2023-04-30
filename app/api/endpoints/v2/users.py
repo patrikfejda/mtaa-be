@@ -15,7 +15,7 @@ async def get_all_users(current_user: CurrentUserDependency, db: SessionDependen
 
 
 @router.put("/me", response_model=schemas.User)
-async def update_user_me(
+async def update_current_user(
     user_update: Annotated[schemas.UserUpdate, Depends()],
     current_user: CurrentUserDependency,
     db: SessionDependency,
@@ -26,3 +26,8 @@ async def update_user_me(
             detail="File extension is not supported",
         )
     return crud.update_user(db=db, db_user=current_user, user_update=user_update)
+
+
+@router.get("/me/conversations", response_model=list[schemas.Conversation])
+def get_all_current_user_conversations(current_user: CurrentUserDependency, db: SessionDependency):
+    return current_user.conversations

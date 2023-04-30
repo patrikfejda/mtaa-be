@@ -8,7 +8,9 @@ from sqlalchemy.orm import Session
 
 from app import models
 from app.config import settings
+from app.tests.utils.conversation import create_random_conversation
 from app.tests.utils.user import (
+    create_random_user,
     create_random_user_with_token,
     create_random_users,
     get_users_tokens,
@@ -25,7 +27,11 @@ def test_create_direct_conversation(
     user_url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     new_user, new_user_token = create_random_user_with_token(test_db=test_db, faker=faker)
     new_user_url = f"{MODULE_API_PREFIX}?token={new_user_token}"
-    payload = {"isGroup": False, "userIds": [user.id, new_user.id]}
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "isGroup": False,
+        "userIds": [user.id, new_user.id],
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token,
         event_name="CREATE_CONVERSATION",
@@ -47,13 +53,47 @@ def test_create_direct_conversation(
     assert new_user_response["event"] == "NEW_CONVERSATION"
     assert "data" in new_user_response
     assert "id" in new_user_response["data"]
+    assert "synchronizationKey" in new_user_response["data"]
     assert "name" in new_user_response["data"]
     assert "isGroup" in new_user_response["data"]
     assert "createdAt" in new_user_response["data"]
     assert "messages" in new_user_response["data"]
+    assert new_user_response["data"]["synchronizationKey"] == payload["synchronizationKey"]
     assert new_user_response["data"]["name"] == (new_user.display_name or new_user.username)
     assert new_user_response["data"]["isGroup"] == False
     assert new_user_response["data"]["messages"] == []
+
+
+@pytest.mark.slow
+def test_create_direct_conversation_already_exists(
+    client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
+):
+    url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
+    new_user = create_random_user(test_db=test_db, faker=faker)
+    create_random_conversation(
+        test_db=test_db,
+        faker=faker,
+        author_id=user.id,
+        is_group=False,
+        user_ids=[user.id, new_user.id],
+    )
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "isGroup": False,
+        "userIds": [new_user.id, user.id],
+    }
+    websocket_message = create_websocket_message(
+        token=user_auth_token,
+        event_name="CREATE_CONVERSATION",
+        data=payload,
+    )
+
+    with pytest.raises(WebSocketDisconnect) as exception:
+        with client.websocket_connect(url) as websocket:
+            websocket.send_json(websocket_message)
+            websocket_receive_json_timeouted(websocket)
+
+    assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
 
 
 @pytest.mark.slow
@@ -63,7 +103,11 @@ def test_create_direct_conversation_many_ids(
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     users = create_random_users(test_db=test_db, faker=faker, num_of_users=3)
     users_ids = list(map(lambda user: user.id, users))
-    payload = {"isGroup": False, "userIds": [user.id, *users_ids]}
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "isGroup": False,
+        "userIds": [user.id, *users_ids],
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token,
         event_name="CREATE_CONVERSATION",
@@ -85,6 +129,7 @@ def test_create_direct_conversation_no_creator_id(
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     users = create_random_users(test_db=test_db, faker=faker, num_of_users=2)
     payload = {
+        "synchronizationKey": faker.uuid4(),
         "isGroup": False,
         "userIds": [users[0].id, users[1].id],
     }
@@ -112,7 +157,12 @@ def test_create_group_conversation(
     other_users_urls = list(
         map(lambda token: f"{MODULE_API_PREFIX}?token={token}", get_users_tokens(other_users))
     )
-    payload = {"name": faker.name(), "isGroup": True, "userIds": [user.id, *other_users_ids]}
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "name": faker.name(),
+        "isGroup": True,
+        "userIds": [user.id, *other_users_ids],
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token,
         event_name="CREATE_CONVERSATION",
@@ -151,7 +201,38 @@ def test_create_group_conversation_missing_name(
     url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
     users = create_random_users(test_db=test_db, faker=faker, num_of_users=3)
     users_ids = list(map(lambda user: user.id, users))
-    payload = {"isGroup": True, "userIds": [user.id, *users_ids]}
+    payload = {
+        "synchronizationKey": faker.uuid4(),
+        "isGroup": True,
+        "userIds": [user.id, *users_ids],
+    }
+    websocket_message = create_websocket_message(
+        token=user_auth_token,
+        event_name="CREATE_CONVERSATION",
+        data=payload,
+    )
+
+    with pytest.raises(WebSocketDisconnect) as exception:
+        with client.websocket_connect(url) as websocket:
+            websocket.send_json(websocket_message)
+            websocket_receive_json_timeouted(websocket)
+
+    assert exception.value.code == status.WS_1003_UNSUPPORTED_DATA
+
+
+@pytest.mark.slow
+def test_create_group_conversation_wrong_synchronization_key(
+    client: TestClient, user: models.User, user_auth_token: str, test_db: Session, faker: Faker
+):
+    url = f"{MODULE_API_PREFIX}?token={user_auth_token}"
+    users = create_random_users(test_db=test_db, faker=faker, num_of_users=3)
+    users_ids = list(map(lambda user: user.id, users))
+    payload = {
+        "synchronizationKey": "invalid_key",
+        "name": faker.name(),
+        "isGroup": True,
+        "userIds": [user.id, *users_ids],
+    }
     websocket_message = create_websocket_message(
         token=user_auth_token,
         event_name="CREATE_CONVERSATION",
@@ -174,6 +255,7 @@ def test_create_group_conversation_no_creator_id(
     users = create_random_users(test_db=test_db, faker=faker, num_of_users=3)
     users_ids = list(map(lambda user: user.id, users))
     payload = {
+        "synchronizationKey": faker.uuid4(),
         "name": faker.name(),
         "isGroup": True,
         "userIds": users_ids,

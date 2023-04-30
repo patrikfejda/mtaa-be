@@ -33,10 +33,13 @@ class Conversation(Base):
     __tablename__ = "conversations"
 
     id = Column(Integer, primary_key=True)
+    synchronization_key = Column(String, unique=True)
+    author_id = Column(Integer, ForeignKey("users.id"))
     name = Column(String)
     is_group = Column(Boolean)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
+    author: Mapped["User"] = relationship()
     users: Mapped[List["User"]] = relationship(
         secondary=conversations_users, back_populates="conversations"
     )
@@ -60,6 +63,7 @@ class Message(Base):
     __tablename__ = "messages"
 
     id = Column(Integer, primary_key=True)
+    synchronization_key = Column(String, unique=True)
     author_id = Column(Integer, ForeignKey("users.id"))
     conversation_id = Column(Integer, ForeignKey("conversations.id"))
     text = Column(String)

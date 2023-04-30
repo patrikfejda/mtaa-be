@@ -11,6 +11,7 @@ def create_random_message(
     faker: Faker,
 ):
     create_message = schemas.MessageCreate(
+        synchronization_key=faker.uuid4(),
         text=faker.text(),
         conversation_id=conversation_id,
     )

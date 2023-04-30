@@ -32,13 +32,29 @@ async def on_create_conversation(
             code=status.WS_1003_UNSUPPORTED_DATA,
             reason="The conversation must have the current user in user_ids",
         )
-
     if not conversation_create.is_group:
         other_user_id = next(filter(lambda id: id != current_user.id, conversation_create.user_ids))
         other_user = crud.get_user(db=db, user_id=other_user_id)
+
+        if (
+            db.query(models.Conversation)
+            .filter(
+                models.Conversation.is_group.is_(False),
+                models.Conversation.users.any(models.User.id == current_user.id),
+                models.Conversation.users.any(models.User.id == other_user_id),
+            )
+            .first()
+        ):
+            raise WebSocketException(
+                code=status.WS_1003_UNSUPPORTED_DATA,
+                reason="Direct conversation with this user already exists",
+            )
+
         conversation_create.name = other_user.display_name or other_user.username
 
-    db_conversation = crud.create_conversation(db=db, conversation=conversation_create)
+    db_conversation = crud.create_conversation(
+        db=db, conversation=conversation_create, author_id=current_user.id
+    )
     await manager.emit(
         server_event_name=ServerEvent.NEW_CONVERSATION,
         db_data=db_conversation,
