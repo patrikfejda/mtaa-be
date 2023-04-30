@@ -558,3 +558,40 @@ classDiagram
 
 - videocall is not implemented
   
+## Wireframes
+
+### Login
+
+![Login](./img/Log_In.png)
+
+### Register
+
+![Register](./img/Register.png)
+
+### Message
+
+![Message](./img/Message.png)
+
+### New chat modal
+
+![New chat modal](./img/New_chat_modal.png)
+
+### Settings
+
+![Settings](./img/Settings.png)
+
+### Start a group chat modal
+
+![Start a group chat modal](./img/Start_a_group_chat_modal.png)
+
+### Status detail modal
+
+![Status detail modal](./img/Status_detail_modal.png)
+
+### Status
+
+![Status](./img/Status.png)
+
+### Video call
+
+![Video call](./img/Video_call.png)
