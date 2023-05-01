@@ -37,10 +37,6 @@ We are building a native mobile app for Android - a messaging app that will allo
 
 The app will allow the users to communicate in one-2-one chats and group chats and to share their current status with other users.
 
-## Wireframes
-
-Figma project can be found [here](https://www.figma.com/proto/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1)
-
 ### Project objectives
 
 The main objective of the project is to build a modern messaging app, that will fulfill the social needs of the nowadays users.
@@ -558,3 +554,42 @@ classDiagram
 
 - videocall is not implemented
   
+## Wireframes
+
+Figma project can be found [here](https://www.figma.com/proto/ROXp0vs8txJrxb912lWvNa/MTAA-APP?node-id=0%3A1)
+
+### Login
+
+![Login](./img/Log_In.png)
+
+### Register
+
+![Register](./img/Register.png)
+
+### Message
+
+![Message](./img/Message.png)
+
+### New chat modal
+
+![New chat modal](./img/New_chat_modal.png)
+
+### Settings
+
+![Settings](./img/Settings.png)
+
+### Start a group chat modal
+
+![Start a group chat modal](./img/Start_a_group_chat_modal.png)
+
+### Status detail modal
+
+![Status detail modal](./img/Status_detail_modal.png)
+
+### Status
+
+![Status](./img/Status.png)
+
+### Video call
+
+![Video call](./img/Video_call.png)
