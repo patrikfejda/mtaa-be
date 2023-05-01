@@ -46,7 +46,7 @@ def test_create_direct_conversation(
         user_response = websocket_receive_json_timeouted(user_websocket)
         new_user_response = websocket_receive_json_timeouted(new_user_websocket)
 
-    assert user_response == None
+    assert user_response != None
     assert new_user_response != None
     assert "token" not in new_user_response
     assert "event" in new_user_response
@@ -169,6 +169,7 @@ def test_create_group_conversation(
         data=payload,
     )
 
+    users_responses = []
     with ExitStack() as stack:
         user_websocket = stack.enter_context(client.websocket_connect(user_url))
         other_users_websockets = [
@@ -176,22 +177,22 @@ def test_create_group_conversation(
         ]
         user_websocket.send_json(websocket_message)
         user_response = websocket_receive_json_timeouted(user_websocket)
-        other_users_responses = []
+        users_responses.append(user_response)
         for other_user_websocket in other_users_websockets:
             other_user_response = websocket_receive_json_timeouted(other_user_websocket)
             if other_user_response:
-                other_users_responses.append(other_user_response)
+                users_responses.append(other_user_response)
 
-    assert user_response == None
-    assert len(other_users_responses) == len(other_users)
-    for other_user_response in other_users_responses:
-        assert "token" not in other_user_response
-        assert "event" in other_user_response
-        assert other_user_response["event"] == "NEW_CONVERSATION"
-        assert "data" in other_user_response
-        assert other_user_response["data"]["name"] == payload["name"]
-        assert other_user_response["data"]["isGroup"] == True
-        assert other_user_response["data"]["messages"] == []
+    assert user_response != None
+    assert len(users_responses) == len(other_users) + 1
+    for user_response in users_responses:
+        assert "token" not in user_response
+        assert "event" in user_response
+        assert user_response["event"] == "NEW_CONVERSATION"
+        assert "data" in user_response
+        assert user_response["data"]["name"] == payload["name"]
+        assert user_response["data"]["isGroup"] == True
+        assert user_response["data"]["messages"] == []
 
 
 @pytest.mark.slow

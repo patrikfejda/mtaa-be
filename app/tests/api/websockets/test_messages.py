@@ -50,8 +50,8 @@ def test_create_message(
         conversation_user_response = websocket_receive_json_timeouted(conversation_user_websocket)
         different_user_response = websocket_receive_json_timeouted(different_user_websocket)
 
-    assert user_response == None
     assert different_user_response == None
+    assert user_response != None
     assert conversation_user_response != None
     assert "token" not in conversation_user_response
     assert "event" in conversation_user_response

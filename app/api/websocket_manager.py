@@ -24,9 +24,6 @@ class WebSocketItem:
     def user_in(self, ids: set[int]):
         return self._user_id in ids
 
-    def is_not_me(self, my_id: int):
-        return self._user_id != my_id
-
     def has_conversation(self, id: int):
         return id in self._conversation_ids
 
@@ -54,11 +51,11 @@ class WebSocketManager:
                     await websocket_message_receive_json_or_throw(connection)
                 )
 
-                # Allow processing of the last event and then check token expiration
+                await self.auth_handler(db=db, websocket_message=websocket_message)
                 await self.event_handler(
                     current_user=current_user, db=db, websocket_message=websocket_message
                 )
-                await self.auth_handler(db=db, websocket_message=websocket_message)
+
         except WebSocketDisconnect:
             self.disconnect(websocket_item)
             await connection.close()
