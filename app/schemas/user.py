@@ -16,7 +16,7 @@ class User(AppBaseModel):
 class UserCreate(AppBaseModel):
     email: EmailStr
     username: str = Field(min_length=3)
-    password: str = Field(min_length=8)
+    password: str = Field()
 
 
 @dataclass(config=AppBaseModelConfig)
