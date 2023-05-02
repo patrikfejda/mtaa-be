@@ -4,14 +4,15 @@ from sqlalchemy.orm import Session
 from app import crud, models, schemas
 from app.api.websocket_events import ServerEvent
 from app.api.websocket_helpers import get_users_websocket_items
-from app.api.websocket_manager import WebSocketManager
+from app.api.websocket_manager import WebSocketItem, WebSocketManager
 
 
 async def on_create_conversation(
     manager: WebSocketManager,
+    conversation_create: schemas.ConversationCreate,
     current_user: models.User,
     db: Session,
-    conversation_create: schemas.ConversationCreate,
+    websocket_item: WebSocketItem,
 ):
     if not conversation_create.is_group and len(conversation_create.user_ids) != 2:
         raise WebSocketException(

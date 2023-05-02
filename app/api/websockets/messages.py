@@ -4,14 +4,15 @@ from sqlalchemy.orm import Session
 from app import crud, models, schemas
 from app.api.websocket_events import ServerEvent
 from app.api.websocket_helpers import get_conversation_websocket_items
-from app.api.websocket_manager import WebSocketManager
+from app.api.websocket_manager import WebSocketItem, WebSocketManager
 
 
 async def on_create_message(
     manager: WebSocketManager,
+    message_create: schemas.MessageCreate,
     current_user: models.User,
     db: Session,
-    message_create: schemas.MessageCreate,
+    websocket_item: WebSocketItem,
 ):
     message_conversation = crud.get_conversation(
         db=db, conversation_id=message_create.conversation_id

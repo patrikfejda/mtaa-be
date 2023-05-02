@@ -53,7 +53,10 @@ class WebSocketManager:
 
                 await self.auth_handler(db=db, websocket_message=websocket_message)
                 await self.event_handler(
-                    current_user=current_user, db=db, websocket_message=websocket_message
+                    current_user=current_user,
+                    db=db,
+                    websocket_message=websocket_message,
+                    websocket_item=websocket_item,
                 )
 
         except WebSocketDisconnect:
@@ -86,9 +89,17 @@ class WebSocketManager:
         current_user: models.User,
         db: Session,
         websocket_message: schemas.WebSocketMessageClient,
+        websocket_item: WebSocketItem,
     ):
         func, schema = self.client_events[websocket_message.event]
-        await func(self, current_user, db, schema(**websocket_message.data))
+
+        await func(
+            self,
+            schema(**websocket_message.data),
+            current_user=current_user,
+            db=db,
+            websocket_item=websocket_item,
+        )
 
     async def emit(
         self,
