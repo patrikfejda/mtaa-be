@@ -2,7 +2,7 @@ uvicorn==0.21.1
 fastapi==0.95.0
 psycopg2-binary==2.9.5
 sqlalchemy==2.0.7
-python-multipart==0.0.6
+python-multipart==0.0.7
 pylint==2.16.2
 pytest==7.2.2
 humps==0.2.2
